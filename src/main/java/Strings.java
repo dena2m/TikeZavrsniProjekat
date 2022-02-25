@@ -1,4 +1,5 @@
 public class Strings {
+
     //urls
     public static final String HOME_PAGE_URL = "https://www.tike.rs/";
     public static final String FACEBOOK_URL = "https://www.facebook.com/tikebelgrade/";
@@ -10,10 +11,14 @@ public class Strings {
     public static final String HOT_SALE_URL = "https://www.tike.rs/proizvodi/hot-sale";
     public static final String BLOG_URL = "https://www.tike.rs/magazin";
     public static final String KORISNICKA_PODRSKA_URL = "https://fms.omega.rs/sportvision/survey.php?hash=61962a77ccffb165961962a77ccffd";
-    public static final String O_NAMA = "https://www.tike.rs/o-nama";
-    public static final String REKLAMACIJE = "https://www.tike.rs/reklamacije";
+    public static final String O_NAMA_URL = "https://www.tike.rs/o-nama";
+    public static final String REKLAMACIJE_URL = "https://www.tike.rs/reklamacije";
 
 
+    // Footer link titles
+    public static final String KORISNICKA_PODRSKA_FOOTER_TITLE = "Korisnička podrška";
+    public static final String O_NAMA_FOOTER_TITLE = "O nama";
+    public static final String REKLAMACIJE_FOOTER_TITLE = "Reklamacije";
 
 
 

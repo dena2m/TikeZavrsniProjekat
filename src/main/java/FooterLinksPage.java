@@ -32,7 +32,7 @@ public class FooterLinksPage extends BasePage{
         super(driver);
     }
 
-
+    //creat footer links list, click on one and asserting links url
     public FooterLinksPage selectFooterLink(String footerLinkTitle, String footerLinkUrl) {
         List<WebElement> footerLinks = driver.findElements(By.xpath("//nav[@class='row']//a"));
         for(WebElement linkTitle : footerLinks) {

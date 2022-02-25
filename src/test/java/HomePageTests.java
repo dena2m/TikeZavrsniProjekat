@@ -5,13 +5,23 @@ import org.testng.annotations.Test;
 
 public class HomePageTests extends BaseTests {
 
-
-@Test
+    /**
+     * Click on a category button from navigation bar
+     * Steps:
+     * 1. Go to: "https://www.tike.rs".
+     * 2. On navigation bar click on a category e.g. 'Odeca'.
+     *
+     * Expected results:
+     * 2. Verify that you are redirected to correct category url.
+     */
+    @Test
     public void clickCategoryPageFromNavbar() {
         ChromeDriver driver = openChromeDriver();
 
         try {
+            print("1. Go to: 'https://www.tike.rs'.");
             HomePage homePage = new HomePage(driver);
+            print("2. On navigation bar click on a category e.g. 'Odeca'.");
             homePage.goToCategoryPageFromNavBar(Strings.ODECA_NAVBAR_TITLE, Strings.ODECA_URL);
         }finally {
             driver.quit();

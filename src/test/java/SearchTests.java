@@ -3,7 +3,11 @@ import org.testng.annotations.Test;
 
 public class SearchTests extends BaseTests{
 
-@Test
+
+    /**
+     *
+     */
+    @Test
     public void searchTest() {
         ChromeDriver driver = openChromeDriver();
 
