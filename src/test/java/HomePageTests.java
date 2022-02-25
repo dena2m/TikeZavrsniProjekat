@@ -8,21 +8,25 @@ public class HomePageTests extends BaseTests {
 
 @Test
     public void clickCategoryPageFromNavbar() {
+        ChromeDriver driver = openChromeDriver();
 
-    ChromeDriver driver = openChromeDriver();
-    try {
-        HomePage homePage = new HomePage(driver);
-        homePage.clickCategoryFromNavBar(Strings.ODECA_NAVBAR_TITLE);
-        String actualUrl = driver.getCurrentUrl();
-        homePage.assertUrl(actualUrl, Strings.ODECA_URL);
-
-
-    }finally {
-        driver.quit();
+        try {
+            HomePage homePage = new HomePage(driver);
+            homePage.goToCategoryPageFromNavBar(Strings.ODECA_NAVBAR_TITLE, Strings.ODECA_URL);
+        }finally {
+            driver.quit();
+        }
     }
 
 
-}
+
+
+
+
+
+
+
+
 
 
 }

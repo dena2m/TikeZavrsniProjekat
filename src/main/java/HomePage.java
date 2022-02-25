@@ -81,16 +81,18 @@ public class HomePage extends BasePage{
         return new ProductsPage(driver);
     }
 
-    public ProductsPage clickCategoryFromNavBar(String categoryTitle) {
+    public ProductsPage goToCategoryPageFromNavBar(String categoryTitle, String categoryUrl) {
         List<WebElement> allCategories = driver.findElements(By.xpath("//ul[@class='nav-main list-inline']//a"));
-                for(WebElement category : allCategories) {
-                        if(category.getAttribute("title").equals(categoryTitle)){
-                            category.click();
-                            return new ProductsPage(driver);
-                    }
-                }
-                assert false : "Error: Navbar category " + categoryTitle + " not found.";
-                return null;
+        for(WebElement category : allCategories) {
+            if(category.getAttribute("title").equals(categoryTitle)){
+                category.click();
+                String actualUrl = driver.getCurrentUrl();
+                assertUrl(actualUrl, categoryUrl);
+                return new ProductsPage(driver);
+            }
+        }
+        assert false : "Error: Navbar category " + categoryTitle + " not found.";
+        return null;
     }
 
 
