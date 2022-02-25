@@ -7,11 +7,7 @@ import java.util.List;
 
 public class HomePage extends BasePage{
 
-    @FindBy(xpath = "//i[@class = 'icon fa fa-search']")
-    WebElement searchIcon;
 
-    @FindBy(id = "search-text")
-    WebElement searchTextField;
 
     @FindBy(xpath = "//a[@title = 'Korpa']")
     WebElement shoppingCartIcon;
@@ -41,54 +37,54 @@ public class HomePage extends BasePage{
     }
 
 
-    public ProductsPage clickOnPatikeLink() {
+    public ProductPage clickOnPatikeLink() {
         print("Click on 'Patike' link button.");
         patikeLink.click();
         String actualUrl = driver.getCurrentUrl();
         assertUrl(actualUrl, Strings.PATIKE_URL);
-        return new ProductsPage(driver);
+        return new ProductPage(driver);
     }
 
-    public ProductsPage clickOnOdecaLink() {
+    public ProductPage clickOnOdecaLink() {
         print("Click on 'Odeca' link button.");
         odecaLink.click();
         String actualUrl = driver.getCurrentUrl();
         assertUrl(actualUrl, Strings.ODECA_URL);
-        return new ProductsPage(driver);
+        return new ProductPage(driver);
     }
 
-    public ProductsPage clickOnBrendoviLink() {
+    public ProductPage clickOnBrendoviLink() {
         print("Click on 'Brendovi' link button.");
         brendoviLink.click();
         String actualUrl = driver.getCurrentUrl();
         assertUrl(actualUrl, Strings.BRENDOVI_URL);
-        return new ProductsPage(driver);
+        return new ProductPage(driver);
     }
 
-    public ProductsPage clickOnSaleLink() {
+    public ProductPage clickOnSaleLink() {
         print("Click on 'Sale' link");
         saleLink.click();
         String actualUrl = driver.getCurrentUrl();
         assertUrl(actualUrl, Strings.HOT_SALE_URL);
-        return new ProductsPage(driver);
+        return new ProductPage(driver);
     }
 
-    public ProductsPage clickOnBlogLink() {
+    public ProductPage clickOnBlogLink() {
         print("Click on 'Blog' link.");
         blogLink.click();
         String actualUrl = driver.getCurrentUrl();
         assertUrl(actualUrl, Strings.BLOG_URL);
-        return new ProductsPage(driver);
+        return new ProductPage(driver);
     }
 
-    public ProductsPage goToCategoryPageFromNavBar(String categoryTitle, String categoryUrl) {
+    public ProductPage goToCategoryPageFromNavBar(String categoryTitle, String categoryUrl) {
         List<WebElement> allCategories = driver.findElements(By.xpath("//ul[@class='nav-main list-inline']//a"));
         for(WebElement category : allCategories) {
             if(category.getAttribute("title").equals(categoryTitle)){
                 category.click();
                 String actualUrl = driver.getCurrentUrl();
                 assertUrl(actualUrl, categoryUrl);
-                return new ProductsPage(driver);
+                return new ProductPage(driver);
             }
         }
         assert false : "Error: Navbar category " + categoryTitle + " not found.";

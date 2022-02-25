@@ -8,8 +8,8 @@ public class FooterLinksTests extends BaseTests {
     public void openKorisnickiServis() {
         ChromeDriver driver = openChromeDriver();
         try {
-            BasePage basePage = new BasePage(driver);
-            basePage.clickOnKorisnickaPodrskaButton();
+            FooterLinksPage footerLinksPage = new FooterLinksPage(driver);
+            footerLinksPage.clickOnKorisnickaPodrskaButton();
         }finally {
             driver.quit();
         }
@@ -19,8 +19,8 @@ public class FooterLinksTests extends BaseTests {
     public void openONama() {
         ChromeDriver driver = openChromeDriver();
         try {
-            BasePage basePage = new BasePage(driver);
-            basePage.clickOnONamaButton();
+            FooterLinksPage footerLinksPage = new FooterLinksPage(driver);
+            footerLinksPage.clickOnONamaButton();
         }finally {
             driver.quit();
         }
@@ -31,12 +31,14 @@ public class FooterLinksTests extends BaseTests {
     public void openReklamacije() {
         ChromeDriver driver = openChromeDriver();
         try {
-            BasePage basePage = new BasePage(driver);
-            basePage.clickOnReklamacijeButton();
+            FooterLinksPage footerLinksPage = new FooterLinksPage(driver);
+            footerLinksPage.clickOnReklamacijeButton();
         }finally {
             driver.quit();
         }
     }
+
+
 
 
 }
