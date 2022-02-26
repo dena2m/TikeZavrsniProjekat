@@ -12,7 +12,7 @@ public class HomePageTests extends BaseTests {
      * 2. On navigation bar click on a category e.g. 'Odeca'.
      *
      * Expected results:
-     * 2. Verify that you are redirected to correct category url.
+     * 2. Verify that you are redirected to correct category URL: "https://www.tike.rs/odeca".
      */
     @Test
     public void clickCategoryPageFromNavbar() {
@@ -21,7 +21,7 @@ public class HomePageTests extends BaseTests {
         try {
             print("1. Go to: 'https://www.tike.rs'.");
             HomePage homePage = new HomePage(driver);
-            print("2. On navigation bar click on a category e.g. 'Odeca'.");
+            print("2. On navigation bar click on a category e.g. 'Odeca'");
             homePage.goToCategoryPageFromNavBar(Strings.ODECA_NAVBAR_TITLE, Strings.ODECA_URL);
         }finally {
             driver.quit();

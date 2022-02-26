@@ -58,12 +58,6 @@ public class BasePage {
             searchIcon.click();
         }
 
-        public SearchPage enterTextIntoSearchField(String text) {
-            print("Enter text into search field");
-            searchTextField.sendKeys(text);
-            searchTextField.sendKeys(Keys.ENTER);
-            return new SearchPage(driver);
-        }
 
         public void assertUrl(String actualUrl, String expectedUrl) {
             print("assertUrl (" + actualUrl + ", " + expectedUrl + ")");

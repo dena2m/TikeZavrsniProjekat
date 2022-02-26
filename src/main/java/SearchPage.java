@@ -10,43 +10,66 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class SearchPage extends BasePage{
 
-    @FindBy(xpath = "//div[@class=\"col-xs-12 col-sm-12 col-lg-12\"]//a")
-    WebElement searchResultProductsList;
 
+    //webelements
+    //@FindBy(xpath = "//div[@class='title']//a")
+    //List<WebElement> searchResultProductsList;
+
+    @FindBy(className = "icon-caret-right")
+    WebElement nextPageButton;
+
+    @FindBy(xpath = "//h1//span")
+    WebElement productTitle;
+
+
+    //subclass constructor
     public SearchPage(ChromeDriver driver) {
         super(driver);
     }
 
 
-    public SearchPage searchByKeyword(String keyword) {
+    public void enterTextIntoSearchField(String text) {
+        print("Enter text into search field");
+        searchTextField.sendKeys(text);
+        searchTextField.sendKeys(Keys.ENTER);
+    }
+
+    // search for product type e.g. 'T=shirt' and verify that list of searched type of product is displayed
+    public void searchByKeyword(String keyword) {
         print("Go to: https://www.tike.rs/");
         BasePage basePage = new BasePage(driver);
         basePage.clickOnSearchIcon();
         enterTextIntoSearchField(keyword);
-        if(isElementPresent(searchResultProductsList)) {
-            return new SearchPage(driver);
-        }
-        assert false : "Error: no products found.";
-        return null;
+        List<WebElement> searchResults = driver.findElementsByXPath("//div[@class='title']//a");
+        assert searchResults.size() != 0 : "No results found";
     }
+
+
     //search by product type and find a specific product by checking all pages
     public ProductPage searchProductByName(String productType, String productName){
-        SearchPage searchPage = searchByKeyword(productType);
+        SearchPage searchPage = new SearchPage(driver);
+        searchByKeyword(productType);
+
         while(true) {
-            List<WebElement> searchList = driver.findElements(By.xpath("//div[@class=\"col-xs-12 col-sm-12 col-lg-12\"]//a"));
+            List<WebElement> searchList = driver.findElements(By.xpath("//div[@class='title']//a"));
             for (WebElement product : searchList) {
                 if (product.getAttribute("title").equals(productName)) {
                     product.click();
+                    //product titles have space in the end, so I used trim command
+                    String pageTitle = driver.findElement(By.xpath("//h1//span")).getText().trim();
+                    assert pageTitle.equals(productName.trim()) : "Error: wrong product";
+
                     return new ProductPage(driver);
                 }
             }
-            WebElement nextPageButton = driver.findElementByClassName("icon-caret-right");
-
             if(isElementPresent(nextPageButton)) {
                 print("Click on next page button");
                 nextPageButton.click();
+                // TODO stavi wait
+                sleep(3);
             }
             else{
                 break;

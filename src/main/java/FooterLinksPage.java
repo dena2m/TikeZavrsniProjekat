@@ -9,6 +9,7 @@ import java.util.List;
 public class FooterLinksPage extends BasePage{
 
 
+    //webelements
     @FindBy(xpath = "//a[@href = 'https://fms.omega.rs/sportvision/survey.php?hash=61962a77ccffb165961962a77ccffd']")
     WebElement korisnickaPodrskaLink;
 
@@ -28,26 +29,30 @@ public class FooterLinksPage extends BasePage{
     WebElement pageTitleReklamacije;
 
 
+    //subclass constructor
     public FooterLinksPage(ChromeDriver driver) {
         super(driver);
     }
 
+
+
     //creat footer links list, click on one and asserting links url
-    public FooterLinksPage selectFooterLink(String footerLinkTitle, String footerLinkUrl) {
+    public void selectFooterLink(String footerLinkTitle, String footerLinkUrl) {
         List<WebElement> footerLinks = driver.findElements(By.xpath("//nav[@class='row']//a"));
         for(WebElement linkTitle : footerLinks) {
             if(linkTitle.getAttribute("title").equals(footerLinkTitle)) {
                 linkTitle.click();
                 String actualUrl = driver.getCurrentUrl();
                 assertUrl(actualUrl, footerLinkUrl);
-                return new FooterLinksPage(driver);
+                return;
             }
         }
         assert false : "Error: footer page " + footerLinkTitle + " not found.";
-        return null;
     }
 
 
+    // assert 'Korisnicka podrska' link is present, scroll down the Home page (alignToTop argument is set to false
+    // because the navigation bar was covering some links, and they weren't clickable on laptop), verify links URL
     public void clickOnKorisnickaPodrskaButton() {
         assert isElementPresent(korisnickaPodrskaLink) : "Error. 'Korisnicka podrska' button is not displayed.";
         JavascriptExecutor js = (JavascriptExecutor) driver;

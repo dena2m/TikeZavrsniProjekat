@@ -8,7 +8,7 @@ import java.util.List;
 
 public class SocialNetworkLinksPage extends BasePage{
 
-
+    //webelements
     @FindBy(xpath = "//a[@href = 'https://www.facebook.com/tikebelgrade/']")
     WebElement facebookLink;
 
@@ -19,12 +19,15 @@ public class SocialNetworkLinksPage extends BasePage{
     WebElement youTubeLink;
 
 
+    //subclass constructor
     public SocialNetworkLinksPage(ChromeDriver driver) {
         super(driver);
     }
 
 
 
+    // assert Facebook link button is present, scroll down the Home page (alignToTop argument is set to false because
+    // the navigation bar was covering some links, and they weren't clickable on laptop)
     public void clickOnFacebookLinkButton() {
         assert isElementPresent(facebookLink) : "Error. Facebook button is not displayed.";
         JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -32,7 +35,8 @@ public class SocialNetworkLinksPage extends BasePage{
         facebookLink.click();
     }
 
-    public void connectToFacebook() {
+    // click on Facebook link, switch to Tike/Facebook tab, close Facebook tab, switch to Home page tab
+    public void openFacebookPage() {
         waitForElement(facebookLink);
         clickOnFacebookLinkButton();
         List<String> tabs = new ArrayList(driver.getWindowHandles());
@@ -50,7 +54,7 @@ public class SocialNetworkLinksPage extends BasePage{
         instagramLink.click();
     }
 
-    public void connectToInstagram() {
+    public void openInstagramPage() {
         waitForElement(instagramLink);
         clickOnInstagramLinkButton();
         List<String> tabs = new ArrayList(driver.getWindowHandles());
@@ -69,7 +73,7 @@ public class SocialNetworkLinksPage extends BasePage{
         youTubeLink.click();
     }
 
-    public void connectToYouTube() {
+    public void openYouTubeChannel() {
         waitForElement(youTubeLink);
         clickOnYouTubeButton();
         List<String> tabs = new ArrayList<>(driver.getWindowHandles());

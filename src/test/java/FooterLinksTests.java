@@ -4,22 +4,27 @@ import org.testng.annotations.Test;
 public class FooterLinksTests extends BaseTests {
 
     /**
-     * Test: Clicking on any information link on footer
+     * Click on any footer information link e.g. 'Korisnicka podrska'
      * Steps:
-     * 1. Login to: "https://www.tike.rs"
-     * 2. Click on an information link in footer.
+     * 1. Go to: "https://www.tike.rs/".
+     * 2. Assert 'Korisnicka podrska' link is present.
+     * 3. Scroll down the Home page.
+     * 4. Click on 'Korisnicka podrska' link in footer.
      *
      * Expected results:
-     * 2. Verify that you are redirected to correct url.
+     * 4. Verify that 'Korisnicka podrska' URL is displayed.
      */
     @Test
     public void goToFooterLink() {
         ChromeDriver driver = openChromeDriver();
 
         try {
-            print("1. Login to: 'https://www.tike.rs'");
+            print("1. Go to: 'https://www.tike.rs'");
             FooterLinksPage footerLinksPage = new FooterLinksPage(driver);
-            print("2. Click on an information link in footer.");
+
+            print("2. Click on 'Korisnicka podrska link in footer.");
+            // assert 'Korisnicka podrska' link is present, scroll down the Home page (alignToTop argument is set to false
+            // because the navigation bar was covering some links, and they weren't clickable on laptop), verify links URL
             footerLinksPage.selectFooterLink(Strings.KORISNICKA_PODRSKA_FOOTER_TITLE, Strings.KORISNICKA_PODRSKA_URL);
 
         }finally {
@@ -27,12 +32,27 @@ public class FooterLinksTests extends BaseTests {
         }
     }
 
-
+    /**
+     * Click on 'Korisnicki podrska' link and assert links URL
+     * Steps:
+     * 1. Go to: https://www.tike.rs/
+     * 2. Assert 'Korisnicka podrska' link is present.
+     * 3. Scroll down the Home page.
+     * 4. Click on 'Korisnicka podrska' link.
+     *
+     * Expected result:
+     * 4. Verify that 'Korisnicka podrska' URL is displayed.
+     */
     @Test
     public void openKorisnickiServis() {
+
         ChromeDriver driver = openChromeDriver();
         try {
+            print("1. Go to: 'https://www.tike.rs'.");
             FooterLinksPage footerLinksPage = new FooterLinksPage(driver);
+
+            // assert 'Korisnicka podrska' link is present, scroll down the Home page (alignToTop argument is set to false
+            // because the navigation bar was covering some links, and they weren't clickable on laptop), verify links URL
             footerLinksPage.clickOnKorisnickaPodrskaButton();
         }finally {
             driver.quit();
