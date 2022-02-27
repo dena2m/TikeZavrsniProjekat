@@ -4,7 +4,7 @@ import org.testng.annotations.Test;
 public class SocialNetworksTest extends BaseTests {
 
     /**
-     * Click on social network button in footer, switch to new tab and return to home page
+     * Click on Facebook/Instagram/YouTube button in footer, switch to new tab and return to Home page
      * Steps:
      *
      * 1. Go to: "https://www.tike.rs/".

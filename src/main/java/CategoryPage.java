@@ -19,7 +19,7 @@ public class CategoryPage extends BasePage{
 
 
 
-    //select brands from navbar, on brands page select brand link
+    //select brands from navbar, and on brands page select brand link
     public void selectBrandTitleLink(String brandTitle, String brandUrl) {
         HomePage homePage = new HomePage(driver);
 

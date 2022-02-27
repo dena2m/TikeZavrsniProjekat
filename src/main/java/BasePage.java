@@ -16,7 +16,7 @@ public class BasePage {
     ChromeDriver driver = null;
 
         //webelements
-        @FindBy(xpath = "//a[@href = 'https://www.tike.rs']")
+        @FindBy(xpath = "//a[@href = 'https://www.tike.rs'][1]")
         WebElement headerLogo;
 
         @FindBy(xpath = "//span[@aria-hidden ='true']")
@@ -34,6 +34,11 @@ public class BasePage {
         @FindBy(id = "search-text")
         WebElement searchTextField;
 
+        @FindBy(xpath = "//a[@title = 'Korpa']")
+        WebElement shoppingCartIcon;
+
+        @FindBy(className = "header-carthor-total")
+        WebElement shoppingCartBadgeNumber;
 
 
         //Superclass constructor
@@ -48,15 +53,25 @@ public class BasePage {
             cookiesCloseButton.click();
         }
 
-
+        //TODO NE RADI
         public void clickHeaderLogo() {
             headerLogo.click();
         }
+
 
         public void clickOnSearchIcon(){
             print("Click on the searh icon");
             searchIcon.click();
         }
+
+
+        public CartPage clickOnShoppingCartIcon() {
+            shoppingCartIcon.click();
+            return new CartPage(driver);
+        }
+
+
+
 
 
         public void assertUrl(String actualUrl, String expectedUrl) {
@@ -88,14 +103,13 @@ public class BasePage {
         }
 
 
-        public void  sleep(int seconds){
-            try {
-                Thread.sleep(seconds*1000);
-            }
-            catch (Exception e) {
-                print(e.getMessage());
-            }
+    public void  sleep(int seconds) {
+        try {
+            Thread.sleep(seconds * 1000);
+        } catch (Exception e) {
+            print(e.getMessage());
         }
+    }
 
 
 

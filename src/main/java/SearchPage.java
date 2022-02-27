@@ -44,12 +44,13 @@ public class SearchPage extends BasePage{
         basePage.clickOnSearchIcon();
         enterTextIntoSearchField(keyword);
         List<WebElement> searchResults = driver.findElementsByXPath("//div[@class='title']//a");
+
         assert searchResults.size() != 0 : "No results found";
     }
 
 
-    //search by product type and find a specific product by checking all pages
-    public ProductPage searchProductByName(String productType, String productName){
+    //search by product type e.g. 'majica' and find a specific product by checking all search pages
+    public ProductPage searchProductByNameFromSearchResultList(String productType, String productName){
         SearchPage searchPage = new SearchPage(driver);
         searchByKeyword(productType);
 

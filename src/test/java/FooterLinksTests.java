@@ -58,15 +58,18 @@ public class FooterLinksTests extends BaseTests {
             driver.quit();
         }
     }
-
+    // TODO HEADER LOGO NOT CLICKABLE
     @Test
     public void openONama() {
         ChromeDriver driver = openChromeDriver();
         try {
             FooterLinksPage footerLinksPage = new FooterLinksPage(driver);
             footerLinksPage.clickOnONamaButton();
+            footerLinksPage.waitForElement(footerLinksPage.headerLogo);
+            HomePage homePage = new HomePage(driver);
+            homePage.clickHeaderLogo();
         }finally {
-            driver.quit();
+          //  driver.quit();
         }
     }
 

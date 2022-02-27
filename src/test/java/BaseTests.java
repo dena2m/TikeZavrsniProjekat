@@ -1,5 +1,6 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -25,10 +26,24 @@ public class BaseTests {
     }
 
 
-
-
-
     public static void print(String s) {
         System.out.println(s);
+    }
+
+
+
+
+
+    public void  sleep(int seconds) {
+        try {
+            Thread.sleep(seconds * 1000);
+        } catch (Exception e) {
+            print(e.getMessage());
+        }
+    }
+
+    public void waitForElement(WebElement element) {
+        WebDriverWait wait = new WebDriverWait(openChromeDriver(), 5);
+        wait.until((ExpectedConditions.visibilityOf(element)));
     }
 }

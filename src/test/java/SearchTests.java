@@ -28,7 +28,16 @@ public class SearchTests extends BaseTests{
             SearchPage searchPage = new SearchPage(driver);
 
             //click search icon, enter text,switching pages by clicking 'next page' button until product is found
-            searchPage.searchProductByName("patike", "ADIDAS Patike SUPERTURF ADVENTURE SW ");
+            searchPage.searchProductByNameFromSearchResultList("patike", "ADIDAS Patike SUPERTURF ADVENTURE SW ");
+            ShoppingPage shoppingPage = new ShoppingPage(driver);
+            shoppingPage.chooseProductSize("40");
+            shoppingPage.clickAddToCartButton();
+
+            waitForElement(shoppingPage.shoppingCartBadgeNumber);
+            Integer currentNumber = shoppingPage.getNumberFromShoppingCartIcon();
+            assert currentNumber.equals(1) : "Error: Wrong number of products. Expected: 1. Actual: " + currentNumber;
+
+
         }
         finally {
             driver.quit();
