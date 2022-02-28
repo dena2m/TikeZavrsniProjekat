@@ -52,7 +52,8 @@ public class FooterLinksPage extends BasePage{
 
 
     // assert 'Korisnicka podrska' link is present, scroll down the Home page (alignToTop argument is set to false
-    // because the navigation bar was covering some links, and they weren't clickable on laptop), verify links URL
+    // because the navigation bar was covering some links, and they weren't clickable on laptop), verify 'Korisnicka
+    // podrska URL
     public void clickOnKorisnickaPodrskaButton() {
         assert isElementPresent(korisnickaPodrskaLink) : "Error. 'Korisnicka podrska' button is not displayed.";
         JavascriptExecutor js = (JavascriptExecutor) driver;

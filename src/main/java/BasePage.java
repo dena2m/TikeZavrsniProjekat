@@ -1,7 +1,4 @@
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -16,7 +13,7 @@ public class BasePage {
     ChromeDriver driver = null;
 
         //webelements
-        @FindBy(xpath = "//a[@href = 'https://www.tike.rs'][1]")
+        @FindBy(xpath = "//div[@class='container']//div[@class='block logo']")
         WebElement headerLogo;
 
         @FindBy(xpath = "//span[@aria-hidden ='true']")
@@ -41,6 +38,8 @@ public class BasePage {
         WebElement shoppingCartBadgeNumber;
 
 
+
+
         //Superclass constructor
         public BasePage(ChromeDriver driver) {
             this.driver = driver;
@@ -53,9 +52,10 @@ public class BasePage {
             cookiesCloseButton.click();
         }
 
-        //TODO NE RADI
-        public void clickHeaderLogo() {
+
+        public HomePage clickHeaderLogo() {
             headerLogo.click();
+            return new HomePage(driver);
         }
 
 
@@ -64,14 +64,21 @@ public class BasePage {
             searchIcon.click();
         }
 
+        public RegisterPage clickOnRegisterButton() {
+            registerButton.click();
+            return new RegisterPage(driver);
+        }
+
+        public LoginPage clickOnLoginButton() {
+            loginButton.click();
+            return new LoginPage(driver);
+        }
+
 
         public CartPage clickOnShoppingCartIcon() {
             shoppingCartIcon.click();
             return new CartPage(driver);
         }
-
-
-
 
 
         public void assertUrl(String actualUrl, String expectedUrl) {
@@ -100,6 +107,13 @@ public class BasePage {
         public void waitForElement(WebElement element) {
             WebDriverWait wait = new WebDriverWait(driver, 5);
             wait.until((ExpectedConditions.visibilityOf(element)));
+        }
+        //TODO prebaciti kasnije na pogodniju stranicu
+        public void waitForShoppingBadgeNumber(Integer currentNumber, Integer x) {
+            WebDriverWait wait = new WebDriverWait(driver, 3);
+            currentNumber += x;
+            String number = "" + currentNumber;
+            wait.until(ExpectedConditions.textToBe(By.className("header-carthor-total"), number));
         }
 
 

@@ -1,5 +1,8 @@
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
+
+import java.util.concurrent.Callable;
 
 public class SearchTests extends BaseTests{
 
@@ -18,7 +21,6 @@ public class SearchTests extends BaseTests{
      * 4. Verify that correct product page is displayed
      */
 
-
     @Test
     public void searchTest() {
         ChromeDriver driver = openChromeDriver();
@@ -27,24 +29,28 @@ public class SearchTests extends BaseTests{
             print("1. Go to: 'https://www.tike.rs/'");
             SearchPage searchPage = new SearchPage(driver);
 
-            //click search icon, enter text,switching pages by clicking 'next page' button until product is found
-            searchPage.searchProductByNameFromSearchResultList("patike", "ADIDAS Patike SUPERTURF ADVENTURE SW ");
+            //click search icon, enter text, switch pages by clicking 'next page' button until product is found
+            searchPage.searchProductByNameFromSearchResultList("patike", "NIKE Patike Dunk Low Retro EMB ");
             ShoppingPage shoppingPage = new ShoppingPage(driver);
-            shoppingPage.chooseProductSize("40");
+           // sleep(2);
+            shoppingPage.waitForElement(shoppingPage.priductSizes);
+            print("Choose product size.");
+            shoppingPage.chooseProductSize("41");
+
+            Integer currentNumber = shoppingPage.getNumberFromShoppingCartIcon();
+
+            print("Click 'add to cart'");
             shoppingPage.clickAddToCartButton();
 
-            waitForElement(shoppingPage.shoppingCartBadgeNumber);
-            Integer currentNumber = shoppingPage.getNumberFromShoppingCartIcon();
-            assert currentNumber.equals(1) : "Error: Wrong number of products. Expected: 1. Actual: " + currentNumber;
-
-
+            print("Get number from shopping cart badge.");
+            shoppingPage.waitForShoppingBadgeNumber(currentNumber, 1);
+            currentNumber = shoppingPage.getNumberFromShoppingCartIcon();
+            assert currentNumber == 1 : "Error: Wrong number of products. Expected: 1. Actual: " + currentNumber;
         }
         finally {
             driver.quit();
         }
     }
-
-
 
 
 

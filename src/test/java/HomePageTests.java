@@ -14,6 +14,7 @@ public class HomePageTests extends BaseTests {
      * Expected results:
      * 2. Verify that you are redirected to correct category URL: "https://www.tike.rs/odeca".
      */
+
     @Test
     public void clickCategoryPageFromNavbar() {
         ChromeDriver driver = openChromeDriver();
@@ -27,6 +28,7 @@ public class HomePageTests extends BaseTests {
             driver.quit();
         }
     }
+
     //  TODO
     @Test
     public void headerLogo() {

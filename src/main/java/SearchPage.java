@@ -39,7 +39,6 @@ public class SearchPage extends BasePage{
 
     // search for product type e.g. 'T=shirt' and verify that list of searched type of product is displayed
     public void searchByKeyword(String keyword) {
-        print("Go to: https://www.tike.rs/");
         BasePage basePage = new BasePage(driver);
         basePage.clickOnSearchIcon();
         enterTextIntoSearchField(keyword);

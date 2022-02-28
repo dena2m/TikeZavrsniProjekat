@@ -25,14 +25,9 @@ public class BaseTests {
         return driver;
     }
 
-
     public static void print(String s) {
         System.out.println(s);
     }
-
-
-
-
 
     public void  sleep(int seconds) {
         try {
@@ -40,10 +35,5 @@ public class BaseTests {
         } catch (Exception e) {
             print(e.getMessage());
         }
-    }
-
-    public void waitForElement(WebElement element) {
-        WebDriverWait wait = new WebDriverWait(openChromeDriver(), 5);
-        wait.until((ExpectedConditions.visibilityOf(element)));
     }
 }
