@@ -33,11 +33,12 @@ public class SearchPage extends BasePage{
 
     public void enterTextIntoSearchField(String text) {
         print("Enter text into search field");
+        searchTextField.sendKeys(Keys.CLEAR);
         searchTextField.sendKeys(text);
         searchTextField.sendKeys(Keys.ENTER);
     }
 
-    // search for product type e.g. 'T=shirt' and verify that list of searched type of product is displayed
+    // search for product type e.g. 'T=shirt' and verify that list of searched product type is displayed
     public void searchByKeyword(String keyword) {
         BasePage basePage = new BasePage(driver);
         basePage.clickOnSearchIcon();
@@ -49,7 +50,7 @@ public class SearchPage extends BasePage{
 
 
     //search by product type e.g. 'majica' and find a specific product by checking all search pages
-    public ProductPage searchProductByNameFromSearchResultList(String productType, String productName){
+    public ProductsPage searchProductByNameFromSearchResultList(String productType, String productName){
         SearchPage searchPage = new SearchPage(driver);
         searchByKeyword(productType);
 
@@ -62,7 +63,7 @@ public class SearchPage extends BasePage{
                     String pageTitle = driver.findElement(By.xpath("//h1//span")).getText().trim();
                     assert pageTitle.equals(productName.trim()) : "Error: wrong product";
 
-                    return new ProductPage(driver);
+                    return new ProductsPage(driver);
                 }
             }
             if(isElementPresent(nextPageButton)) {

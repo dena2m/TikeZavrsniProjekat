@@ -41,6 +41,14 @@ public class Strings {
     public static final String SALE_NAVBAR_TITLE = "SALE";
     public static final String BLOG_NAVBAR_TITLE = "BLOG";
 
+    // Titles from filter lists
+    public static final String JAKNA_TITLE = "Jakna";
+    public static final String WOMEN_FILTER = "13_za-zene";
+    public static final String CONVERSE_FILTER_CHECKBOX = "28_converse";
+    public static final String XL_SIZE_FILTER_CHECKBOX = "f_eusize_XL";
+
+
+
     // Product titles
     public static final String ADIDAS_PATIKE_TITLE = "ADIDAS Patike SUPERTURF ADVENTURE SW ";
 
@@ -48,6 +56,11 @@ public class Strings {
     public static final String ADIDAS_BRAND_TITLE = "ADIDAS";
 
     // Xpaths
-    public static final String PRODUCT_SIZES = "//ul[@class = 'product-attributes list-inline product-attributes-two-sizes']//li[@class='ease  ']//div";
+    public static final String PRODUCT_SIZES_LIST_XPATH = "//ul[@class = 'product-attributes list-inline product-attributes-two-sizes']//li[@class='ease  ']//div";
+    public static final String CATEGORY_FILTER_LIST_XPATH = "//ul[@class = 'items-wrapper filter-group-items list-unstyled ']//a";
+    public static final String GENDER_FILTER_LIST_XPATH = "//div[@id='nb_f-pol']//label";
+    public static final String BRAND_FILTER_LIST_XPATH = "//div[@id='nb_f-brend']//label";
+    public static final String SIZE_FILTER_LIST_XPATH = "//div[@id='nb_f-size']//label";
+
 
 }

@@ -6,18 +6,18 @@ public class LoginPage extends BasePage{
 
 
     @FindBy(id = "login_email")
-    WebElement loginMail;
+    WebElement loginMailField;
 
     @FindBy(id = "login_password")
-    WebElement loginLozinka;
+    WebElement loginLozinkaField;
 
     @FindBy(xpath = "//button[@type = 'submit']")
-    WebElement loginPrijava;
+    WebElement prijavaButton;
 
     @FindBy(xpath = "//a[@class='btn']")
-    WebElement registrujSe;
+    WebElement registrujSeButton;
 
-    @FindBy(xpath = "//div[@class = 'modal-header']//button")
+    @FindBy(xpath = "//div[@id='login_modal']//div[@class = 'modal-header']//button")
     WebElement closePrijavaModal;
 
     @FindBy(id = "login_modal")
@@ -32,11 +32,28 @@ public class LoginPage extends BasePage{
     }
 
 
-    public LoginPage loginWithValidCredentialsProba(){
+    public LoginPage openLoginModal(){
         clickOnLoginButton();
         isElementPresent(modalLogin);
         return new LoginPage(driver);
     }
+
+    public void enterValidCredentials() {
+        loginMailField.sendKeys("Natasa");
+        loginLozinkaField.sendKeys("lozinka");
+
+    }
+
+
+    public void clickLoginButton() {
+        prijavaButton.click();
+    }
+
+
+    public void closeLoginModal() {
+        closePrijavaModal.click();
+    }
+
 
 
 }

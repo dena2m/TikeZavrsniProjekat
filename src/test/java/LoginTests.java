@@ -9,9 +9,14 @@ public class LoginTests extends BaseTests{
         ChromeDriver driver = openChromeDriver();
         try {
             LoginPage loginPage = new LoginPage(driver);
-            loginPage.loginWithValidCredentialsProba();
+            loginPage.openLoginModal();
+            loginPage.enterValidCredentials();
+            loginPage.clickLoginButton();
+
+            // loginPage.waitForElement(loginPage.closePrijavaModal);
+            // loginPage.closeLoginModal();
         }finally {
-            driver.quit();
+            //driver.quit();
         }
     }
 

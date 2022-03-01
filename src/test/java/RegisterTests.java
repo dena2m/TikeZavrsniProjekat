@@ -1,7 +1,7 @@
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 
-public class RegistrationTests extends BaseTests{
+public class RegisterTests extends BaseTests{
 
 
 
@@ -13,8 +13,13 @@ public class RegistrationTests extends BaseTests{
         try {
             RegisterPage registerPage = new RegisterPage(driver);
             registerPage.clickOnRegisterButton();
+            registerPage.waitForElement(registerPage.modalRegistracija);
+            registerPage.fillRegisterModal();
+            //registerPage.waitForElement(registerPage.closeRegistracijaModal);
+            //registerPage.closeRegisterModal();
+
         } finally {
-            driver.quit();
+            //driver.quit();
         }
     }
 

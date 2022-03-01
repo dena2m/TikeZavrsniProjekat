@@ -23,7 +23,7 @@ public class CategoryPage extends BasePage{
     public void selectBrandTitleLink(String brandTitle, String brandUrl) {
         HomePage homePage = new HomePage(driver);
 
-        homePage.goToCategoryPageFromNavBar(Strings.BRENDOVI_NAVBAR_TITLE, Strings.BRENDOVI_URL);
+        homePage.openNavBarCategory(Strings.BRENDOVI_NAVBAR_TITLE, Strings.BRENDOVI_URL);
         List<WebElement> brandLinks = driver.findElements(By.xpath("//a[@class = 'link']"));
         for(WebElement brandLink : brandLinks) {
             if(brandLink.getAttribute("title").equals(brandTitle)) {
