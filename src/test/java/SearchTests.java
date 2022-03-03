@@ -26,16 +26,18 @@ public class SearchTests extends BaseTests{
         ChromeDriver driver = openChromeDriver();
 
         try {
-            print("1. Go to: 'https://www.tike.rs/'");
-            SearchPage searchPage = new SearchPage(driver);
+            print("Go to: 'https://www.tike.rs/'");
+            ProductsPage productsPage = new ProductsPage(driver);
 
-            //click search icon, enter text, switch pages by clicking 'next page' button until product is found
-            searchPage.searchProductByNameFromSearchResultList("patike", "NIKE Patike Dunk Low Retro EMB ");
+            //click search icon, enter text into search field
+            productsPage.searchByKeyword("patike");
+            // switch pages by clicking 'next page' button until product is found
+            productsPage.findItemByName("NIKE Patike Dunk Low Retro EMB");
+
             ShoppingPage shoppingPage = new ShoppingPage(driver);
-           // sleep(2);
             shoppingPage.waitForElement(shoppingPage.priductSizes);
             print("Choose product size.");
-            shoppingPage.chooseProductSize("41");
+            shoppingPage.chooseItemSize("41");
 
             Integer currentNumber = shoppingPage.getNumberFromShoppingCartIcon();
 

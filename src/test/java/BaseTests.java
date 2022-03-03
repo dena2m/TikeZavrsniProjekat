@@ -36,4 +36,9 @@ public class BaseTests {
             print(e.getMessage());
         }
     }
+
+    public void assertUrl(String actualUrl, String expectedUrl) {
+        print("assertUrl (" + actualUrl + ", " + expectedUrl + ")");
+        assert actualUrl.equals(expectedUrl) : "Wrong URL. Expected: " + expectedUrl + ". Actual: " + actualUrl;
+    }
 }

@@ -15,19 +15,25 @@ public class Strings {
     public static final String HOT_SALE_URL = "https://www.tike.rs/proizvodi/hot-sale";
     public static final String BLOG_URL = "https://www.tike.rs/magazin";
 
-    // Footer link URLs
-    public static final String KORISNICKA_PODRSKA_URL = "https://fms.omega.rs/sportvision/survey.php?hash=61962a77ccffb165961962a77ccffd";
-    public static final String O_NAMA_URL = "https://www.tike.rs/o-nama";
-    public static final String REKLAMACIJE_URL = "https://www.tike.rs/reklamacije";
-
     // Brand URLs
     public static final String ADIDAS_URL = "https://www.tike.rs/proizvodi/adidas";
 
+    // Footer link URLs
+   // public static final String KORISNICKA_PODRSKA_URL = "https://fms.omega.rs/sportvision/survey.php?hash=61962a77ccffb165961962a77ccffd";
+    public static final String O_NAMA_URL = "https://www.tike.rs/o-nama";
+    public static final String REKLAMACIJE_URL = "https://www.tike.rs/reklamacije";
+    public static final String PROVERI_STATUS_PORUDZBINE_URL = "https://www.tike.rs/pregled-statusa-porudzbine";
+    public static final String KAKO_KUPITI_URL = "https://www.tike.rs/kako-kupiti";
+    public static final String NACIN_ISPORUKE_URL = "https://www.tike.rs/isporuka";
 
     // Footer link titles
-    public static final String KORISNICKA_PODRSKA_FOOTER_TITLE = "Korisnička podrška";
+   // public static final String KORISNICKA_PODRSKA_FOOTER_TITLE = "Korisnička podrška";
     public static final String O_NAMA_FOOTER_TITLE = "O nama";
     public static final String REKLAMACIJE_FOOTER_TITLE = "Reklamacije";
+    public static final String PROVERI_STATUS_PORUDZBINE_FOOTER_TITLE = "Proveri status porudžbine";
+    public static final String KAKO_KUPITI_FOOTER_TITLE = "Kako kupiti";
+    public static final String NACIN_ISPORUKE_FOOTER_TITLE = "Načini isporuke";
+
 
     // Page titles
     public static final String KORISNICKA_PODRSKA_PAGE_TITLE = "Tike - Korisnička Podrška";
@@ -41,26 +47,58 @@ public class Strings {
     public static final String SALE_NAVBAR_TITLE = "SALE";
     public static final String BLOG_NAVBAR_TITLE = "BLOG";
 
-    // Titles from filter lists
-    public static final String JAKNA_TITLE = "Jakna";
-    public static final String WOMEN_FILTER = "13_za-zene";
-    public static final String CONVERSE_FILTER_CHECKBOX = "28_converse";
-    public static final String XL_SIZE_FILTER_CHECKBOX = "f_eusize_XL";
+    // Filter category titles
+    public static final String KATEGORIJE_CATEGORY_TITLE = "Kategorije";
+    public static final String POL_CATEGORY_TITLE = "Pol";
+    public static final String BRENDOVI_CATEGORY_TITLE = "Brendovi";
+    public static final String VELICINA_CATEGORY_TITLE = "Veličina";
 
+    // Titles from filter list checkboxes
+    public static final String JACKET_TITLE = "Jakna";
+    public static final String HOODIE_TITLE = "Dukserica"; //ima razmak pitaj velju
+    public static final String WOMEN_CHECKBOX_TITLE = "13_za-zene";
+    public static final String MEN_CHECKBOX_TITLE = "13_za-muskarce";
+    public static final String ADIDAS_CHECKBOX_TITLE = "28_adidas";
+    public static final String CONVERSE_CHECKBOX_TITLE = "28_converse";
+    public static final String XL_SIZE_CHECKBOX_TITLE = "f_eusize_XL";
 
+    // Sort dropdown texts
+    public static final String NAJNOVIJE = "Najnovije";
+    public static final String LOW_TO_HIGH = "Najjeftinije prvo";
 
-    // Product titles
+    // Item titles
     public static final String ADIDAS_PATIKE_TITLE = "ADIDAS Patike SUPERTURF ADVENTURE SW ";
 
     // Brand titles
     public static final String ADIDAS_BRAND_TITLE = "ADIDAS";
 
     // Xpaths
-    public static final String PRODUCT_SIZES_LIST_XPATH = "//ul[@class = 'product-attributes list-inline product-attributes-two-sizes']//li[@class='ease  ']//div";
+    public static final String ITEM_SIZES_LIST_XPATH = "//li[@class='ease  ']//div";
     public static final String CATEGORY_FILTER_LIST_XPATH = "//ul[@class = 'items-wrapper filter-group-items list-unstyled ']//a";
     public static final String GENDER_FILTER_LIST_XPATH = "//div[@id='nb_f-pol']//label";
     public static final String BRAND_FILTER_LIST_XPATH = "//div[@id='nb_f-brend']//label";
     public static final String SIZE_FILTER_LIST_XPATH = "//div[@id='nb_f-size']//label";
+    public static final String ALL_ITEM_LIST_XPATH = "//div[@class = 'title']//a"; //VAZI ZA SVE STRANICE
+    public static final String ALL_ITEM_PRICES_XPATH = "//div[@data-original-title='Važeća MP cena']";
+    public static final String NAVBAR_CATEGORY_LIST = "//ul[@class='nav-main list-inline']//a";
+    public static final String ALERT_MESSAGE_URL = "//div[@class = 'alert alert-danger']";
+    // ALL PAGES TITLE XPATH
+    public static final String ALL_PAGES_TITLE_XPATH = "//h1//span";
+
+    // Register form data
+    public static final String FIRST_NAME = "Mara";
+    public static final String LAST_NAME = "Marakovic";
+    public static final String EMAIL = "maraara@gmail.com";
+    public static final String PHONE_NUMBER = "0601010101";
+    public static final String CITY = "Belgrade";
+    public static final String STREET = "Mararijeva";
+    public static final String STREET_NUMBER = "555";
+    public static final String POSTAL_CODE = "11000";
+    public static final String PASSWORD = "maraara123";
+    public static final String ALERT_MESSAGGE_TEXT = "Neispravno popunjeno anti spam polje!";
+
+
+
 
 
 }

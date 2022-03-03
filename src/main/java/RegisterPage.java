@@ -52,7 +52,7 @@ public class RegisterPage extends BasePage{
     WebElement slazemSeSaUslovimaKoriscenjaCheckBox;
 
     @FindBy(xpath = "//div[@class='col-xs-12 reg-check-werapper'][2]//input")
-    WebElement slazemSeSaPrvilimaPrvatnostiCheckBox;
+    WebElement slazemSeSaPravilimaPrvatnostiCheckBox;
 
     @FindBy(xpath = "//button[@class = 'btn btn-success confirm-loader']")
     WebElement registracijaButton;
@@ -63,7 +63,8 @@ public class RegisterPage extends BasePage{
     @FindBy(xpath = "//div[@id='register_modal']//div[@class = 'modal-header']//button")
     WebElement closeRegistracijaModal;
 
-
+    @FindBy(xpath = "//div[@class = 'alert alert-danger']")
+    WebElement alertMessage;
 
 
 
@@ -80,37 +81,109 @@ public class RegisterPage extends BasePage{
 
     }
 
-    public void fillRegisterModal() {
-        imeRegistracija.sendKeys("natasa");
-        prezimeRegistracija.sendKeys("delibasic");
-        mailAdresaRegistracija.sendKeys("anemona.nate@gmail.com");
-        telefonRegistracija.sendKeys("063");
-        gradRegistracija.sendKeys("beograd");
-        ulicaRegistracija.sendKeys("j.gagarina");
-        brojUliceRegistracija.sendKeys("534534");
-        postanskiBrojRegistracija.sendKeys("11000");
-        lozinkaRegistracija.sendKeys("natasa123");
-        ponoviLozinkuRegistracija.sendKeys("natasa123");
-        zenskiRadioButton.click();
-        antiSpamIzaberiDropDown.click();
-        selectSpamValueDropDown();
+    public void enterTextIntoFirstNameField(String ime){
+        imeRegistracija.sendKeys(ime);
+    }
 
+    public void enterTextIntoLastnameField(String prezime) {
+        prezimeRegistracija.sendKeys(prezime);
+    }
+
+    public void enterTextIntoMailField(String mail) {
+        mailAdresaRegistracija.sendKeys(mail);
+    }
+
+    public void enterNumberIntoPhoneNumberField(String telefon) {
+        telefonRegistracija.sendKeys(telefon);
+    }
+
+    public void enterTextIntoCityField(String grad) {
+        gradRegistracija.sendKeys(grad);
+    }
+
+    public void enterTextIntoStreetField(String ulica) {
+        ulicaRegistracija.sendKeys(ulica);
+    }
+
+    public void enterNumberIntoStreetNumberField(String brojUlice) {
+        brojUliceRegistracija.sendKeys(brojUlice);
+    }
+
+    public void enterNumberIntoPostalCodeField(String postanskiBroj) {
+        postanskiBrojRegistracija.sendKeys(postanskiBroj);
+    }
+
+    public void enterTextIntoPasswordField(String lozinka) {
+        lozinkaRegistracija.sendKeys(lozinka);
+    }
+
+    public void enterTextIntoRepeatPasswordField(String lozinka) {
+        ponoviLozinkuRegistracija.sendKeys(lozinka);
+    }
+
+    public void clickOnMaleRadioButton() {
+        muskiRadioButton.click();
+    }
+
+    public void clickOnFemaleRadioButton() {
+        zenskiRadioButton.click();
+    }
+
+    public void clickOnAntiSpamDropDown() {
+        antiSpamIzaberiDropDown.click();
+    }
+
+
+    public void fillRegisterModal() {
+        print("Enter first name.");
+        enterTextIntoFirstNameField(Strings.FIRST_NAME);
+        print("Enter last name.");
+        enterTextIntoLastnameField(Strings.LAST_NAME);
+        print("Enter Email");
+        enterTextIntoMailField(Strings.EMAIL);
+        print("Enter phone number.");
+        enterNumberIntoPhoneNumberField(Strings.PHONE_NUMBER);
+        print("Enter city.");
+        enterTextIntoCityField(Strings.CITY);
+        print("Enter street.");
+        enterTextIntoStreetField(Strings.STREET);
+        print("Enter street number.");
+        enterNumberIntoStreetNumberField(Strings.STREET_NUMBER);
+        print("Enter zip code.");
+        enterNumberIntoPostalCodeField(Strings.POSTAL_CODE);
+        print("Enter password.");
+        enterTextIntoPasswordField(Strings.PASSWORD);
+        print("Repeat password.");
+        enterTextIntoRepeatPasswordField(Strings.PASSWORD);
+        print("Click on female radio button.");
+        clickOnFemaleRadioButton();
+        print("Click on anti spam drop down.");
+        clickOnAntiSpamDropDown();
+        print("Select value from drop down list");
+        selectValueFromSpamDropDown();
         // Didn't work on check boxes with regular .click() function
+        print("Check 'Slazem se sa uslovima koriscenja' check box.");
         driver.executeScript("arguments[0].click();", slazemSeSaUslovimaKoriscenjaCheckBox);
-        driver.executeScript("arguments[0].click();", slazemSeSaPrvilimaPrvatnostiCheckBox);
+        print("Check 'Slazem se sa pravilima privatnosti' check box");
+        driver.executeScript("arguments[0].click();", slazemSeSaPravilimaPrvatnostiCheckBox);
+        print("Click on 'REGISTRACIJA' button.");
         registracijaButton.click();
     }
 
-    public void closeRegisterModal() {
+    public HomePage closeRegisterModal() {
         closeRegistracijaModal.click();
+        return new HomePage(driver);
     }
 
-    public RegisterPage selectSpamValueDropDown() {
-        //Select je klasa za upravljanje dropdown-ovima
+
+    public RegisterPage selectValueFromSpamDropDown() {
         Select dropdown = new Select(izaberiVrednostAntiSpam);
-        //ovako se bira opcija iz dropdowna po tekstu koji pise
         dropdown.selectByVisibleText("5");
         return this;
     }
+
+
+
+
 
 }

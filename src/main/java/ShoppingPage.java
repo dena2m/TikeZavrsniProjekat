@@ -18,7 +18,7 @@ public class ShoppingPage extends BasePage{
     @FindBy(xpath = "//button[@data-btn-text-no-state='Nema na stanju']")
     WebElement nemaNaStanjuTitle;
 
-    @FindBy(xpath = "//ul[@class = 'product-attributes list-inline product-attributes-two-sizes']//li[@class='ease  ']//div")
+    @FindBy(xpath = "//li[@class='ease  ']//div")
     WebElement priductSizes;
 
 
@@ -51,13 +51,13 @@ public class ShoppingPage extends BasePage{
     }
 
 
-    public void chooseProductSize(String productSize) {
-        List<WebElement> availableProductSizes = driver.findElements(By.xpath("//ul[@class = 'product-attributes list-inline product-attributes-two-sizes']//li[@class='ease  ']//div"));
-        for(WebElement selectSize : availableProductSizes) {
-            if(selectSize.getText().equals(productSize))
+    public void chooseItemSize(String itemSize) {
+        List<WebElement> availableItemSizes = driver.findElements(By.xpath(Strings.ITEM_SIZES_LIST_XPATH));
+        for(WebElement selectSize : availableItemSizes) {
+            if(selectSize.getText().equals(itemSize))
                 selectSize.click();
 
-            assert availableProductSizes.size() != 0 : "There are no available sizes.";
+            assert availableItemSizes.size() != 0 : "There are no available sizes.";
         }
     }
 }

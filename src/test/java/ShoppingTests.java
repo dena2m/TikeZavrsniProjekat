@@ -10,11 +10,12 @@ public class ShoppingTests extends BaseTests{
 
         try {
             print("1. Go to: 'https://www.tike.rs/'");
-            SearchPage searchPage = new SearchPage(driver);
+            ProductsPage productsPage = new ProductsPage(driver);
 
-            //click search icon, enter text,switching pages by clicking 'next page' button until product is found
-            searchPage.searchProductByNameFromSearchResultList("patike", "ADIDAS Patike SUPERTURF ADVENTURE SW ");
-
+            //click search icon, enter text
+            productsPage.searchByKeyword("patike");
+            // switching pages by clicking 'next page' button until product is found
+            productsPage.findItemByName("ADIDAS Patike SUPERTURF ADVENTURE SW");
         }
         finally {
             driver.quit();

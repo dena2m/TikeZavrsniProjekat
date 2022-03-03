@@ -29,14 +29,7 @@ public class HomePageTests extends BaseTests {
         }
     }
 
-    //  TODO
-    @Test
-    public void headerLogo() {
-        ChromeDriver chromeDriver = openChromeDriver();
 
-        BasePage basePage = new BasePage(chromeDriver);
-        basePage.clickHeaderLogo();
-    }
 
 
 

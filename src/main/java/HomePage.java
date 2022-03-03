@@ -75,12 +75,13 @@ public class HomePage extends BasePage{
     }
 
     public ProductsPage openNavBarCategory(String categoryTitle, String categoryUrl) {
-        List<WebElement> allCategories = driver.findElements(By.xpath("//ul[@class='nav-main list-inline']//a"));
+        List<WebElement> allCategories = driver.findElements(By.xpath(Strings.NAVBAR_CATEGORY_LIST));
         for(WebElement category : allCategories) {
             if(category.getAttribute("title").equals(categoryTitle)){
                 category.click();
                 String actualUrl = driver.getCurrentUrl();
                 assertUrl(actualUrl, categoryUrl);
+                print("Selected category: " + categoryTitle + ".");
                 return new ProductsPage(driver);
             }
         }

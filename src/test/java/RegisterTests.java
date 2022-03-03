@@ -1,13 +1,27 @@
+import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 
 public class RegisterTests extends BaseTests{
 
+    /**
+     * Entering valid data into register modal
+     * Steps
+     * 1. Go to: "https://www.tike.rs/"
+     * 2. Clic on header 'Registracija' button.
+     * 3. Enter valid data into registration fields.
+     * 4. Click on 'REGISTRACIJA' button.
+     *
+     * Expected results:
+     * 4. Verify that register is not possible and alert message is displayed.
+     */
+
 
 
 
     @Test
-    public void clickRegisterButtonProba() {
+    public void registerWithWalidCredentials() {
+        print("Go to: 'https://www.tike.rs/'");
         ChromeDriver driver = openChromeDriver();
 
         try {
@@ -15,11 +29,21 @@ public class RegisterTests extends BaseTests{
             registerPage.clickOnRegisterButton();
             registerPage.waitForElement(registerPage.modalRegistracija);
             registerPage.fillRegisterModal();
-            //registerPage.waitForElement(registerPage.closeRegistracijaModal);
-            //registerPage.closeRegisterModal();
+
+            sleep(3);
+            registerPage.isElementPresent(registerPage.alertMessage);
+            String actualMessage = driver.findElement(By.xpath(Strings.ALERT_MESSAGE_URL)).getText();
+            print("assertAlertMessage (" + actualMessage + ", " + Strings.ALERT_MESSAGGE_TEXT + ")");
+            assert actualMessage.equals(Strings.ALERT_MESSAGGE_TEXT) : "Wrong message. Expected: " + Strings.ALERT_MESSAGGE_TEXT + ". Actual: " + actualMessage;
+
+            registerPage.waitForElement(registerPage.closeRegistracijaModal);
+            HomePage homePage = registerPage.closeRegisterModal();
+            print("Verify that Home page is displayed.");
+            String actualUrl = driver.getCurrentUrl();
+            assertUrl(actualUrl, Strings.HOME_PAGE_URL);
 
         } finally {
-            //driver.quit();
+            driver.quit();
         }
     }
 
