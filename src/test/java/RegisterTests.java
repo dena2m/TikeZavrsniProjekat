@@ -26,15 +26,15 @@ public class RegisterTests extends BaseTests{
 
         try {
             RegisterPage registerPage = new RegisterPage(driver);
-            registerPage.clickOnRegisterButton();
+            registerPage.clickRegisterButton();
             registerPage.waitForElement(registerPage.modalRegistracija);
             registerPage.fillRegisterModal();
 
             sleep(3);
             registerPage.isElementPresent(registerPage.alertMessage);
-            String actualMessage = driver.findElement(By.xpath(Strings.ALERT_MESSAGE_URL)).getText();
-            print("assertAlertMessage (" + actualMessage + ", " + Strings.ALERT_MESSAGGE_TEXT + ")");
-            assert actualMessage.equals(Strings.ALERT_MESSAGGE_TEXT) : "Wrong message. Expected: " + Strings.ALERT_MESSAGGE_TEXT + ". Actual: " + actualMessage;
+            String actualMessage = driver.findElement(By.xpath(Strings.ALERT_MESSAGE_CONTAINER_XPATH)).getText();
+            print("assertAlertMessage (" + actualMessage + ", " + Strings.REGISTER_ALERT_MESSAGGE_TEXT + ")");
+            assert actualMessage.equals(Strings.REGISTER_ALERT_MESSAGGE_TEXT) : "Wrong message. Expected: " + Strings.REGISTER_ALERT_MESSAGGE_TEXT + ". Actual: " + actualMessage;
 
             registerPage.waitForElement(registerPage.closeRegistracijaModal);
             HomePage homePage = registerPage.closeRegisterModal();

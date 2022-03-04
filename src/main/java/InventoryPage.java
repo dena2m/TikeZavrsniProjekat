@@ -3,14 +3,12 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductsPage extends BasePage {
+public class InventoryPage extends BasePage {
 
 
 
@@ -33,48 +31,36 @@ public class ProductsPage extends BasePage {
     WebElement sortirajDropDown;
 
 
-    public ProductsPage(ChromeDriver driver) {
+    public InventoryPage(ChromeDriver driver) {
         super(driver);
 
     }
 
 
-    public void clickOnCategoryFilter() {
+    public void clickOnKategorijeFilter() {
         kategorijeFilter.click();
     }
 
-    //TODO DA LI JE OVO NEPOTREBNO, sadrzi gornju i donju metodu
-    public ProductsPage selectKategorijeFilter(String categoryTitle){
-       clickOnCategoryFilter();
-       waitForElement(driver.findElementByXPath(Strings.CATEGORY_FILTER_LIST_XPATH));
-       selectCategoryFromFilterList(categoryTitle);
-       return new ProductsPage(driver);
-    }
-
-    public void selectCategoryFromFilterList(String categoryTitle) {
-        List<WebElement> categoryList = driver.findElementsByXPath(Strings.CATEGORY_FILTER_LIST_XPATH);
-        for (WebElement category : categoryList) {
-            if (category.getAttribute("title").equals(categoryTitle)) {
-                category.click();
+    public void selectItemTypeFromKategorijeFilterList(String itemTypeTitle) {
+        List<WebElement> itemTypeList = driver.findElementsByXPath(Strings.CATEGORY_FILTER_LIST_XPATH);
+        for (WebElement itemType : itemTypeList) {
+            if (itemType.getAttribute("title").equals(itemTypeTitle)) {
+                itemType.click();
                 return;
             }
         }
     }
 
-
-    public void clickOnGenderFilterButton(){
-        polFilter.click();
-    }
-
-    //TODO isto kao gore, da li je potrebno
-    public void selectGenderFromFilterList(String checkboxTitle) {
-        clickOnGenderFilterButton();
-        waitForElement(driver.findElementByXPath(Strings.GENDER_FILTER_LIST_XPATH));
-        clickFilterCheckbox(Strings.GENDER_FILTER_LIST_XPATH, checkboxTitle);
+    public InventoryPage selectKategorijeFilter(String itemTypeTitle){
+        waitForElement(kategorijeFilter);
+        clickOnKategorijeFilter();
+        waitForElement(driver.findElementByXPath(Strings.CATEGORY_FILTER_LIST_XPATH));
+        selectItemTypeFromKategorijeFilterList(itemTypeTitle);
+        return new InventoryPage(driver);
     }
 
 
-    public void clickFilterCheckbox(String checkboxesXpath, String checkboxTitle) {
+    public void clickFilterCheckboxForGenderBrandAndSize(String checkboxesXpath, String checkboxTitle) {
         List<WebElement> checkboxList = driver.findElementsByXPath(checkboxesXpath);
         for(WebElement checkbox : checkboxList) {
             // Checking 'for' attribute of a checkbox label because getText() would also return
@@ -86,32 +72,44 @@ public class ProductsPage extends BasePage {
         }
     }
 
+
+    public void clickOnGenderFilterButton(){
+        polFilter.click();
+    }
+    public void selectGenderFromFilterList(String checkboxTitle) {
+        waitForElement(polFilter);
+        clickOnGenderFilterButton();
+        waitForElement(driver.findElementByXPath(Strings.GENDER_FILTER_LIST_XPATH));
+        clickFilterCheckboxForGenderBrandAndSize(Strings.GENDER_FILTER_LIST_XPATH, checkboxTitle);
+    }
+
+
     public void clickOnBrandFilterButton() {
         brendFilter.click();
     }
-    //TODO isto kao gore
     public void selectBrandFromFilterList(String brand) {
+        waitForElement(brendFilter);
         clickOnBrandFilterButton();
         waitForElement(driver.findElementByXPath(Strings.BRAND_FILTER_LIST_XPATH));
-        clickFilterCheckbox(Strings.BRAND_FILTER_LIST_XPATH, brand);
+        clickFilterCheckboxForGenderBrandAndSize(Strings.BRAND_FILTER_LIST_XPATH, brand);
     }
+
 
     public void clickOnSizeFilterButton() {
         velicinaFilter.click();
     }
-    //TODO isto kao gore
     public void selectSizeFromFilterList(String size) {
+        waitForElement (velicinaFilter);
         clickOnSizeFilterButton();
         waitForElement(driver.findElementByXPath(Strings.SIZE_FILTER_LIST_XPATH));
-        clickFilterCheckbox(Strings.SIZE_FILTER_LIST_XPATH, size);
+        clickFilterCheckboxForGenderBrandAndSize(Strings.SIZE_FILTER_LIST_XPATH, size);
     }
 
-    //TODO da li moze da bude void ili mora sa pejdzom zbog returna.
-     public ProductsPage selectDropDownFilter(WebElement dropDownName, String dropDownText) {
-        Select dropdown = new Select(dropDownName);
-        waitForElement(dropDownName);
+     public void selectDropDownFilter(WebElement sortirajDropDown, String dropDownText) {
+        waitForElement(sortirajDropDown);
+        Select dropdown = new Select(sortirajDropDown);
+        waitForElement(sortirajDropDown);
         dropdown.selectByVisibleText(dropDownText);
-        return new ProductsPage(driver);
      }
 
 
@@ -123,9 +121,9 @@ public class ProductsPage extends BasePage {
     }
 
     // search for item type e.g. 'T-shirt' and verify that correct list is displayed
-    public void searchByKeyword(String keyword) {
+    public void searchItemTypeByKeyword(String keyword) {
         BasePage basePage = new BasePage(driver);
-        basePage.clickOnSearchIcon();
+        basePage.clickSearchIcon();
         enterTextIntoSearchField(keyword);
         List<WebElement> searchResults = getAllItems();
 

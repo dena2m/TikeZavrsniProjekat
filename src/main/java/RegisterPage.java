@@ -1,3 +1,4 @@
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -66,6 +67,14 @@ public class RegisterPage extends BasePage{
     @FindBy(xpath = "//div[@class = 'alert alert-danger']")
     WebElement alertMessage;
 
+    @FindBy(id = "registration_modal")
+    WebElement registracijaSuccessModal;
+
+    @FindBy(xpath = "//form[@id = 'registration_modal']//div[@class = 'modal-header']//button")
+    WebElement closeRegistracijaSuccessModal;
+
+    @FindBy(xpath = "//div[@class = 'alert alert-success']")
+    WebElement successAlertMessage;
 
 
 
@@ -73,9 +82,10 @@ public class RegisterPage extends BasePage{
         super(driver);
     }
 
-    //TODO na koju stranu vodi, registruj se sa novim mejlom
+
+
     public RegisterPage fillRegistrationForm() {
-        clickOnRegisterButton();
+        clickRegisterButton();
         assert isElementPresent(modalRegistracija);
         return new RegisterPage(driver);
 
@@ -181,6 +191,19 @@ public class RegisterPage extends BasePage{
         dropdown.selectByVisibleText("5");
         return this;
     }
+
+    public void clickCloseSuccessRegistrationModal() {
+        isElementPresent(registracijaSuccessModal);
+        String currentMessage = driver.findElement(By.id("registration_modal")).getText();
+        assert currentMessage.equals(Strings.REGISTRATION_SUCCESS_TEXT) : "Error: wrong message. Exected: " + Strings.REGISTRATION_SUCCESS_TEXT + ". Actual: " + currentMessage;
+        closeRegistracijaSuccessModal.click();
+    }
+
+   // public HomePage verifyRegistrationFromMailLink() {
+    //    Strings.REGISTRATION_SUCCESS_URL
+    //}
+
+
 
 
 

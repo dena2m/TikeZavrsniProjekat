@@ -3,6 +3,9 @@ public class Strings {
     // URLs
     public static final String HOME_PAGE_URL = "https://www.tike.rs/";
 
+    // Registration success URL
+    public static final String REGISTRATION_SUCCESS_URL = "https://www.tike.rs/potvrda-registracije/?sec_key=2022MarFri103818yErVVVEwhOLqC3i";
+
     // Social network URLs
     public static final String FACEBOOK_URL = "https://www.facebook.com/tikebelgrade/";
     public static final String INSTAGRAM_URL = "https://www.instagram.com/tikebelgrade/?hl=en";
@@ -19,7 +22,6 @@ public class Strings {
     public static final String ADIDAS_URL = "https://www.tike.rs/proizvodi/adidas";
 
     // Footer link URLs
-   // public static final String KORISNICKA_PODRSKA_URL = "https://fms.omega.rs/sportvision/survey.php?hash=61962a77ccffb165961962a77ccffd";
     public static final String O_NAMA_URL = "https://www.tike.rs/o-nama";
     public static final String REKLAMACIJE_URL = "https://www.tike.rs/reklamacije";
     public static final String PROVERI_STATUS_PORUDZBINE_URL = "https://www.tike.rs/pregled-statusa-porudzbine";
@@ -27,13 +29,11 @@ public class Strings {
     public static final String NACIN_ISPORUKE_URL = "https://www.tike.rs/isporuka";
 
     // Footer link titles
-   // public static final String KORISNICKA_PODRSKA_FOOTER_TITLE = "Korisnička podrška";
     public static final String O_NAMA_FOOTER_TITLE = "O nama";
     public static final String REKLAMACIJE_FOOTER_TITLE = "Reklamacije";
     public static final String PROVERI_STATUS_PORUDZBINE_FOOTER_TITLE = "Proveri status porudžbine";
     public static final String KAKO_KUPITI_FOOTER_TITLE = "Kako kupiti";
     public static final String NACIN_ISPORUKE_FOOTER_TITLE = "Načini isporuke";
-
 
     // Page titles
     public static final String KORISNICKA_PODRSKA_PAGE_TITLE = "Tike - Korisnička Podrška";
@@ -55,7 +55,7 @@ public class Strings {
 
     // Titles from filter list checkboxes
     public static final String JACKET_TITLE = "Jakna";
-    public static final String HOODIE_TITLE = "Dukserica"; //ima razmak pitaj velju
+    public static final String HOODIE_TITLE = "Dukserica";
     public static final String WOMEN_CHECKBOX_TITLE = "13_za-zene";
     public static final String MEN_CHECKBOX_TITLE = "13_za-muskarce";
     public static final String ADIDAS_CHECKBOX_TITLE = "28_adidas";
@@ -65,6 +65,11 @@ public class Strings {
     // Sort dropdown texts
     public static final String NAJNOVIJE = "Najnovije";
     public static final String LOW_TO_HIGH = "Najjeftinije prvo";
+    public static final String HIGH_TO_LOW = "Najskuplje prvo";
+    public static final String LOWEST_DISCOUNT_TO_PRICE_VALUE = "Najmanji popust prvo u odnosu na cenu"''
+    public static final String HIGHEST_DOSCOUNT_TO_PRICE_VALUE = "Najveći popust prvo u odnosu na cenu";
+    public static final String BY_NAME = "Po nazivu";
+    public static final String RECOMMENDED = "Preporučujemo";
 
     // Item titles
     public static final String ADIDAS_PATIKE_TITLE = "ADIDAS Patike SUPERTURF ADVENTURE SW ";
@@ -80,24 +85,32 @@ public class Strings {
     public static final String SIZE_FILTER_LIST_XPATH = "//div[@id='nb_f-size']//label";
     public static final String ALL_ITEM_LIST_XPATH = "//div[@class = 'title']//a"; //VAZI ZA SVE STRANICE
     public static final String ALL_ITEM_PRICES_XPATH = "//div[@data-original-title='Važeća MP cena']";
-    public static final String NAVBAR_CATEGORY_LIST = "//ul[@class='nav-main list-inline']//a";
-    public static final String ALERT_MESSAGE_URL = "//div[@class = 'alert alert-danger']";
+    public static final String NAVBAR_CATEGORY_LIST_XPATH = "//ul[@class='nav-main list-inline']//a";
+    public static final String ALERT_MESSAGE_CONTAINER_XPATH = "//div[@class = 'alert alert-danger']";
     // ALL PAGES TITLE XPATH
     public static final String ALL_PAGES_TITLE_XPATH = "//h1//span";
 
     // Register form data
-    public static final String FIRST_NAME = "Mara";
-    public static final String LAST_NAME = "Marakovic";
-    public static final String EMAIL = "maraara@gmail.com";
+    public static final String FIRST_NAME = "Nat";
+    public static final String LAST_NAME = "Del";
+    public static final String EMAIL = "test.nat.del@gmail.com";
     public static final String PHONE_NUMBER = "0601010101";
     public static final String CITY = "Belgrade";
     public static final String STREET = "Mararijeva";
     public static final String STREET_NUMBER = "555";
     public static final String POSTAL_CODE = "11000";
-    public static final String PASSWORD = "maraara123";
-    public static final String ALERT_MESSAGGE_TEXT = "Neispravno popunjeno anti spam polje!";
+    public static final String PASSWORD = "Test123!";
+    public static final String INVALID_PASSWORD = "kokakola";
+    public static final String REGISTER_ALERT_MESSAGGE_TEXT = "Neispravno popunjeno anti spam polje!";
+
+    // Registration success alert texts
+    public static final String REGISTRATION_SUCCESS_TEXT = "'Uspešno ste započeli proces registracije. Na email adresu koju ste naveli poslate su instrukcije za kompletiranje procesa registracije. Molimo vas proverite Vašu email adresu!'";
+    public static final String REGISTRATION_PAGE_FINAL_SUCCESS_TEXT = "Čestitamo! Uspešno ste se registrovali na  Tike.rs.";
 
 
+
+    // Alert message text for login with invalid credentials
+    public static final String LOGIN_ALERT_MESSAGE_TEXT = "Pogrešna email adresa ili lozinka. Molimo Vas pokušajte ponovo!";
 
 
 

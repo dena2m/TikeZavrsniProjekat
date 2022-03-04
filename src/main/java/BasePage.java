@@ -20,10 +20,13 @@ public class BasePage {
         WebElement cookiesCloseButton;
 
         @FindBy(className = "register-btn")
-        WebElement registerButton;
+        WebElement registrujSeButton;
 
         @FindBy(className = "login-btn")
-        WebElement loginButton;
+        WebElement prijaviSeButton;
+
+        @FindBy(xpath = "//li[@class = 'item item-logout']")
+        WebElement odjavaButton;
 
         @FindBy(xpath = "//i[@class = 'icon fa fa-search']")
         WebElement searchIcon;
@@ -47,7 +50,7 @@ public class BasePage {
         WebElement youTubeLink;
 
 
-    //Superclass constructor
+        //Superclass constructor
         public BasePage(ChromeDriver driver) {
             this.driver = driver;
             PageFactory.initElements(driver, this);
@@ -66,28 +69,29 @@ public class BasePage {
             return new HomePage(driver);
         }
 
-
-        public void clickOnSearchIcon(){
+        public void clickSearchIcon(){
             print("Click on the searh icon");
             searchIcon.click();
         }
 
-        public RegisterPage clickOnRegisterButton() {
-            registerButton.click();
+        public RegisterPage clickRegisterButton() {
+            registrujSeButton.click();
             return new RegisterPage(driver);
         }
 
-        public LoginPage clickOnLoginButton() {
-            loginButton.click();
+        public LoginPage clickLoginButton() {
+            prijaviSeButton.click();
             return new LoginPage(driver);
         }
 
-
-        public CartPage clickOnShoppingCartIcon() {
-            shoppingCartIcon.click();
-            return new CartPage(driver);
+        public void clickLogoutButton() {
+            odjavaButton.click();
         }
 
+        public ShoppingCartPage clickShoppingCartIcon() {
+            shoppingCartIcon.click();
+            return new ShoppingCartPage(driver);
+        }
 
         //creat footer links list, click on one and asserting links url
         public void selectFooterLink(String footerLinkTitle, String footerLinkUrl) {
@@ -105,82 +109,81 @@ public class BasePage {
             assert false : "Error: footer page " + footerLinkTitle + " not found.";
         }
 
+        // assert Facebook link button is present, scroll down the Home page (alignToTop argument is set to false
+        // because the navigation bar was covering some links, and they weren't clickable)
+        public void clickOnFacebookLinkButton() {
+            assert isElementPresent(facebookLink) : "Error. Facebook button is not displayed.";
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("arguments[0].scrollIntoView(false);", facebookLink);
+            facebookLink.click();
+        }
+        // click on Facebook link, switch to Tike/Facebook tab, close Facebook tab, switch to Home page tab
+        public void openFacebookPage() {
+            waitForElement(facebookLink);
+            print("Click on Facebook link button.");
+            clickOnFacebookLinkButton();
+            print("Switch to Facebook tab.");
+            List<String> tabs = new ArrayList(driver.getWindowHandles());
+            driver.switchTo().window(tabs.get(1));
+            print("Verify that Facebook URL is displayed.");
+            String actualUrl = driver.getCurrentUrl();
+            assertUrl(actualUrl, Strings.FACEBOOK_URL);
+            print("Close Facebook tab.");
+            driver.close();
+            print("Switch to Home page tab.");
+            driver.switchTo().window(tabs.get(0));
+        }
 
-    // assert Facebook link button is present, scroll down the Home page (alignToTop argument is set to false because
-    // the navigation bar was covering some links, and they weren't clickable)
-    public void clickOnFacebookLinkButton() {
-        assert isElementPresent(facebookLink) : "Error. Facebook button is not displayed.";
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView(false);", facebookLink);
-        facebookLink.click();
-    }
-    // click on Facebook link, switch to Tike/Facebook tab, close Facebook tab, switch to Home page tab
-    public void openFacebookPage() {
-        waitForElement(facebookLink);
-        print("Click on Facebook link button.");
-        clickOnFacebookLinkButton();
-        print("Switch to Facebook tab.");
-        List<String> tabs = new ArrayList(driver.getWindowHandles());
-        driver.switchTo().window(tabs.get(1));
-        print("Verify that Facebook URL is displayed.");
-        String actualUrl = driver.getCurrentUrl();
-        assertUrl(actualUrl, Strings.FACEBOOK_URL);
-        print("Close Facebook tab.");
-        driver.close();
-        print("Switch to Home page tab.");
-        driver.switchTo().window(tabs.get(0));
-    }
+        public void clickOnInstagramLinkButton() {
+            assert isElementPresent(instagramLink) : "Error. Instagram button is not displayed.";
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("arguments[0].scrollIntoView(false);", instagramLink);
+            instagramLink.click();
+        }
+        public void openInstagramPage() {
+            waitForElement(instagramLink);
+            print("Click on Instagram link button.");
+            clickOnInstagramLinkButton();
+            print("Switch to Instagram tab.");
+            List<String> tabs = new ArrayList(driver.getWindowHandles());
+            driver.switchTo().window(tabs.get(1));
+            print("Verify that Instagram URL is displayed.");
+            String actualUrl =driver.getCurrentUrl();
+            assertUrl(actualUrl, Strings.INSTAGRAM_URL);
+            print("Close Instagram tab.");
+            driver.close();
+            print("Switch to Home page tab.");
+            driver.switchTo().window(tabs.get(0));
+        }
 
-    public void clickOnInstagramLinkButton() {
-        assert isElementPresent(instagramLink) : "Error. Instagram button is not displayed.";
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView(false);", instagramLink);
-        instagramLink.click();
-    }
-    public void openInstagramPage() {
-        waitForElement(instagramLink);
-        print("Click on Instagram link button.");
-        clickOnInstagramLinkButton();
-        print("Switch to Instagram tab.");
-        List<String> tabs = new ArrayList(driver.getWindowHandles());
-        driver.switchTo().window(tabs.get(1));
-        print("Verify that Instagram URL is displayed.");
-        String actualUrl =driver.getCurrentUrl();
-        assertUrl(actualUrl, Strings.INSTAGRAM_URL);
-        print("Close Instagram tab.");
-        driver.close();
-        print("Switch to Home page tab.");
-        driver.switchTo().window(tabs.get(0));
-    }
+        public void clickOnYouTubeButton() {
+            assert isElementPresent(youTubeLink) : "Error. YouTube button is not displayed.";
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("arguments[0].scrollIntoView(false);", youTubeLink);
+            youTubeLink.click();
+        }
 
-    public void clickOnYouTubeButton() {
-        assert isElementPresent(youTubeLink) : "Error. YouTube button is not displayed.";
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView(false);", youTubeLink);
-        youTubeLink.click();
-    }
-    public void openYouTubeChannel() {
-        waitForElement(youTubeLink);
-        print("Click on YouTube link button.");
-        clickOnYouTubeButton();
-        print("Switch to YouTube tab.");
-        List<String> tabs = new ArrayList<>(driver.getWindowHandles());
-        driver.switchTo().window(tabs.get(1));
-        print("Verify that YouTube URL is displayed.");
-        String actualUrl = driver.getCurrentUrl();
-        assertUrl(actualUrl, Strings.YOUTUBE_URL);
-        print("Close YouTube tab.");
-        driver.close();
-        print("Switch to Home page tab.");
-        driver.switchTo().window(tabs.get(0));
-    }
+        public void openYouTubeChannel() {
+            waitForElement(youTubeLink);
+            print("Click on YouTube link button.");
+            clickOnYouTubeButton();
+            print("Switch to YouTube tab.");
+            List<String> tabs = new ArrayList<>(driver.getWindowHandles());
+            driver.switchTo().window(tabs.get(1));
+            print("Verify that YouTube URL is displayed.");
+            String actualUrl = driver.getCurrentUrl();
+            assertUrl(actualUrl, Strings.YOUTUBE_URL);
+            print("Close YouTube tab.");
+            driver.close();
+            print("Switch to Home page tab.");
+            driver.switchTo().window(tabs.get(0));
+        }
 
 
-    public void assertUrl(String actualUrl, String expectedUrl) {
+        public void assertUrl(String actualUrl, String expectedUrl) {
             print("assertUrl (" + actualUrl + ", " + expectedUrl + ")");
             assert actualUrl.equals(expectedUrl) : "Wrong URL. Expected: " + expectedUrl + ". Actual: " + actualUrl;
         }
-
 
         public boolean isElementPresent(WebElement element){
             try {
@@ -193,7 +196,6 @@ public class BasePage {
             }
         }
 
-
         public void print(String s) {
             System.out.println(s);
         }
@@ -203,6 +205,7 @@ public class BasePage {
             WebDriverWait wait = new WebDriverWait(driver, 5);
             wait.until((ExpectedConditions.visibilityOf(element)));
         }
+
         //TODO prebaciti kasnije na pogodniju stranicu
         public void waitForShoppingBadgeNumber(Integer currentNumber, Integer x) {
             WebDriverWait wait = new WebDriverWait(driver, 3);
@@ -211,14 +214,15 @@ public class BasePage {
             wait.until(ExpectedConditions.textToBe(By.className("header-carthor-total"), number));
         }
 
-
-    public void  sleep(int seconds) {
-        try {
-            Thread.sleep(seconds * 1000);
-        } catch (Exception e) {
-            print(e.getMessage());
+         public void  sleep(int seconds) {
+            try {
+                Thread.sleep(seconds * 1000);
+            } catch (Exception e) {
+                print(e.getMessage());
+            }
         }
-    }
+
+
 
 
 

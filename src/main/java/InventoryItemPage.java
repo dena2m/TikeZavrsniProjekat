@@ -5,8 +5,7 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class ShoppingPage extends BasePage{
-
+public class InventoryItemPage extends BasePage{
 
     @FindBy(xpath = "//button[@id = 'nb_addToCartButton']")
     WebElement dodajUKorpuButton;
@@ -14,7 +13,7 @@ public class ShoppingPage extends BasePage{
     @FindBy(xpath = "//div[@class = 'product-favorite favorite product-wishlist-add']")
     WebElement sacuvajteUListiZelja;
 
-   //TODO da li ovako ili kao tekst jer ne klikce
+    //TODO da li ovako ili kao tekst jer ne klikce
     @FindBy(xpath = "//button[@data-btn-text-no-state='Nema na stanju']")
     WebElement nemaNaStanjuTitle;
 
@@ -22,9 +21,7 @@ public class ShoppingPage extends BasePage{
     WebElement priductSizes;
 
 
-
-
-    public ShoppingPage(ChromeDriver driver) {
+    public InventoryItemPage(ChromeDriver driver) {
         super(driver);
     }
 
@@ -45,9 +42,9 @@ public class ShoppingPage extends BasePage{
     }
 
 
-    public CartPage clickOnShoppingCartIcon() {
+    public ShoppingCartPage clickOnShoppingCartIcon() {
         shoppingCartIcon.click();
-        return new CartPage(driver);
+        return new ShoppingCartPage(driver);
     }
 
 

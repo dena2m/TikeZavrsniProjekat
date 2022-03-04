@@ -25,6 +25,7 @@ public class BaseTests {
         return driver;
     }
 
+
     public static void print(String s) {
         System.out.println(s);
     }
@@ -41,4 +42,16 @@ public class BaseTests {
         print("assertUrl (" + actualUrl + ", " + expectedUrl + ")");
         assert actualUrl.equals(expectedUrl) : "Wrong URL. Expected: " + expectedUrl + ". Actual: " + actualUrl;
     }
+
+    public void loginWithValidUser(ChromeDriver driver) {
+        print("Login as valid user");
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.enterTextIntoEmailField(Strings.EMAIL);
+        loginPage.enterTextIntoPasswordField(Strings.PASSWORD);
+        loginPage.clickLoginButtonSuccess();
+    }
+
+
+
+
 }

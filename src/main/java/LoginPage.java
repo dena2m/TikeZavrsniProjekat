@@ -1,30 +1,36 @@
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage{
 
+    @FindBy(id = "login_modal")
+    WebElement loginModal;
 
     @FindBy(id = "login_email")
-    WebElement loginMailField;
+    WebElement loginEmailAdresaField;
 
     @FindBy(id = "login_password")
     WebElement loginLozinkaField;
 
     @FindBy(xpath = "//button[@type = 'submit']")
-    WebElement prijavaButton;
+    WebElement modalPrijavaButton;
 
     @FindBy(xpath = "//a[@class='btn']")
-    WebElement registrujSeButton;
+    WebElement modalRegistrujSeButton;
 
-    @FindBy(xpath = "//div[@id='login_modal']//div[@class = 'modal-header']//button")
+    @FindBy(xpath = "//div[@class = 'modal-header']//button")
     WebElement closePrijavaModal;
 
-    @FindBy(id = "login_modal")
-    WebElement modalLogin;
+    @FindBy(xpath = "//li[@class = 'item item-username']")
+    WebElement userHeaderLink;
 
+    @FindBy(xpath = "//li[@class = 'item item-logout']")
+    WebElement odjavaHeaderLink;
 
-
+    @FindBy(xpath = "//div[@class = 'alert alert-danger']")
+    WebElement alertMessageContainer;
 
 
     public LoginPage(ChromeDriver driver) {
@@ -32,23 +38,37 @@ public class LoginPage extends BasePage{
     }
 
 
-    public LoginPage openLoginModal(){
-        clickOnLoginButton();
-        isElementPresent(modalLogin);
-        return new LoginPage(driver);
+
+    public void openLoginModal(){
+        clickLoginButton();
+        waitForElement(loginModal);
+        new LoginPage(driver);
     }
 
-    public void enterValidCredentials() {
-        loginMailField.sendKeys("Natasa");
-        loginLozinkaField.sendKeys("lozinka");
-
+    public void enterTextIntoEmailField(String email) {
+        loginEmailAdresaField.sendKeys(email);
     }
 
-
-    public void clickLoginButton() {
-        prijavaButton.click();
+    public void enterTextIntoPasswordField(String password) {
+        loginLozinkaField.sendKeys(password);
     }
 
+    public void clickLoginButtonSuccess() {
+        modalPrijavaButton.click();
+        new InventoryPage(driver);
+    }
+
+    public void clickLoginButtonFailure() {
+        modalPrijavaButton.click();
+    }
+
+    public String verifyAlertMessage() {
+        waitForElement(alertMessageContainer);
+        String currentMessage = driver.findElement(By.xpath(Strings.ALERT_MESSAGE_CONTAINER_XPATH)).getText();
+        assert currentMessage.equals(Strings.LOGIN_ALERT_MESSAGE_TEXT) : "Error: Wrong message. Expected: "
+                + Strings.LOGIN_ALERT_MESSAGE_TEXT + ". Actual: " + currentMessage;
+        return currentMessage;
+    }
 
     public void closeLoginModal() {
         closePrijavaModal.click();

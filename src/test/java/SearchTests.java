@@ -1,8 +1,5 @@
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
-
-import java.util.concurrent.Callable;
 
 public class SearchTests extends BaseTests{
 
@@ -27,26 +24,26 @@ public class SearchTests extends BaseTests{
 
         try {
             print("Go to: 'https://www.tike.rs/'");
-            ProductsPage productsPage = new ProductsPage(driver);
+            InventoryPage productsPage = new InventoryPage(driver);
 
             //click search icon, enter text into search field
-            productsPage.searchByKeyword("patike");
+            productsPage.searchItemTypeByKeyword("patike");
             // switch pages by clicking 'next page' button until product is found
             productsPage.findItemByName("NIKE Patike Dunk Low Retro EMB");
 
-            ShoppingPage shoppingPage = new ShoppingPage(driver);
-            shoppingPage.waitForElement(shoppingPage.priductSizes);
+            InventoryItemPage inventoryItemPage = new InventoryItemPage(driver);
+            inventoryItemPage.waitForElement(inventoryItemPage.priductSizes);
             print("Choose product size.");
-            shoppingPage.chooseItemSize("41");
+            inventoryItemPage.chooseItemSize("41");
 
-            Integer currentNumber = shoppingPage.getNumberFromShoppingCartIcon();
+            Integer currentNumber = inventoryItemPage.getNumberFromShoppingCartIcon();
 
             print("Click 'add to cart'");
-            shoppingPage.clickAddToCartButton();
+            inventoryItemPage.clickAddToCartButton();
 
             print("Get number from shopping cart badge.");
-            shoppingPage.waitForShoppingBadgeNumber(currentNumber, 1);
-            currentNumber = shoppingPage.getNumberFromShoppingCartIcon();
+            inventoryItemPage.waitForShoppingBadgeNumber(currentNumber, 1);
+            currentNumber = inventoryItemPage.getNumberFromShoppingCartIcon();
             assert currentNumber == 1 : "Error: Wrong number of products. Expected: 1. Actual: " + currentNumber;
         }
         finally {

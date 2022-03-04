@@ -3,7 +3,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.testng.annotations.Test;
 
-public class HomePageTests extends BaseTests {
+public class NavigationBarTest extends BaseTests {
 
     /**
      * Click on a category button from navigation bar
