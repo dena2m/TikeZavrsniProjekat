@@ -63,7 +63,7 @@ public class InventoryPage extends BasePage {
     public void clickFilterCheckboxForGenderBrandAndSize(String checkboxesXpath, String checkboxTitle) {
         List<WebElement> checkboxList = driver.findElementsByXPath(checkboxesXpath);
         for(WebElement checkbox : checkboxList) {
-            // Checking 'for' attribute of a checkbox label because getText() would also return
+            // using 'for' attribute of a checkbox label because getText() would also return
             // the number of items available with that filter (e.g. "Za muskarce (16)")
             if(checkbox.getAttribute("for").equals(checkboxTitle)) {
                 checkbox.click();
@@ -113,7 +113,6 @@ public class InventoryPage extends BasePage {
 
 
      public void enterTextIntoSearchField(String text) {
-        print("Enter text into search field");
         searchTextField.sendKeys(text);
         searchTextField.sendKeys(Keys.ENTER);
 
@@ -135,12 +134,11 @@ public class InventoryPage extends BasePage {
     }
 
 
-
+    //todo kako
     public WebElement findItemByName(String itemName) {
         while (true){
             List<WebElement> itemsList = getAllItems();
             for(WebElement item : itemsList) {
-                // Product titles sometimes have space in the end, so I used trim command
                 if(item.getAttribute("title").trim().equals(itemName)) {
                     item.click();
 
@@ -151,7 +149,6 @@ public class InventoryPage extends BasePage {
                 }
             }
             if(isElementPresent(nextPageButton)) {
-                print("Click on next page button");
                 nextPageButton.click();
                 // TODO stavi wait
                 sleep(3);

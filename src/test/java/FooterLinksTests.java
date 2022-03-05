@@ -4,8 +4,8 @@ import org.testng.annotations.Test;
 public class FooterLinksTests extends BaseTests {
 
     /**
-     * Testing footer information links: 'O nama', 'Reklamacija',
-     * 'Kako kupiti', 'Nacin isporuke' and 'Proveri status porudzbine'
+     * Opening and verifying footer information links: 'O nama', 'Reklamacija', 'Kako kupiti',
+     * 'Nacin isporuke', 'Proveri status porudzbine' and returning to Home Page
      *
      * Steps:
      * 1. Go to: 'https://www.tike.rs/'

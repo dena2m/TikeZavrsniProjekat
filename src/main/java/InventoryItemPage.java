@@ -18,7 +18,18 @@ public class InventoryItemPage extends BasePage{
     WebElement nemaNaStanjuTitle;
 
     @FindBy(xpath = "//li[@class='ease  ']//div")
-    WebElement priductSizes;
+    WebElement itemSizes;
+
+    @FindBy(className = "toggle-banner")
+    WebElement pomoćToggleBanner;
+
+    @FindBy(xpath = "//div[@class = 'toggle-button expand']")
+    WebElement closePomocToggleBanner;
+
+    @FindBy(className = "toggle-button")
+    WebElement openPomocToggleBanner;
+
+
 
 
     public InventoryItemPage(ChromeDriver driver) {
@@ -49,6 +60,7 @@ public class InventoryItemPage extends BasePage{
 
 
     public void chooseItemSize(String itemSize) {
+        waitForElement(itemSizes);
         List<WebElement> availableItemSizes = driver.findElements(By.xpath(Strings.ITEM_SIZES_LIST_XPATH));
         for(WebElement selectSize : availableItemSizes) {
             if(selectSize.getText().equals(itemSize))

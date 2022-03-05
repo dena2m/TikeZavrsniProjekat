@@ -2,6 +2,7 @@ public class Strings {
 
     // URLs
     public static final String HOME_PAGE_URL = "https://www.tike.rs/";
+    public static final String CART_PAGE_URL = "https://www.tike.rs/kupovina";
 
     // Registration success URL
     public static final String REGISTRATION_SUCCESS_URL = "https://www.tike.rs/potvrda-registracije/?sec_key=2022MarFri103818yErVVVEwhOLqC3i";
@@ -15,7 +16,7 @@ public class Strings {
     public static final String PATIKE_URL = "https://www.tike.rs/patike";
     public static final String ODECA_URL = "https://www.tike.rs/odeca";
     public static final String BRENDOVI_URL = "https://www.tike.rs/brendovi";
-    public static final String HOT_SALE_URL = "https://www.tike.rs/proizvodi/hot-sale";
+    public static final String SALE_URL = "https://www.tike.rs/proizvodi/hot-sale";
     public static final String BLOG_URL = "https://www.tike.rs/magazin";
 
     // Filter URLs
@@ -42,6 +43,12 @@ public class Strings {
     public static final String KORISNICKA_PODRSKA_PAGE_TITLE = "Tike - Korisnička Podrška";
     public static final String O_NAMA_PAGE_TITLE = "O nama";
     public static final String REKLAMACIJE_PAGE_TITLE = "Reklamacije";
+    public static final String PATIKE_PAGE_TITLE = "PATIKE";
+    public static final String ODECA_PAGE_TITLE = "ODEĆA";
+    public static final String BRENDOVI_PAGE_TITLE = "BREND";
+    public static final String SALE_PAGE_TITLE = "PROIZVODI";
+    public static final String BLOG_PAGE_TITLE = "MAGAZIN";
+
 
     // Navbar category titles
     public static final String PATIKE_NAVBAR_TITLE = "PATIKE";
@@ -100,8 +107,8 @@ public class Strings {
     public static final String EMAIL = "test.nat.del@gmail.com";
     public static final String PHONE_NUMBER = "0601010101";
     public static final String CITY = "Belgrade";
-    public static final String STREET = "Mararijeva";
-    public static final String STREET_NUMBER = "555";
+    public static final String STREET = "M. Popocica";
+    public static final String STREET_NUMBER = "10";
     public static final String POSTAL_CODE = "11000";
     public static final String PASSWORD = "Test123!";
     public static final String INVALID_PASSWORD = "kokakola";

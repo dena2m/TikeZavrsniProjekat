@@ -70,7 +70,6 @@ public class BasePage {
         }
 
         public void clickSearchIcon(){
-            print("Click on the searh icon");
             searchIcon.click();
         }
 

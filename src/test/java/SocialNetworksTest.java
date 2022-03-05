@@ -5,8 +5,8 @@ public class SocialNetworksTest extends BaseTests {
 
     /**
      * Click on Facebook/Instagram/YouTube button in footer, switch to new tab and return to Home page
-     * Steps:
      *
+     * Steps:
      * 1. Go to: "https://www.tike.rs/".
      * 2. Scroll down the Home page and click on Facebook footer link.
      * 3. Switch to the new, Facebook tab.

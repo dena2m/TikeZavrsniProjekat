@@ -4,8 +4,10 @@ import org.testng.annotations.Test;
 
 public class RegisterTests extends BaseTests{
 
+
     /**
-     * Entering valid data into register modal
+     * Filling in the register modal with valid data
+     *
      * Steps
      * 1. Go to: "https://www.tike.rs/"
      * 2. Clic on header 'Registracija' button.
@@ -15,10 +17,6 @@ public class RegisterTests extends BaseTests{
      * Expected results:
      * 4. Verify that register is not possible and alert message is displayed.
      */
-
-
-
-
     @Test
     public void registerWithWalidCredentials() {
         print("Go to: 'https://www.tike.rs/'");

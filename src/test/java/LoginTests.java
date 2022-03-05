@@ -5,6 +5,7 @@ public class LoginTests extends BaseTests{
 
     /**
      * Successful login from Home page with valid credentials
+     *
      * Steps:
      * 1. Go to: "https://www.tike.rs"
      * 2. Click on 'Prijavi se' header button to open login modal
@@ -53,6 +54,7 @@ public class LoginTests extends BaseTests{
 
     /**
      * Login with valid Email address and invalid password
+     *
      * Steps:
      * 1. Go to: "https://www.tike.rs"
      * 2. Click on 'Prijavi se' header button to open login modal
