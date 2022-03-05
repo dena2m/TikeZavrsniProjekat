@@ -99,9 +99,8 @@ public class InventoryPage extends BasePage {
         velicinaFilter.click();
     }
     public void selectSizeFromFilterList(String size) {
-        waitForElement (velicinaFilter);
         clickOnSizeFilterButton();
-        waitForElement(driver.findElementByXPath(Strings.SIZE_FILTER_LIST_XPATH));
+        waitForElementToBeClickable(driver.findElementByXPath(Strings.SIZE_FILTER_LIST_XPATH));
         clickFilterCheckboxForGenderBrandAndSize(Strings.SIZE_FILTER_LIST_XPATH, size);
     }
 
@@ -167,13 +166,13 @@ public class InventoryPage extends BasePage {
 
 
     public ArrayList<Double> getAllItemPrices() {
-        List<WebElement> allItems = getAllItems();
         ArrayList<Double> itemPrices = new ArrayList<>();
-        for(WebElement item : allItems) {
-            String itemPrice = item.findElement(By.xpath(Strings.ALL_ITEM_PRICES_XPATH)).getText();
-            Double price = Double.valueOf(itemPrice);
-            print("Item price is: " + price);
-            itemPrices.add(price);
+        List<WebElement> stringPrices = driver.findElementsByXPath(Strings.ALL_ITEM_PRICES_XPATH);
+        for(WebElement stringPrice : stringPrices){
+            String priceWithRsd = stringPrice.getText();
+            String price = priceWithRsd.substring(0, priceWithRsd.indexOf(",")).replace(".", "");
+            print(price);
+            itemPrices.add(Double.valueOf(price));
         }
         return itemPrices;
     }
@@ -183,7 +182,7 @@ public class InventoryPage extends BasePage {
         List<WebElement> allItems = getAllItems();
         for(WebElement item : allItems) {
             String currentName = item.getText();
-            System.out.println(allItems.indexOf(item) + ". " + currentName);
+            print(allItems.indexOf(item) + ". " + currentName);
         }
         System.out.println(allItems.size());
         return allItems;

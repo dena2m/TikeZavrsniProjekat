@@ -182,6 +182,8 @@ public class BasePage {
 
         public void assertUrl(String actualUrl, String expectedUrl) {
             print("assertUrl (" + actualUrl + ", " + expectedUrl + ")");
+            WebDriverWait wait = new WebDriverWait(driver, 5);
+            wait.until(ExpectedConditions.urlToBe(expectedUrl));
             assert actualUrl.equals(expectedUrl) : "Wrong URL. Expected: " + expectedUrl + ". Actual: " + actualUrl;
         }
 
@@ -204,6 +206,11 @@ public class BasePage {
         public void waitForElement(WebElement element) {
             WebDriverWait wait = new WebDriverWait(driver, 5);
             wait.until((ExpectedConditions.visibilityOf(element)));
+        }
+
+        public void waitForElementToBeClickable(WebElement element){
+            WebDriverWait wait = new WebDriverWait(driver, 5);
+            wait.until(ExpectedConditions.elementToBeClickable(element));
         }
 
         //TODO prebaciti kasnije na pogodniju stranicu

@@ -18,6 +18,9 @@ public class Strings {
     public static final String HOT_SALE_URL = "https://www.tike.rs/proizvodi/hot-sale";
     public static final String BLOG_URL = "https://www.tike.rs/magazin";
 
+    // Filter URLs
+    public static final String FILTER_DUKS_MUSKI_ADIDAS_XL_URL = "https://www.tike.rs/dukserica/za-muskarce/adidas/?sizeEU=XL";
+
     // Brand URLs
     public static final String ADIDAS_URL = "https://www.tike.rs/proizvodi/adidas";
 
@@ -66,7 +69,7 @@ public class Strings {
     public static final String NAJNOVIJE = "Najnovije";
     public static final String LOW_TO_HIGH = "Najjeftinije prvo";
     public static final String HIGH_TO_LOW = "Najskuplje prvo";
-    public static final String LOWEST_DISCOUNT_TO_PRICE_VALUE = "Najmanji popust prvo u odnosu na cenu"''
+    public static final String LOWEST_DISCOUNT_TO_PRICE_VALUE = "Najmanji popust prvo u odnosu na cenu";
     public static final String HIGHEST_DOSCOUNT_TO_PRICE_VALUE = "Najveći popust prvo u odnosu na cenu";
     public static final String BY_NAME = "Po nazivu";
     public static final String RECOMMENDED = "Preporučujemo";
@@ -87,6 +90,7 @@ public class Strings {
     public static final String ALL_ITEM_PRICES_XPATH = "//div[@data-original-title='Važeća MP cena']";
     public static final String NAVBAR_CATEGORY_LIST_XPATH = "//ul[@class='nav-main list-inline']//a";
     public static final String ALERT_MESSAGE_CONTAINER_XPATH = "//div[@class = 'alert alert-danger']";
+
     // ALL PAGES TITLE XPATH
     public static final String ALL_PAGES_TITLE_XPATH = "//h1//span";
 
