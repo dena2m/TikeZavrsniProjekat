@@ -20,13 +20,10 @@ public class BasePage {
         WebElement cookiesCloseButton;
 
         @FindBy(className = "register-btn")
-        WebElement registrujSeButton;
+        WebElement registrujSeHeaderButton;
 
         @FindBy(className = "login-btn")
-        WebElement prijaviSeButton;
-
-        @FindBy(xpath = "//li[@class = 'item item-logout']")
-        WebElement odjavaButton;
+        WebElement prijaviSeHeaderButton;
 
         @FindBy(xpath = "//i[@class = 'icon fa fa-search']")
         WebElement searchIcon;
@@ -73,18 +70,15 @@ public class BasePage {
             searchIcon.click();
         }
 
-        public RegisterPage clickRegisterButton() {
-            registrujSeButton.click();
+        public RegisterPage clickHeaderRegisterButton() {
+            registrujSeHeaderButton.click();
             return new RegisterPage(driver);
         }
 
-        public LoginPage clickLoginButton() {
-            prijaviSeButton.click();
-            return new LoginPage(driver);
-        }
 
-        public void clickLogoutButton() {
-            odjavaButton.click();
+        public LoginPage clickHeaderLoginButton() {
+            prijaviSeHeaderButton.click();
+            return new LoginPage(driver);
         }
 
         public ShoppingCartPage clickShoppingCartIcon() {
@@ -197,6 +191,7 @@ public class BasePage {
             }
         }
 
+
         public void print(String s) {
             System.out.println(s);
         }
@@ -227,14 +222,6 @@ public class BasePage {
                 print(e.getMessage());
             }
         }
-
-
-
-
-
-
-
-
 
 
     }

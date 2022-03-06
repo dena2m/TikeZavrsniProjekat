@@ -39,8 +39,18 @@ public class LoginPage extends BasePage{
 
 
 
+    public void clickLogoutHeaderButton() {
+        odjavaHeaderLink.click();
+    }
+
+    public void clickUserHeaderButton() {
+        userHeaderLink.click();
+    }
+
+
+
     public void openLoginModal(){
-        clickLoginButton();
+        clickHeaderLoginButton();
         waitForElement(loginModal);
         new LoginPage(driver);
     }
@@ -53,13 +63,9 @@ public class LoginPage extends BasePage{
         loginLozinkaField.sendKeys(password);
     }
 
-    public void clickLoginButtonSuccess() {
+    public void clickLoginModalButton() {
         modalPrijavaButton.click();
         new InventoryPage(driver);
-    }
-
-    public void clickLoginButtonFailure() {
-        modalPrijavaButton.click();
     }
 
     public String verifyAlertMessage() {

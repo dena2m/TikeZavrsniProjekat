@@ -7,8 +7,8 @@ import java.util.List;
 
 public class InventoryItemPage extends BasePage{
 
-    @FindBy(xpath = "//button[@id = 'nb_addToCartButton']")
-    WebElement dodajUKorpuButton;
+     @FindBy(xpath = "//button[@id = 'nb_addToCartButton']")
+     WebElement dodajUKorpuButton;
 
     @FindBy(xpath = "//div[@class = 'product-favorite favorite product-wishlist-add']")
     WebElement sacuvajteUListiZelja;
@@ -37,8 +37,9 @@ public class InventoryItemPage extends BasePage{
     }
 
 
-    public void clickAddToCartButton() {
+    public ShoppingCartPage clickAddToCartButton() {
         dodajUKorpuButton.click();
+        return new ShoppingCartPage(driver);
     }
 
 

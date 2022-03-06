@@ -24,7 +24,7 @@ public class RegisterTests extends BaseTests{
 
         try {
             RegisterPage registerPage = new RegisterPage(driver);
-            registerPage.clickRegisterButton();
+            registerPage.clickHeaderRegisterButton();
             registerPage.waitForElement(registerPage.modalRegistracija);
             registerPage.fillRegisterModal();
 

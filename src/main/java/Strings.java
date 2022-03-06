@@ -31,6 +31,7 @@ public class Strings {
     public static final String PROVERI_STATUS_PORUDZBINE_URL = "https://www.tike.rs/pregled-statusa-porudzbine";
     public static final String KAKO_KUPITI_URL = "https://www.tike.rs/kako-kupiti";
     public static final String NACIN_ISPORUKE_URL = "https://www.tike.rs/isporuka";
+    public static final String PROIZVODI_URL = "https://www.tike.rs/proizvodi";
 
     // Footer link titles
     public static final String O_NAMA_FOOTER_TITLE = "O nama";
@@ -48,7 +49,6 @@ public class Strings {
     public static final String BRENDOVI_PAGE_TITLE = "BREND";
     public static final String SALE_PAGE_TITLE = "PROIZVODI";
     public static final String BLOG_PAGE_TITLE = "MAGAZIN";
-
 
     // Navbar category titles
     public static final String PATIKE_NAVBAR_TITLE = "PATIKE";
@@ -80,6 +80,7 @@ public class Strings {
     public static final String HIGHEST_DOSCOUNT_TO_PRICE_VALUE = "Najveći popust prvo u odnosu na cenu";
     public static final String BY_NAME = "Po nazivu";
     public static final String RECOMMENDED = "Preporučujemo";
+    public static final String EMPTY_CART_MESSAGE = "Vaša korpa je prazna!";
 
     // Item titles
     public static final String ADIDAS_PATIKE_TITLE = "ADIDAS Patike SUPERTURF ADVENTURE SW ";
@@ -93,32 +94,32 @@ public class Strings {
     public static final String GENDER_FILTER_LIST_XPATH = "//div[@id='nb_f-pol']//label";
     public static final String BRAND_FILTER_LIST_XPATH = "//div[@id='nb_f-brend']//label";
     public static final String SIZE_FILTER_LIST_XPATH = "//div[@id='nb_f-size']//label";
-    public static final String ALL_ITEM_LIST_XPATH = "//div[@class = 'title']//a"; //VAZI ZA SVE STRANICE
+    public static final String ALL_ITEM_LIST_XPATH = "//div[@class = 'title']//a";
     public static final String ALL_ITEM_PRICES_XPATH = "//div[@data-original-title='Važeća MP cena']";
     public static final String NAVBAR_CATEGORY_LIST_XPATH = "//ul[@class='nav-main list-inline']//a";
     public static final String ALERT_MESSAGE_CONTAINER_XPATH = "//div[@class = 'alert alert-danger']";
+    public static final String SHOPPING_CART_ITEM_LIST_XPATH = "//td//div[@class='product-item-title text-left']/a";
+    public static final String EMPTY_CART_MESSAGE_XPATH = "//div[@class = 'alert alert-danger']";
 
     // ALL PAGES TITLE XPATH
     public static final String ALL_PAGES_TITLE_XPATH = "//h1//span";
 
-    // Register form data
-    public static final String FIRST_NAME = "Nat";
-    public static final String LAST_NAME = "Del";
+    // Register/login form data
+    public static final String FIRST_NAME = "Test";
+    public static final String LAST_NAME = "Test";
     public static final String EMAIL = "test.nat.del@gmail.com";
-    public static final String PHONE_NUMBER = "0601010101";
+    public static final String PHONE_NUMBER = "0601111111";
     public static final String CITY = "Belgrade";
-    public static final String STREET = "M. Popocica";
-    public static final String STREET_NUMBER = "10";
+    public static final String STREET = "M. Mimima";
+    public static final String STREET_NUMBER = "55";
     public static final String POSTAL_CODE = "11000";
-    public static final String PASSWORD = "Test123!";
+    public static final String PASSWORD = "Test1234!";
     public static final String INVALID_PASSWORD = "kokakola";
     public static final String REGISTER_ALERT_MESSAGGE_TEXT = "Neispravno popunjeno anti spam polje!";
 
     // Registration success alert texts
     public static final String REGISTRATION_SUCCESS_TEXT = "'Uspešno ste započeli proces registracije. Na email adresu koju ste naveli poslate su instrukcije za kompletiranje procesa registracije. Molimo vas proverite Vašu email adresu!'";
     public static final String REGISTRATION_PAGE_FINAL_SUCCESS_TEXT = "Čestitamo! Uspešno ste se registrovali na  Tike.rs.";
-
-
 
     // Alert message text for login with invalid credentials
     public static final String LOGIN_ALERT_MESSAGE_TEXT = "Pogrešna email adresa ili lozinka. Molimo Vas pokušajte ponovo!";

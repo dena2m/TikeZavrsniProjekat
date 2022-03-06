@@ -16,16 +16,16 @@ public class InventoryPage extends BasePage {
     WebElement nextPageButton;
 
     @FindBy(id = "f-kategorije")
-    WebElement kategorijeFilter;
+    WebElement kategorijeFilterButton;
 
     @FindBy(id = "f-pol")
-    WebElement polFilter;
+    WebElement polFilterButton;
 
     @FindBy(id = "f-brend")
-    WebElement brendFilter;
+    WebElement brendFilterButton;
 
     @FindBy(id = "f-size")
-    WebElement velicinaFilter;
+    WebElement velicinaFilterButton;
 
     @FindBy(id = "sort")
     WebElement sortirajDropDown;
@@ -38,7 +38,7 @@ public class InventoryPage extends BasePage {
 
 
     public void clickOnKategorijeFilter() {
-        kategorijeFilter.click();
+        kategorijeFilterButton.click();
     }
 
     public void selectItemTypeFromKategorijeFilterList(String itemTypeTitle) {
@@ -52,7 +52,7 @@ public class InventoryPage extends BasePage {
     }
 
     public InventoryPage selectKategorijeFilter(String itemTypeTitle){
-        waitForElement(kategorijeFilter);
+        waitForElement(kategorijeFilterButton);
         clickOnKategorijeFilter();
         waitForElement(driver.findElementByXPath(Strings.CATEGORY_FILTER_LIST_XPATH));
         selectItemTypeFromKategorijeFilterList(itemTypeTitle);
@@ -74,10 +74,10 @@ public class InventoryPage extends BasePage {
 
 
     public void clickOnGenderFilterButton(){
-        polFilter.click();
+        polFilterButton.click();
     }
     public void selectGenderFromFilterList(String checkboxTitle) {
-        waitForElement(polFilter);
+        waitForElement(polFilterButton);
         clickOnGenderFilterButton();
         waitForElement(driver.findElementByXPath(Strings.GENDER_FILTER_LIST_XPATH));
         clickFilterCheckboxForGenderBrandAndSize(Strings.GENDER_FILTER_LIST_XPATH, checkboxTitle);
@@ -85,10 +85,10 @@ public class InventoryPage extends BasePage {
 
 
     public void clickOnBrandFilterButton() {
-        brendFilter.click();
+        brendFilterButton.click();
     }
     public void selectBrandFromFilterList(String brand) {
-        waitForElement(brendFilter);
+        waitForElement(brendFilterButton);
         clickOnBrandFilterButton();
         waitForElement(driver.findElementByXPath(Strings.BRAND_FILTER_LIST_XPATH));
         clickFilterCheckboxForGenderBrandAndSize(Strings.BRAND_FILTER_LIST_XPATH, brand);
@@ -96,7 +96,7 @@ public class InventoryPage extends BasePage {
 
 
     public void clickOnSizeFilterButton() {
-        velicinaFilter.click();
+        velicinaFilterButton.click();
     }
     public void selectSizeFromFilterList(String size) {
         clickOnSizeFilterButton();
@@ -134,10 +134,10 @@ public class InventoryPage extends BasePage {
     }
 
 
-    //todo kako
     public WebElement findItemByName(String itemName) {
         while (true){
             List<WebElement> itemsList = getAllItems();
+            // Going through all items on current page
             for(WebElement item : itemsList) {
                 if(item.getAttribute("title").trim().equals(itemName)) {
                     item.click();
@@ -148,11 +148,13 @@ public class InventoryPage extends BasePage {
                     return item;
                 }
             }
+            // If there are no items found on current page, click on next page button if it exists
             if(isElementPresent(nextPageButton)) {
                 nextPageButton.click();
                 // TODO stavi wait
                 sleep(3);
             }
+            // If there is no next page button we are on the last page and there is no item with such name
             else{
                 break;
             }

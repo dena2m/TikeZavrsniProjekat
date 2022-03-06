@@ -56,7 +56,7 @@ public class RegisterPage extends BasePage{
     WebElement slazemSeSaPravilimaPrvatnostiCheckBox;
 
     @FindBy(xpath = "//button[@class = 'btn btn-success confirm-loader']")
-    WebElement registracijaButton;
+    WebElement registracijaModalButton;
 
     @FindBy(id = "register_modal")
     WebElement modalRegistracija;
@@ -84,8 +84,8 @@ public class RegisterPage extends BasePage{
 
 
 
-    public RegisterPage fillRegistrationForm() {
-        clickRegisterButton();
+    public RegisterPage openRegistrationForm() {
+        clickHeaderRegisterButton();
         assert isElementPresent(modalRegistracija);
         return new RegisterPage(driver);
 
@@ -144,6 +144,8 @@ public class RegisterPage extends BasePage{
     }
 
 
+
+
     public void fillRegisterModal() {
         print("Enter first name.");
         enterTextIntoFirstNameField(Strings.FIRST_NAME);
@@ -177,7 +179,13 @@ public class RegisterPage extends BasePage{
         print("Check 'Slazem se sa pravilima privatnosti' check box");
         driver.executeScript("arguments[0].click();", slazemSeSaPravilimaPrvatnostiCheckBox);
         print("Click on 'REGISTRACIJA' button.");
-        registracijaButton.click();
+        submitRegisterModalButton();
+    }
+
+
+    public RegisterPage submitRegisterModalButton() {
+        registracijaModalButton.click();
+        return new RegisterPage(driver);
     }
 
     public HomePage closeRegisterModal() {
@@ -199,9 +207,7 @@ public class RegisterPage extends BasePage{
         closeRegistracijaSuccessModal.click();
     }
 
-   // public HomePage verifyRegistrationFromMailLink() {
-    //    Strings.REGISTRATION_SUCCESS_URL
-    //}
+
 
 
 

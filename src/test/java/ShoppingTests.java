@@ -1,3 +1,4 @@
+import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 
@@ -16,12 +17,20 @@ public class ShoppingTests extends BaseTests{
      * 5. Choose item size '40'
      * 6. Click 'add to cart' button
      * 7. Get number from shopping cart badge
+     * 8. Click on shopping cart icon
+     * 9. Click remove item from cart
+     * 10. Click continue shopping button
+     *
      *
      * Expected results:
      * 3. Verify that search result list isn't empty
      * 4. Verify that correct item page is displayed
      * 5. Verify that size is available
      * 7. Verify that number on shopping cart badge is correct
+     * 8. Verify that correct item is in cart
+     * 9. Verify that remove modal is present and click on remove button
+     * 9. Verify that empty cart alert message is displayed
+     * 10. Verify that Inventory page is displayed
      */
     @Test
     public void shoppingTestStartingFromSeaarchField() {
@@ -55,6 +64,33 @@ public class ShoppingTests extends BaseTests{
 
             print("7. Verify that number on shopping cart badge is correct");
             assert currentNumber == 1 : "Error: Wrong number of items. Expected: 1. Actual: " + currentNumber;
+
+            print("8. Click on shopping cart icon");
+            ShoppingCartPage shoppingCartPage = new ShoppingCartPage(driver);
+            shoppingCartPage.clickShoppingCartIcon();
+
+            print("8. Verify that correct item is in cart");
+            shoppingCartPage.findCartItemByName("ADIDAS Patike SUPERTURF ADVENTURE SW");
+
+            print("9. Click remove item from cart");
+            shoppingCartPage.clickRemoveFromCartButton();
+
+            print("9. Verify that remove modal is present and click on remove button");
+            assert shoppingCartPage.isElementPresent(shoppingCartPage.removeFromCartModalText) : "Error: Remove from" +
+                    "cart modal should be present.";
+            shoppingCartPage.clickVerifyRemovingItemFromCartButton();
+            sleep(3);
+            print("9. Verify that empty cart alert message is displayed");
+            String currentMessage = driver.findElement(By.xpath(Strings.EMPTY_CART_MESSAGE_XPATH)).getText().trim();
+            assert currentMessage.equals(Strings.EMPTY_CART_MESSAGE) : "Error: Empty cart message should be displayed";
+
+            print("10. Click continue shopping button");
+            shoppingCartPage.clickContinueShoppingButton();
+
+            print("10. Verify that Inventory page is displayed");
+            InventoryPage inventoryPage1 = new InventoryPage(driver);
+            String actualUrl = driver.getCurrentUrl();
+            inventoryPage1.assertUrl(actualUrl, Strings.PROIZVODI_URL);
         }
         finally {
             driver.quit();

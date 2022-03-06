@@ -7,6 +7,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
+import java.util.concurrent.Callable;
+
 public class BaseTests {
 
     public ChromeDriver openChromeDriver() {
@@ -25,10 +27,10 @@ public class BaseTests {
         return driver;
     }
 
-
     public static void print(String s) {
         System.out.println(s);
     }
+
 
     public void  sleep(int seconds) {
         try {
@@ -43,13 +45,7 @@ public class BaseTests {
         assert actualUrl.equals(expectedUrl) : "Wrong URL. Expected: " + expectedUrl + ". Actual: " + actualUrl;
     }
 
-    public void loginWithValidUser(ChromeDriver driver) {
-        print("Login as valid user");
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.enterTextIntoEmailField(Strings.EMAIL);
-        loginPage.enterTextIntoPasswordField(Strings.PASSWORD);
-        loginPage.clickLoginButtonSuccess();
-    }
+
 
 
 

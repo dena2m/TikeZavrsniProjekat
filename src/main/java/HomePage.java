@@ -9,19 +9,19 @@ public class HomePage extends BasePage{
 
 
         @FindBy(xpath = "//a[@href = 'https://www.tike.rs/patike']")
-        WebElement patikeLink;
+        WebElement patikeButton;
 
         @FindBy(xpath = "//a[@href = 'https://www.tike.rs/odeca']")
-        WebElement odecaLink;
+        WebElement odecaButton;
 
         @FindBy(xpath = "//a[@href = 'https://www.tike.rs/brendovi']")
-        WebElement brendoviLink;
+        WebElement brendoviButton;
 
         @FindBy(xpath = "//a[@href = 'https://www.tike.rs/proizvodi/hot-sale']")
-        WebElement saleLink;
+        WebElement saleButton;
 
         @FindBy(xpath = "//a[@href = 'https://www.tike.rs/magazin']")
-        WebElement blogLink;
+        WebElement blogButton;
 
 
         public HomePage(ChromeDriver driver) {

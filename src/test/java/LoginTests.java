@@ -4,7 +4,7 @@ import org.testng.annotations.Test;
 public class LoginTests extends BaseTests{
 
     /**
-     * Successful login from Home page with valid credentials
+     * Successful login from any page with valid credentials
      *
      * Steps:
      * 1. Go to: "https://www.tike.rs"
@@ -12,8 +12,8 @@ public class LoginTests extends BaseTests{
      * 3. Enter valid mail address
      * 4. Enter valid password
      * 5. Click 'PRIJAVA' login button
+     *
      * Expected results:
-     * 5. Verify that current URL is displayed
      * 5. Verify that 'Prijavi se' header link has changed into user link
      * 5. Verify that 'Registrujte se' header link has changed into 'Odjava' link
      */
@@ -34,22 +34,22 @@ public class LoginTests extends BaseTests{
             print("4. Enter valid password");
             loginPage.enterTextIntoPasswordField(Strings.PASSWORD);
             print("5. Click 'PRIJAVA' login button");
-            loginPage.clickLoginButtonSuccess();
-
-            print("5. Verify that current URL is displayed");
-            String actualUrl = driver.getCurrentUrl();
-            assertUrl(actualUrl, currentUrl);
+            loginPage.clickLoginModalButton();
 
             loginPage.waitForElement(loginPage.userHeaderLink);
             print("5. Verify that 'Prijavi se' header link has changed into user link");
-            loginPage.isElementPresent(loginPage.userHeaderLink);
+            assert loginPage.isElementPresent(loginPage.userHeaderLink) : "Error: Wrong header link. Expected: " +
+                    loginPage.userHeaderLink + ". Actual: " + loginPage.prijaviSeHeaderButton;
 
             print("5. Verify that 'Registrujte se' header link has changed into 'Odjava' link");
-            loginPage.isElementPresent(loginPage.odjavaHeaderLink);
+            assert loginPage.isElementPresent(loginPage.odjavaHeaderLink) : "Error: Wrong header link. Expected: " +
+                    loginPage.odjavaHeaderLink + ". Actual: " + loginPage.registrujSeHeaderButton;
+
         }finally {
             driver.quit();
         }
     }
+
 
 
     /**
@@ -65,10 +65,11 @@ public class LoginTests extends BaseTests{
      *
      * Expected results:
      * 5. Verify that alert message is shown
-     * 6. Verify that current URL is displayed
+     * 6. Verify that 'Prijavi se' header link has NOT changed into user link
+     * 6. Verify that 'Registrujte se' header link has NOT changed into 'Odjava' link
      */
     @Test
-    public void loginFromAnyPageWithValidEmaiAndInvalidPassword() {
+    public void loginFromAnyPageWithValidEmailAndInvalidPassword() {
         ChromeDriver driver = openChromeDriver();
 
         try {
@@ -85,20 +86,111 @@ public class LoginTests extends BaseTests{
             print("4. Enter valid password");
             loginPage.enterTextIntoPasswordField(Strings.INVALID_PASSWORD);
             print("5. Click 'PRIJAVA' login button");
-            loginPage.clickLoginButtonFailure();
+            loginPage.clickLoginModalButton();
 
             print("5. Verify that alert message is shown");
             loginPage.verifyAlertMessage();
 
+            print("6. Click close button");
             loginPage.closeLoginModal();
 
-            print("6. Verify that current URL is displayed");
-            String actualUrl = driver.getCurrentUrl();
-            assertUrl(actualUrl, currentUrl);
+            print("6. Verify that 'Prijavi se' header link has NOT changed into user link");
+            assert !loginPage.isElementPresent(loginPage.userHeaderLink) : "Error: Wrong header link. Expected: " +
+                    loginPage.prijaviSeHeaderButton + ". Actual: " + loginPage.userHeaderLink;
+
+
+            print("6. Verify that 'Registrujte se' header link has NOT changed into 'Odjava' link");
+            assert !loginPage.isElementPresent(loginPage.odjavaHeaderLink) : "Error: Wrong header link. Expected: " +
+                    loginPage.registrujSeHeaderButton + ". Actual: " + loginPage.odjavaHeaderLink;
+
         }finally {
             driver.quit();
         }
     }
+
+
+
+    /**
+     * Login and Logout test
+     * Steps:
+     * 1. Go to: "https://www.tike.rs"
+     * 2. Login with valid credentials
+     * 3. Click on the 'Odjava' header link
+     *
+     * Expected results:
+     * 2. Verify that 'Prijavi se' header link has changed into user link
+     * 2. Verify that 'Registrujte se' header link has changed into 'Odjava' link
+     * 3. Verify that 'Prijavi se' header link has NOT changed into user link
+     * 3. Verify that 'Registrujte se' header link has NOT changed into 'Odjava' link
+     */
+    @Test
+    public void loginLogoutTest() {
+        ChromeDriver driver = openChromeDriver();
+
+        try {
+
+            print("1. Go to: https://www.tike.rs");
+            LoginPage loginPage = new LoginPage(driver);
+
+
+
+            print("2. Login with valid credentials");
+            login(driver,Strings.EMAIL, Strings.PASSWORD);
+
+            loginPage.waitForElement(loginPage.userHeaderLink);
+            print("2. Verify that 'Prijavi se' header link has changed into user link");
+            assert loginPage.isElementPresent(loginPage.userHeaderLink) : "Error: Wrong header link. Expected: " +
+                    loginPage.userHeaderLink + ". Actual: " + loginPage.prijaviSeHeaderButton;
+
+            print("2. Verify that 'Registrujte se' header link has changed into 'Odjava' link");
+            assert loginPage.isElementPresent(loginPage.odjavaHeaderLink) : "Error: Wrong header link. Expected: " +
+                    loginPage.odjavaHeaderLink + ". Actual: " + loginPage.registrujSeHeaderButton;
+
+
+
+            print("3. Click on the 'Odjava' header link");
+            loginPage.clickLogoutHeaderButton();
+
+            print("3. Verify that 'Prijavi se' header link has NOT changed into user link");
+            assert !loginPage.isElementPresent(loginPage.userHeaderLink) : "Error: Wrong header link. Expected: " +
+                    loginPage.prijaviSeHeaderButton + ". Actual: " + loginPage.userHeaderLink;
+
+            print("3. Verify that 'Registrujte se' header link has NOT changed into 'Odjava' link");
+            assert !loginPage.isElementPresent(loginPage.odjavaHeaderLink) : "Error: Wrong header link. Expected: " +
+                    loginPage.registrujSeHeaderButton + ". Actual: " + loginPage.odjavaHeaderLink;
+
+        }finally {
+            driver.quit();
+        }
+
+
+    }
+
+
+    public static void login(ChromeDriver driver, String email, String password) {
+
+        LoginPage loginPage = new LoginPage(driver);
+
+        print("Click 'Prijavi se' header link");
+        loginPage.clickHeaderLoginButton();
+
+        print("Enter Email " + email);
+        loginPage.enterTextIntoEmailField(email);
+
+        print("Enter valid password " + password);
+        loginPage.enterTextIntoPasswordField(password);
+
+        print("Click login button");
+        loginPage.clickLoginModalButton();
+    }
+
+
+
+
+
+
+
+
 
 
 }
