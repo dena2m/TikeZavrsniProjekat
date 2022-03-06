@@ -99,6 +99,7 @@ public class Strings {
     public static final String NAVBAR_CATEGORY_LIST_XPATH = "//ul[@class='nav-main list-inline']//a";
     public static final String ALERT_MESSAGE_CONTAINER_XPATH = "//div[@class = 'alert alert-danger']";
     public static final String SHOPPING_CART_ITEM_LIST_XPATH = "//td//div[@class='product-item-title text-left']/a";
+    public static final String REMOVE_FROM_CART_BUTTON_XPATH = "//div[@class = 'cart-col-inner-wrapper']/a";
     public static final String EMPTY_CART_MESSAGE_XPATH = "//div[@class = 'alert alert-danger']";
 
     // ALL PAGES TITLE XPATH

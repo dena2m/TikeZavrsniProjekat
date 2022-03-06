@@ -80,7 +80,7 @@ public class ShoppingCartPage extends BasePage{
     public ShoppingCartPage removeItemFromCart(String name) {
         WebElement cartItem = findCartItemByName(name);
         assert cartItem != null : "Could not find item: " + name;
-        cartItem.findElement(By.xpath("//div[@class = 'cart-col-inner-wrapper']/a")).click();
+        cartItem.findElement(By.xpath(Strings.REMOVE_FROM_CART_BUTTON_XPATH)).click();
         return this;
     }
 
