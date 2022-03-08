@@ -1,5 +1,3 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
@@ -82,15 +80,6 @@ public class RegisterPage extends BasePage{
         super(driver);
     }
 
-
-
-    public RegisterPage openRegistrationForm() {
-        clickHeaderRegisterButton();
-        assert isElementPresent(modalRegistracija);
-        return new RegisterPage(driver);
-
-    }
-
     public void enterTextIntoFirstNameField(String ime){
         imeRegistracija.sendKeys(ime);
     }
@@ -129,10 +118,6 @@ public class RegisterPage extends BasePage{
 
     public void enterTextIntoRepeatPasswordField(String lozinka) {
         ponoviLozinkuRegistracija.sendKeys(lozinka);
-    }
-
-    public void clickOnMaleRadioButton() {
-        muskiRadioButton.click();
     }
 
     public void clickOnFemaleRadioButton() {
@@ -183,36 +168,18 @@ public class RegisterPage extends BasePage{
     }
 
 
-    public RegisterPage submitRegisterModalButton() {
+    public void submitRegisterModalButton() {
         registracijaModalButton.click();
-        return new RegisterPage(driver);
     }
 
-    public HomePage closeRegisterModal() {
+    public void closeRegisterModal() {
         closeRegistracijaModal.click();
-        return new HomePage(driver);
     }
 
 
-    public RegisterPage selectValueFromSpamDropDown() {
+    public void selectValueFromSpamDropDown() {
         Select dropdown = new Select(izaberiVrednostAntiSpam);
         dropdown.selectByVisibleText("5");
-        return this;
     }
-
-    public void clickCloseSuccessRegistrationModal() {
-        isElementPresent(registracijaSuccessModal);
-        String currentMessage = driver.findElement(By.id("registration_modal")).getText();
-        assert currentMessage.equals(Strings.REGISTRATION_SUCCESS_TEXT) : "Error: wrong message. Exected: " + Strings.REGISTRATION_SUCCESS_TEXT + ". Actual: " + currentMessage;
-        closeRegistracijaSuccessModal.click();
-    }
-
-
-
-
-
-
-
-
 
 }

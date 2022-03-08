@@ -17,6 +17,7 @@ public class LoginTests extends BaseTests{
      * 5. Verify that 'Prijavi se' header link has changed into user link
      * 5. Verify that 'Registrujte se' header link has changed into 'Odjava' link
      */
+
     @Test
     public void loginFromAnyPageWithValidCredentials() {
         ChromeDriver driver = openChromeDriver();
@@ -24,15 +25,15 @@ public class LoginTests extends BaseTests{
             print("1. Go to: https://www.tike.rs");
             LoginPage loginPage = new LoginPage(driver);
 
-            String currentUrl = driver.getCurrentUrl();
-
             print("2. Click on 'Prijavi se' header button to open login modal");
             loginPage.openLoginModal();
 
             print("3. Enter valid username");
             loginPage.enterTextIntoEmailField(Strings.EMAIL);
+
             print("4. Enter valid password");
             loginPage.enterTextIntoPasswordField(Strings.PASSWORD);
+
             print("5. Click 'PRIJAVA' login button");
             loginPage.clickLoginModalButton();
 
@@ -68,6 +69,7 @@ public class LoginTests extends BaseTests{
      * 6. Verify that 'Prijavi se' header link has NOT changed into user link
      * 6. Verify that 'Registrujte se' header link has NOT changed into 'Odjava' link
      */
+
     @Test
     public void loginFromAnyPageWithValidEmailAndInvalidPassword() {
         ChromeDriver driver = openChromeDriver();
@@ -76,15 +78,15 @@ public class LoginTests extends BaseTests{
             print("1. Go to: https://www.tike.rs");
             LoginPage loginPage = new LoginPage(driver);
 
-            String currentUrl = driver.getCurrentUrl();
-
             print("2. Click on 'Prijavi se' header button to open login modal");
             loginPage.openLoginModal();
 
             print("3. Enter valid username");
             loginPage.enterTextIntoEmailField(Strings.EMAIL);
+
             print("4. Enter valid password");
             loginPage.enterTextIntoPasswordField(Strings.INVALID_PASSWORD);
+
             print("5. Click 'PRIJAVA' login button");
             loginPage.clickLoginModalButton();
 
@@ -123,16 +125,14 @@ public class LoginTests extends BaseTests{
      * 3. Verify that 'Prijavi se' header link has NOT changed into user link
      * 3. Verify that 'Registrujte se' header link has NOT changed into 'Odjava' link
      */
+
     @Test
     public void loginLogoutTest() {
         ChromeDriver driver = openChromeDriver();
 
         try {
-
             print("1. Go to: https://www.tike.rs");
             LoginPage loginPage = new LoginPage(driver);
-
-
 
             print("2. Login with valid credentials");
             login(driver,Strings.EMAIL, Strings.PASSWORD);
@@ -145,8 +145,6 @@ public class LoginTests extends BaseTests{
             print("2. Verify that 'Registrujte se' header link has changed into 'Odjava' link");
             assert loginPage.isElementPresent(loginPage.odjavaHeaderLink) : "Error: Wrong header link. Expected: " +
                     loginPage.odjavaHeaderLink + ". Actual: " + loginPage.registrujSeHeaderButton;
-
-
 
             print("3. Click on the 'Odjava' header link");
             loginPage.clickLogoutHeaderButton();
@@ -163,34 +161,7 @@ public class LoginTests extends BaseTests{
             driver.quit();
         }
 
-
     }
-
-
-    public static void login(ChromeDriver driver, String email, String password) {
-
-        LoginPage loginPage = new LoginPage(driver);
-
-        print("Click 'Prijavi se' header link");
-        loginPage.clickHeaderLoginButton();
-
-        print("Enter Email " + email);
-        loginPage.enterTextIntoEmailField(email);
-
-        print("Enter valid password " + password);
-        loginPage.enterTextIntoPasswordField(password);
-
-        print("Click login button");
-        loginPage.clickLoginModalButton();
-    }
-
-
-
-
-
-
-
-
 
 
 }

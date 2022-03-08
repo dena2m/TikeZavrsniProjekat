@@ -9,7 +9,7 @@ public class ShoppingCartPage extends BasePage{
 
 
     @FindBy(xpath = "//div[@class = 'cart-col-inner-wrapper']/a")
-    WebElement izbrišiteFromCartButton;
+    WebElement izbrisiteFromCartButton;
 
     @FindBy(className = "bootbox-body")
     WebElement removeFromCartModalText;
@@ -17,7 +17,7 @@ public class ShoppingCartPage extends BasePage{
     @FindBy(xpath = "//button[@class = 'btn btn-primary']")
     WebElement potvrdiRemoveFromCartModalButton;
 
-    @FindBy(xpath = "//div[@class = class= 'alert alert-danger']")
+    @FindBy(xpath = "//div[class= 'alert alert-danger']")
     WebElement emptyCartMessage;
 
     @FindBy(xpath = "//a[@class = 'btn btn-success']")
@@ -48,17 +48,17 @@ public class ShoppingCartPage extends BasePage{
     WebElement potvrdiKupovinuButton;
 
     @FindBy(className = "recaptcha-checkbox-checkmark")
-    WebElement recaptchaCheckBox;
+    WebElement reCaptchaCheckBox;
 
     @FindBy(xpath = "//iframe[@title = 'reCAPTCHA']")
     WebElement iFrame;
 
 
 
-
     public ShoppingCartPage(ChromeDriver driver) {
         super(driver);
     }
+
 
 
 
@@ -84,24 +84,22 @@ public class ShoppingCartPage extends BasePage{
         return this;
     }
 
-    public ShoppingCartPage clickVerifyRemovingItemFromCartButton() {
+    public void clickVerifyRemovingItemFromCartButton() {
         potvrdiRemoveFromCartModalButton.click();
-        return new ShoppingCartPage(driver);
     }
 
-    public ShoppingCartPage clickRemoveFromCartButton() {
-        izbrišiteFromCartButton.click();
-        return new ShoppingCartPage(driver);
+    public void clickRemoveFromCartButton() {
+        izbrisiteFromCartButton.click();
     }
 
-    public InventoryPage clickContinueShoppingButton() {
+    public void clickContinueShoppingButton() {
         nastaviKupovinuButton.click();
-        return new InventoryPage(driver);
     }
 
-
-
-
-
+    public void clickReCaptcha() {
+        reCaptchaCheckBox.click();
+        driver.switchTo().frame(iFrame);
+        driver.switchTo().defaultContent();
+    }
 
 }

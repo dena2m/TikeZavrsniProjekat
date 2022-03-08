@@ -7,7 +7,6 @@ import java.util.List;
 
 public class HomePage extends BasePage{
 
-
         @FindBy(xpath = "//a[@href = 'https://www.tike.rs/patike']")
         WebElement patikeButton;
 
@@ -27,26 +26,6 @@ public class HomePage extends BasePage{
         public HomePage(ChromeDriver driver) {
         super(driver);
     }
-
-
-
-
-        public InventoryPage openNavBarCategory(String categoryTitle, String categoryUrl) {
-            List<WebElement> allCategories = driver.findElements(By.xpath(Strings.NAVBAR_CATEGORY_LIST_XPATH));
-            for(WebElement category : allCategories) {
-                if(category.getAttribute("title").equals(categoryTitle)){
-                    category.click();
-                    String actualUrl = driver.getCurrentUrl();
-                    assertUrl(actualUrl, categoryUrl);
-                    print("Selected category: " + categoryTitle + ".");
-                    return new InventoryPage(driver);
-                }
-            }
-            assert false : "Error: Navbar category " + categoryTitle + " not found.";
-            return null;
-        }
-
-
 
 
 

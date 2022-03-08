@@ -2,18 +2,19 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
 public class InventoryItemPage extends BasePage{
 
-     @FindBy(xpath = "//button[@id = 'nb_addToCartButton']")
-     WebElement dodajUKorpuButton;
+    @FindBy(xpath = "//button[@id = 'nb_addToCartButton']")
+    WebElement dodajUKorpuButton;
 
     @FindBy(xpath = "//div[@class = 'product-favorite favorite product-wishlist-add']")
     WebElement sacuvajteUListiZelja;
 
-    //TODO da li ovako ili kao tekst jer ne klikce
     @FindBy(xpath = "//button[@data-btn-text-no-state='Nema na stanju']")
     WebElement nemaNaStanjuTitle;
 
@@ -21,7 +22,7 @@ public class InventoryItemPage extends BasePage{
     WebElement itemSizes;
 
     @FindBy(className = "toggle-banner")
-    WebElement pomoćToggleBanner;
+    WebElement pomocToggleBanner;
 
     @FindBy(xpath = "//div[@class = 'toggle-button expand']")
     WebElement closePomocToggleBanner;
@@ -30,16 +31,13 @@ public class InventoryItemPage extends BasePage{
     WebElement openPomocToggleBanner;
 
 
-
-
     public InventoryItemPage(ChromeDriver driver) {
         super(driver);
     }
 
 
-    public ShoppingCartPage clickAddToCartButton() {
+    public void clickAddToCartButton() {
         dodajUKorpuButton.click();
-        return new ShoppingCartPage(driver);
     }
 
 
@@ -49,14 +47,11 @@ public class InventoryItemPage extends BasePage{
     }
 
 
-    public boolean isShoppingCartBadgeNumberPresent() {
-        return isElementPresent(shoppingCartBadgeNumber);
-    }
-
-
-    public ShoppingCartPage clickOnShoppingCartIcon() {
-        shoppingCartIcon.click();
-        return new ShoppingCartPage(driver);
+    public void waitForShoppingBadgeNumber(Integer currentNumber, Integer x) {
+        WebDriverWait wait = new WebDriverWait(driver, 3);
+        currentNumber += x;
+        String number = "" + currentNumber;
+        wait.until(ExpectedConditions.textToBe(By.className("header-carthor-total"), number));
     }
 
 
@@ -70,4 +65,6 @@ public class InventoryItemPage extends BasePage{
             assert availableItemSizes.size() != 0 : "There are no available sizes.";
         }
     }
+
+
 }

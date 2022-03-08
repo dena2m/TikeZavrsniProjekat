@@ -10,15 +10,16 @@ public class RegisterTests extends BaseTests{
      *
      * Steps
      * 1. Go to: "https://www.tike.rs/"
-     * 2. Clic on header 'Registracija' button.
+     * 2. Click on header button 'Registracija'.
      * 3. Enter valid data into registration fields.
      * 4. Click on 'REGISTRACIJA' button.
      *
      * Expected results:
-     * 4. Verify that register is not possible and alert message is displayed.
+     * 4. Verify that registration is not possible and display an alert message.
      */
+
     @Test
-    public void registerWithWalidCredentials() {
+    public void registerWithValidCredentials() {
         print("Go to: 'https://www.tike.rs/'");
         ChromeDriver driver = openChromeDriver();
 
@@ -35,7 +36,7 @@ public class RegisterTests extends BaseTests{
             assert actualMessage.equals(Strings.REGISTER_ALERT_MESSAGGE_TEXT) : "Wrong message. Expected: " + Strings.REGISTER_ALERT_MESSAGGE_TEXT + ". Actual: " + actualMessage;
 
             registerPage.waitForElement(registerPage.closeRegistracijaModal);
-            HomePage homePage = registerPage.closeRegisterModal();
+            registerPage.closeRegisterModal();
             print("Verify that Home page is displayed.");
             String actualUrl = driver.getCurrentUrl();
             assertUrl(actualUrl, Strings.HOME_PAGE_URL);

@@ -1,5 +1,4 @@
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
@@ -7,6 +6,7 @@ import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class InventoryPage extends BasePage {
 
@@ -30,6 +30,19 @@ public class InventoryPage extends BasePage {
     @FindBy(id = "sort")
     WebElement sortirajDropDown;
 
+    @FindBy(xpath = "//label[@for = '28_adidas']")
+    WebElement adidasCheckbox;
+
+    @FindBy(xpath = "//label[@for = '13_za-muskarce']")
+    WebElement zaMuskarceCheckbox;
+
+    @FindBy(xpath = "//label[@for = '13_za-zene']")
+    WebElement zaZeneCheckbox;
+
+    @FindBy(xpath = "//label[@for = 'f_eusize_XL']")
+    WebElement xlVelicina;
+
+
 
     public InventoryPage(ChromeDriver driver) {
         super(driver);
@@ -51,16 +64,16 @@ public class InventoryPage extends BasePage {
         }
     }
 
-    public InventoryPage selectKategorijeFilter(String itemTypeTitle){
-        waitForElement(kategorijeFilterButton);
+    public void selectKategorijeFilter(String itemTypeTitle){
+        waitForElementToBeClickable(kategorijeFilterButton);
         clickOnKategorijeFilter();
-        waitForElement(driver.findElementByXPath(Strings.CATEGORY_FILTER_LIST_XPATH));
+        //waitForElementToBeClickable(driver.findElementByXPath(Strings.CATEGORY_FILTER_LIST_XPATH));
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         selectItemTypeFromKategorijeFilterList(itemTypeTitle);
-        return new InventoryPage(driver);
     }
 
 
-    public void clickFilterCheckboxForGenderBrandAndSize(String checkboxesXpath, String checkboxTitle) {
+    public void clickFilterCheckbox(String checkboxesXpath, String checkboxTitle) {
         List<WebElement> checkboxList = driver.findElementsByXPath(checkboxesXpath);
         for(WebElement checkbox : checkboxList) {
             // using 'for' attribute of a checkbox label because getText() would also return
@@ -76,49 +89,53 @@ public class InventoryPage extends BasePage {
     public void clickOnGenderFilterButton(){
         polFilterButton.click();
     }
-    public void selectGenderFromFilterList(String checkboxTitle) {
-        waitForElement(polFilterButton);
+
+    public void selectGenderFromFilterList(String checkboxTitle, WebElement genderCheckbox) {
+        waitForElementToBeClickable(polFilterButton);
         clickOnGenderFilterButton();
-        waitForElement(driver.findElementByXPath(Strings.GENDER_FILTER_LIST_XPATH));
-        clickFilterCheckboxForGenderBrandAndSize(Strings.GENDER_FILTER_LIST_XPATH, checkboxTitle);
+        //todo treba wait za checkboxTitle
+        waitForElement(genderCheckbox);
+        clickFilterCheckbox(Strings.GENDER_FILTER_LIST_XPATH, checkboxTitle);
     }
 
 
     public void clickOnBrandFilterButton() {
         brendFilterButton.click();
     }
-    public void selectBrandFromFilterList(String brand) {
-        waitForElement(brendFilterButton);
+
+    public void selectBrandFromFilterList(String brand, WebElement brandCheckbox) {
+        waitForElementToBeClickable(brendFilterButton);
         clickOnBrandFilterButton();
-        waitForElement(driver.findElementByXPath(Strings.BRAND_FILTER_LIST_XPATH));
-        clickFilterCheckboxForGenderBrandAndSize(Strings.BRAND_FILTER_LIST_XPATH, brand);
+       //todo treba wait za brend
+        waitForElement(brandCheckbox);
+        clickFilterCheckbox(Strings.BRAND_FILTER_LIST_XPATH, brand);
     }
 
 
     public void clickOnSizeFilterButton() {
         velicinaFilterButton.click();
     }
-    public void selectSizeFromFilterList(String size) {
+
+    public void selectSizeFromFilterList(String size, WebElement sizeCheckbox) {
+        waitForElement(velicinaFilterButton);
         clickOnSizeFilterButton();
-        waitForElementToBeClickable(driver.findElementByXPath(Strings.SIZE_FILTER_LIST_XPATH));
-        clickFilterCheckboxForGenderBrandAndSize(Strings.SIZE_FILTER_LIST_XPATH, size);
+        //todo treba wait za size
+        waitForElement(sizeCheckbox);
+        clickFilterCheckbox(Strings.SIZE_FILTER_LIST_XPATH, size);
     }
+
 
      public void selectDropDownFilter(WebElement sortirajDropDown, String dropDownText) {
         waitForElement(sortirajDropDown);
+        waitForElementToBeClickable(sortirajDropDown);
         Select dropdown = new Select(sortirajDropDown);
-        waitForElement(sortirajDropDown);
+        // todo koji wait ovde treba waitForElement(sortirajDropDown);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         dropdown.selectByVisibleText(dropDownText);
      }
 
 
-     public void enterTextIntoSearchField(String text) {
-        searchTextField.sendKeys(text);
-        searchTextField.sendKeys(Keys.ENTER);
-
-    }
-
-    // search for item type e.g. 'T-shirt' and verify that correct list is displayed
+     // search for item type e.g. 'T-shirt' and verify that correct list is displayed
     public void searchItemTypeByKeyword(String keyword) {
         BasePage basePage = new BasePage(driver);
         basePage.clickSearchIcon();
@@ -134,7 +151,7 @@ public class InventoryPage extends BasePage {
     }
 
 
-    public WebElement findItemByName(String itemName) {
+    public InventoryItemPage findItemByName(String itemName) {
         while (true){
             List<WebElement> itemsList = getAllItems();
             // Going through all items on current page
@@ -145,7 +162,7 @@ public class InventoryPage extends BasePage {
                     String pageTitle = driver.findElement(By.xpath(Strings.ALL_PAGES_TITLE_XPATH)).getText().trim();
                     assert pageTitle.equals(itemName.trim()) : "Error: wrong product";
 
-                    return item;
+                    return new InventoryItemPage(driver);
                 }
             }
             // If there are no items found on current page, click on next page button if it exists
@@ -164,9 +181,9 @@ public class InventoryPage extends BasePage {
     }
 
 
-    public ArrayList<Double> getAllItemPrices() {
+    public ArrayList<Double> getAllItemPrices(String listXpath) {
         ArrayList<Double> itemPrices = new ArrayList<>();
-        List<WebElement> stringPrices = driver.findElementsByXPath(Strings.ALL_ITEM_PRICES_XPATH);
+        List<WebElement> stringPrices = driver.findElementsByXPath(listXpath);
         for(WebElement stringPrice : stringPrices){
             String priceWithRsd = stringPrice.getText();
             String price = priceWithRsd.substring(0, priceWithRsd.indexOf(",")).replace(".", "");
@@ -176,34 +193,12 @@ public class InventoryPage extends BasePage {
         return itemPrices;
     }
 
-
-    public List<WebElement> printAllItemsFromList() {
+   public InventoryItemPage getItemByIndex(int index) {
         List<WebElement> allItems = getAllItems();
-        for(WebElement item : allItems) {
-            String currentName = item.getText();
-            print(allItems.indexOf(item) + ". " + currentName);
-        }
-        System.out.println(allItems.size());
-        return allItems;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        WebElement item = allItems.get(index);
+        item.click();
+        return new InventoryItemPage(driver);
+   }
 
 }
 

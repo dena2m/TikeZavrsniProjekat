@@ -38,15 +38,9 @@ public class LoginPage extends BasePage{
     }
 
 
-
     public void clickLogoutHeaderButton() {
         odjavaHeaderLink.click();
     }
-
-    public void clickUserHeaderButton() {
-        userHeaderLink.click();
-    }
-
 
 
     public void openLoginModal(){
@@ -68,18 +62,17 @@ public class LoginPage extends BasePage{
         new InventoryPage(driver);
     }
 
-    public String verifyAlertMessage() {
+    public void verifyAlertMessage() {
         waitForElement(alertMessageContainer);
         String currentMessage = driver.findElement(By.xpath(Strings.ALERT_MESSAGE_CONTAINER_XPATH)).getText();
         assert currentMessage.equals(Strings.LOGIN_ALERT_MESSAGE_TEXT) : "Error: Wrong message. Expected: "
                 + Strings.LOGIN_ALERT_MESSAGE_TEXT + ". Actual: " + currentMessage;
-        return currentMessage;
     }
+
 
     public void closeLoginModal() {
         closePrijavaModal.click();
     }
-
 
 
 }

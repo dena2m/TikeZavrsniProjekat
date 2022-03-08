@@ -1,4 +1,3 @@
-import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 
@@ -26,6 +25,7 @@ public class FilterTests extends BaseTests {
      * 6. Verify that URL with all selected filters is displayed
      * 7. Verify that sorting is done correctly
      */
+
     @Test
     public void itemFiltersAndDropDownTest() {
         ChromeDriver driver = openChromeDriver();
@@ -34,8 +34,7 @@ public class FilterTests extends BaseTests {
             print("1. Go to: 'https://www.tike.rs'");
             HomePage homePage = new HomePage(driver);
 
-            print("2. From NavBar select 'ODECA' category");
-            print("2. Verify that 'ODECA' URL is displayed");
+            print("2. From NavBar select 'ODECA' category and verify that the correct URL is displayed");
             InventoryPage inventoryPage = homePage.openNavBarCategory(Strings.ODECA_NAVBAR_TITLE, Strings.ODECA_URL);
 
             print("3. Select 'Dukserica' from 'KATEGORIJE' list");
@@ -43,37 +42,37 @@ public class FilterTests extends BaseTests {
 
             //sleep(3);
             print("4. Select 'Za muškarce' from 'POL' checkbox list");
-            inventoryPage.selectGenderFromFilterList(Strings.MEN_CHECKBOX_TITLE);
+            inventoryPage.selectGenderFromFilterList(Strings.MEN_CHECKBOX_TITLE, inventoryPage.zaMuskarceCheckbox);
 
             //sleep(3);
             print("5. Select 'ADIDAS' from 'BREND' checkbox list");
-            inventoryPage.selectBrandFromFilterList(Strings.ADIDAS_CHECKBOX_TITLE);
+            inventoryPage.selectBrandFromFilterList(Strings.ADIDAS_CHECKBOX_TITLE, inventoryPage.adidasCheckbox);
 
-            sleep(3);
+            //sleep(3);
             print("6. Select 'XL' size from 'VELICINA' checkbox list");
+            inventoryPage.selectSizeFromFilterList(Strings.XL_SIZE_CHECKBOX_TITLE, inventoryPage.xlVelicina);
 
-            sleep(3);
-            inventoryPage.selectSizeFromFilterList(Strings.XL_SIZE_CHECKBOX_TITLE);
-
-            sleep(3);
+            //sleep(3);
             print("6. Verify that URL with all selected filters is displayed");
             String actualURL = driver.getCurrentUrl();
+            //driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
             assertUrl(actualURL, Strings.FILTER_DUKS_MUSKI_ADIDAS_XL_URL);
 
-            ArrayList<Double> itemPricesBeforeSorting = inventoryPage.getAllItemPrices();
+            ArrayList<Double> itemPricesBeforeSorting = inventoryPage.getAllItemPrices(Strings.ALL_ITEM_PRICES_XPATH);
             print("7. Select 'Najjeftinije prvo' from 'SORTIRAJ' dropdown");
-            sleep(3);
+            //sleep(3);
             inventoryPage.selectDropDownFilter(inventoryPage.sortirajDropDown, Strings.LOW_TO_HIGH);
-            sleep(3);
-            ArrayList<Double> itemPricesAfterSorting = inventoryPage.getAllItemPrices();
-            sleep(3);
+            //sleep(3);
+            ArrayList<Double> itemPricesAfterSorting = inventoryPage.getAllItemPrices(Strings.ALL_ITEM_PRICES_XPATH);
             Collections.sort(itemPricesBeforeSorting);
 
             print("7. Verify that sorting is done correctly");
-            assert itemPricesAfterSorting.equals(itemPricesBeforeSorting) : "Error: Sort is not working";
+            assert itemPricesAfterSorting.equals(itemPricesBeforeSorting) : "Error: Sorting didn't work";
         } finally {
             driver.quit();
         }
     }
+
+
 }
 

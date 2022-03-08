@@ -82,8 +82,13 @@ public class Strings {
     public static final String RECOMMENDED = "Preporučujemo";
     public static final String EMPTY_CART_MESSAGE = "Vaša korpa je prazna!";
 
+    // All item titles
+    public static final String ALL_SEARCH_LIST_ITEM_TITLES_XPATH = "//div[@class = 'product-title']";
+
     // Item titles
-    public static final String ADIDAS_PATIKE_TITLE = "ADIDAS Patike SUPERTURF ADVENTURE SW ";
+    public static final String ADIDAS_PATIKE_TITLE = "ADIDAS Patike SUPERTURF ADVENTURE SW";
+    public static final String NIKE_DONJI_DEO_TRENERKE_TITLE = "NIKE Donji deo trenerke W J HERITAGE WOVEN PANT ";
+    public static final String NIKE_PATIKE_TITLE = "NIKE Patike Waffle One";
 
     // Brand titles
     public static final String ADIDAS_BRAND_TITLE = "ADIDAS";

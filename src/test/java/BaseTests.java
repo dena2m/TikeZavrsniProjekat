@@ -1,13 +1,9 @@
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.Test;
 
-import java.util.concurrent.Callable;
 
 public class BaseTests {
 
@@ -27,6 +23,7 @@ public class BaseTests {
         return driver;
     }
 
+
     public static void print(String s) {
         System.out.println(s);
     }
@@ -40,14 +37,29 @@ public class BaseTests {
         }
     }
 
+
     public void assertUrl(String actualUrl, String expectedUrl) {
         print("assertUrl (" + actualUrl + ", " + expectedUrl + ")");
         assert actualUrl.equals(expectedUrl) : "Wrong URL. Expected: " + expectedUrl + ". Actual: " + actualUrl;
     }
 
 
+    public static void login(ChromeDriver driver, String email, String password) {
 
+        LoginPage loginPage = new LoginPage(driver);
 
+        print("Click 'Prijavi se' header link");
+        loginPage.clickHeaderLoginButton();
+
+        print("Enter Email " + email);
+        loginPage.enterTextIntoEmailField(email);
+
+        print("Enter valid password " + password);
+        loginPage.enterTextIntoPasswordField(password);
+
+        print("Click login button");
+        loginPage.clickLoginModalButton();
+    }
 
 
 }

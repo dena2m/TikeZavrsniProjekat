@@ -47,12 +47,10 @@ public class BasePage {
         WebElement youTubeLink;
 
 
-        //Superclass constructor
         public BasePage(ChromeDriver driver) {
             this.driver = driver;
             PageFactory.initElements(driver, this);
         }
-
 
 
         public void closeCookies() {
@@ -61,32 +59,57 @@ public class BasePage {
         }
 
 
-        public HomePage clickHeaderLogo() {
+        public void clickHeaderLogo() {
             headerLogo.click();
-            return new HomePage(driver);
         }
+
 
         public void clickSearchIcon(){
             searchIcon.click();
         }
 
-        public RegisterPage clickHeaderRegisterButton() {
+
+        public void enterTextIntoSearchField(String text) {
+            searchTextField.sendKeys(text);
+            searchTextField.sendKeys(Keys.ENTER);
+        }
+
+
+        public void clickHeaderRegisterButton() {
             registrujSeHeaderButton.click();
-            return new RegisterPage(driver);
         }
 
 
-        public LoginPage clickHeaderLoginButton() {
+        public void clickHeaderLoginButton() {
             prijaviSeHeaderButton.click();
-            return new LoginPage(driver);
         }
+
 
         public ShoppingCartPage clickShoppingCartIcon() {
+
             shoppingCartIcon.click();
-            return new ShoppingCartPage(driver);
+            return new  ShoppingCartPage(driver);
         }
 
-        //creat footer links list, click on one and asserting links url
+
+    // Create an navbar link list, select one by title and verify that correct URL is displayed
+    public InventoryPage openNavBarCategory(String categoryTitle, String categoryUrl) {
+        List<WebElement> allCategories = driver.findElements(By.xpath(Strings.NAVBAR_CATEGORY_LIST_XPATH));
+        for(WebElement category : allCategories) {
+            if(category.getAttribute("title").equals(categoryTitle)){
+                category.click();
+                String actualUrl = driver.getCurrentUrl();
+                assertUrl(actualUrl, categoryUrl);
+                print("Selected category: " + categoryTitle + ".");
+                return new InventoryPage(driver);
+            }
+        }
+        assert false : "Error: Navbar category " + categoryTitle + " not found.";
+        return null;
+    }
+
+
+        // Create footer link list, select one by title and verify that correct URL is displayed
         public void selectFooterLink(String footerLinkTitle, String footerLinkUrl) {
             List<WebElement> footerLinks = driver.findElements(By.xpath("//nav[@class='row']//a"));
             for(WebElement linkTitle : footerLinks) {
@@ -102,21 +125,23 @@ public class BasePage {
             assert false : "Error: footer page " + footerLinkTitle + " not found.";
         }
 
-        // assert Facebook link button is present, scroll down the Home page (alignToTop argument is set to false
+        // Verify that Facebook link button is present, scroll down the Home page (alignToTop argument is set to false
         // because the navigation bar was covering some links, and they weren't clickable)
         public void clickOnFacebookLinkButton() {
             assert isElementPresent(facebookLink) : "Error. Facebook button is not displayed.";
-            JavascriptExecutor js = (JavascriptExecutor) driver;
+            JavascriptExecutor js = driver;
             js.executeScript("arguments[0].scrollIntoView(false);", facebookLink);
             facebookLink.click();
         }
-        // click on Facebook link, switch to Tike/Facebook tab, close Facebook tab, switch to Home page tab
+
+
+        // Click on Facebook link, switch to Tike/Facebook tab, close Facebook tab, switch to Home page tab
         public void openFacebookPage() {
             waitForElement(facebookLink);
             print("Click on Facebook link button.");
             clickOnFacebookLinkButton();
             print("Switch to Facebook tab.");
-            List<String> tabs = new ArrayList(driver.getWindowHandles());
+            ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
             driver.switchTo().window(tabs.get(1));
             print("Verify that Facebook URL is displayed.");
             String actualUrl = driver.getCurrentUrl();
@@ -127,18 +152,21 @@ public class BasePage {
             driver.switchTo().window(tabs.get(0));
         }
 
+
         public void clickOnInstagramLinkButton() {
             assert isElementPresent(instagramLink) : "Error. Instagram button is not displayed.";
-            JavascriptExecutor js = (JavascriptExecutor) driver;
+            JavascriptExecutor js = driver;
             js.executeScript("arguments[0].scrollIntoView(false);", instagramLink);
             instagramLink.click();
         }
+
+
         public void openInstagramPage() {
             waitForElement(instagramLink);
             print("Click on Instagram link button.");
             clickOnInstagramLinkButton();
             print("Switch to Instagram tab.");
-            List<String> tabs = new ArrayList(driver.getWindowHandles());
+            List<String> tabs = new ArrayList<>(driver.getWindowHandles());
             driver.switchTo().window(tabs.get(1));
             print("Verify that Instagram URL is displayed.");
             String actualUrl =driver.getCurrentUrl();
@@ -149,12 +177,14 @@ public class BasePage {
             driver.switchTo().window(tabs.get(0));
         }
 
+
         public void clickOnYouTubeButton() {
             assert isElementPresent(youTubeLink) : "Error. YouTube button is not displayed.";
-            JavascriptExecutor js = (JavascriptExecutor) driver;
+            JavascriptExecutor js = driver;
             js.executeScript("arguments[0].scrollIntoView(false);", youTubeLink);
             youTubeLink.click();
         }
+
 
         public void openYouTubeChannel() {
             waitForElement(youTubeLink);
@@ -180,6 +210,7 @@ public class BasePage {
             assert actualUrl.equals(expectedUrl) : "Wrong URL. Expected: " + expectedUrl + ". Actual: " + actualUrl;
         }
 
+
         public boolean isElementPresent(WebElement element){
             try {
                 boolean isPresent = element.isDisplayed();
@@ -202,23 +233,18 @@ public class BasePage {
             wait.until((ExpectedConditions.visibilityOf(element)));
         }
 
-        public void waitForElementToBeClickable(WebElement element){
-            WebDriverWait wait = new WebDriverWait(driver, 5);
-            wait.until(ExpectedConditions.elementToBeClickable(element));
+
+        public void waitForElementToBeClickable(WebElement element) {
+            WebDriverWait wait = new WebDriverWait(driver,5);
+            wait.until((ExpectedConditions.elementToBeClickable(element)));
         }
 
-        //TODO prebaciti kasnije na pogodniju stranicu
-        public void waitForShoppingBadgeNumber(Integer currentNumber, Integer x) {
-            WebDriverWait wait = new WebDriverWait(driver, 3);
-            currentNumber += x;
-            String number = "" + currentNumber;
-            wait.until(ExpectedConditions.textToBe(By.className("header-carthor-total"), number));
-        }
 
          public void  sleep(int seconds) {
             try {
                 Thread.sleep(seconds * 1000);
-            } catch (Exception e) {
+            }
+            catch (Exception e) {
                 print(e.getMessage());
             }
         }
