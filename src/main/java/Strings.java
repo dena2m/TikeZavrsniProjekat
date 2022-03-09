@@ -79,12 +79,9 @@ public class Strings {
 
     // Item titles
     public static final String ADIDAS_PATIKE_TITLE = "ADIDAS Patike SUPERTURF ADVENTURE SW";
-    public static final String NIKE_DONJI_DEO_TRENERKE_TITLE = "NIKE Donji deo trenerke W J HERITAGE WOVEN PANT ";
+    public static final String NIKE_DONJI_DEO_TRENERKE_TITLE = "NIKE Donji deo trenerke W J HERITAGE WOVEN PANT";
     public static final String NIKE_PATIKE_TITLE = "NIKE Patike Waffle One";
     public static final String ADIDAS_DUKSERICA_TITLE =  "ADIDAS Dukserica M CL LC HOODIE";
-
-    // Brand titles
-    public static final String ADIDAS_BRAND_TITLE = "ADIDAS";
 
     // Xpaths
     public static final String ITEM_SIZES_LIST_XPATH = "//li[@class='ease  ']//div";
@@ -100,6 +97,7 @@ public class Strings {
     public static final String SHOPPING_CART_ITEM_PRICES_LIST_XPATH = "//span[@class='product-item-prices']";
     public static final String REMOVE_FROM_CART_BUTTON_XPATH = "//div[@class = 'cart-col-inner-wrapper']/a";
     public static final String EMPTY_CART_MESSAGE_XPATH = "//div[@class = 'alert alert-danger']";
+    public static final String SEARCH_ALERT_MESSAGE_XPATH = "//div[@class =  'alert alert-info']";
 
     // ALL PAGES TITLE XPATH
     public static final String ALL_PAGES_TITLE_XPATH = "//h1//span";
@@ -124,6 +122,8 @@ public class Strings {
     // Alert message text for login with invalid credentials
     public static final String LOGIN_ALERT_MESSAGE_TEXT = "Pogrešna email adresa ili lozinka. Molimo Vas pokušajte ponovo!";
 
+    // Search alert message text
+    public static final String SEARCH_ALERT_MESSAGE_TEXT = "Za izabrane kriterijume nisu pronađeni proizvodi!";
 
 
 }
