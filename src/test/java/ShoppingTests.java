@@ -125,7 +125,7 @@ public class ShoppingTests extends BaseTests{
      * 9. Verify that 'Patike' URL is displayed
      * 10. Verify that 'NIKE Patike Waffle One' item page is displayed
      * 13. Verify that number '2' is displayed on shopping cart badge
-     *
+     * 14. Verify that shopping cart URL is displayed
      */
 
     @Test
@@ -196,6 +196,10 @@ public class ShoppingTests extends BaseTests{
             print("14. Click shopping cart icon");
             ShoppingCartPage shoppingCartPage = inventoryItemPage1.clickShoppingCartIcon();
 
+            print("14. Verify that shopping cart URL is displayed");
+            String actualUrl = driver.getCurrentUrl();
+            assertUrl(actualUrl, Strings.SHOPPING_CART_PAGE_URL);
+
             print("15. Print shopping cart items with prices");
             shoppingCartPage.printListOfAllCartItems();
 
@@ -211,7 +215,6 @@ public class ShoppingTests extends BaseTests{
 
             //todo
             //shoppingCartPage.clickReCaptcha();
-
 
         }finally {
             driver.quit();
