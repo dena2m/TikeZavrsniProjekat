@@ -3,6 +3,7 @@ public class Strings {
     // URLs
     public static final String HOME_PAGE_URL = "https://www.tike.rs/";
     public static final String CART_PAGE_URL = "https://www.tike.rs/kupovina";
+    public static final String SEARCH_LJUTE_PAPRICICE_URL = "https://www.tike.rs/proizvodi?search=ljute+papricice";
 
     // Social network URLs
     public static final String FACEBOOK_URL = "https://www.facebook.com/tikebelgrade/";

@@ -42,4 +42,47 @@ public class SearchTests extends BaseTests{
         }
     }
 
+
+    /**
+     * Enter invalid item in search field and verify the alert message
+     *
+     * Steps:
+     * 1. Go to: 'https://www.tike.rs/'
+     * 2. Click on search icon
+     * 3. Enter 'ljute papricice' into search field
+     *
+     * Expected results:
+     * 3. Verify that search URL is displayed
+     * 3. Verify that alert message: 'Za izabrane kriterijume nisu pronađeni proizvodi! is displayed'
+     */
+
+    @Test
+    public void searchForInvalidItem() {
+        ChromeDriver driver = openChromeDriver();
+
+        try {
+            print("1. Go to: 'https://www.tike.rs/'");
+            InventoryPage inventoryPage = new InventoryPage(driver);
+
+            print("2. Click on search icon");
+            inventoryPage.clickSearchIcon();
+
+            print("3. Enter 'ljute papricice' into search field");
+            inventoryPage.enterTextIntoSearchField("ljute papricice");
+
+
+            print("3. Verify that search URL is displayed");
+            String actualUrl = driver.getCurrentUrl();
+            assertUrl(actualUrl, Strings.SEARCH_LJUTE_PAPRICICE_URL);
+
+            print("3. Verify that alert message: 'Za izabrane kriterijume nisu pronađeni proizvodi!' iz displayed");
+            String currentMessage = driver.findElementByXPath(Strings.SEARCH_ALERT_MESSAGE_XPATH).getText();
+            assert currentMessage.equals(Strings.SEARCH_ALERT_MESSAGE_TEXT) : "Error: Wrong message. Expected: " +
+                    Strings.SEARCH_ALERT_MESSAGE_TEXT + ". Actual: " + currentMessage;
+
+        }finally {
+            driver.quit();
+        }
+    }
+
 }
