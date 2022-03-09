@@ -91,11 +91,11 @@ public class InventoryPage extends BasePage {
         polFilterButton.click();
     }
 
-    public void selectGenderFromFilterList(String checkboxTitle, WebElement genderCheckbox) {
+    public void selectGenderFromFilterList(String checkboxTitle) {
         waitForElementToBeClickable(polFilterButton);
         clickOnGenderFilterButton();
         //todo probaj drugi wait
-        waitForElement(genderCheckbox);
+        waitForElement(driver.findElementByXPath(Strings.GENDER_FILTER_LIST_XPATH));
         clickFilterCheckbox(Strings.GENDER_FILTER_LIST_XPATH, checkboxTitle);
     }
 
@@ -104,11 +104,11 @@ public class InventoryPage extends BasePage {
         brendFilterButton.click();
     }
 
-    public void selectBrandFromFilterList(String brand, WebElement brandCheckbox) {
+    public void selectBrandFromFilterList(String brand) {
         waitForElementToBeClickable(brendFilterButton);
         clickOnBrandFilterButton();
        //todo probaj drugi wait
-        waitForElement(brandCheckbox);
+        waitForElement(driver.findElement(By.xpath(Strings.BRAND_FILTER_LIST_XPATH)));
         clickFilterCheckbox(Strings.BRAND_FILTER_LIST_XPATH, brand);
     }
 
@@ -117,11 +117,11 @@ public class InventoryPage extends BasePage {
         velicinaFilterButton.click();
     }
 
-    public void selectSizeFromFilterList(String size, WebElement sizeCheckbox) {
+    public void selectSizeFromFilterList(String size) {
         waitForElement(velicinaFilterButton);
         clickOnSizeFilterButton();
         //todo probaj drugi wait
-        waitForElement(sizeCheckbox);
+        waitForElement(driver.findElementByXPath(Strings.SIZE_FILTER_LIST_XPATH));
         clickFilterCheckbox(Strings.SIZE_FILTER_LIST_XPATH, size);
     }
 

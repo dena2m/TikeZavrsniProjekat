@@ -120,7 +120,6 @@ public class ShoppingTests extends BaseTests{
      *
      * Expected results:
      * 2. Verify that 'Odeca' URL is displayed
-     * 4. Verify that selected item page is displayed
      * 8. Verify that number '1' is displayed on shopping cart badge
      * 9. Verify that 'Patike' URL is displayed
      * 10. Verify that 'NIKE Patike Waffle One' item page is displayed
@@ -143,20 +142,16 @@ public class ShoppingTests extends BaseTests{
             InventoryPage inventoryPage = homePage.openNavBarCategory(Strings.ODECA_NAVBAR_TITLE, Strings.ODECA_URL);
 
             print("3. Select 'Za zene' gender filter");
-            inventoryPage.selectGenderFromFilterList(Strings.GENDER_FILTER_LIST_XPATH, inventoryPage.zaZeneCheckbox);
-
+            inventoryPage.selectGenderFromFilterList(Strings.WOMEN_CHECKBOX_TITLE);
+            sleep(3);
             print("4. On first page select 7th item");
-            InventoryItemPage inventoryItemPage = inventoryPage.getItemByIndex(6);
-
-            print("4. Verify that selected item page is displayed");
-            String pageTitle = driver.findElement(By.xpath(Strings.ALL_PAGES_TITLE_XPATH)).getText().trim();
-            assert pageTitle.equals(Strings.ADIDAS_DUKSERICA_TITLE.trim()) : "Error: wrong product";
+            InventoryItemPage inventoryItemPage = inventoryPage.getItemByIndex(7);
 
             print("5. Close 'Pomoc' toggle banner");
             inventoryItemPage.closeClosePomocToggleBanner();
 
             print("6. Select size 'M'");
-            inventoryItemPage.chooseItemSize("M");
+            inventoryItemPage.chooseFirstAvailableItemSize();
             sleep(3);
             Integer currentNumber = inventoryItemPage.getNumberFromShoppingCartIcon();
 
@@ -217,7 +212,7 @@ public class ShoppingTests extends BaseTests{
             //shoppingCartPage.clickReCaptcha();
 
         }finally {
-            driver.quit();
+           driver.quit();
         }
 
 

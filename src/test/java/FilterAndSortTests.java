@@ -42,15 +42,15 @@ public class FilterAndSortTests extends BaseTests {
 
             sleep(3);
             print("4. Select 'Za muškarce' from 'POL' checkbox list");
-            inventoryPage.selectGenderFromFilterList(Strings.MEN_CHECKBOX_TITLE, inventoryPage.zaMuskarceCheckbox);
+            inventoryPage.selectGenderFromFilterList(Strings.MEN_CHECKBOX_TITLE);
 
             sleep(3);
             print("5. Select 'ADIDAS' from 'BREND' checkbox list");
-            inventoryPage.selectBrandFromFilterList(Strings.ADIDAS_CHECKBOX_TITLE, inventoryPage.adidasCheckbox);
+            inventoryPage.selectBrandFromFilterList(Strings.ADIDAS_CHECKBOX_TITLE);
 
             sleep(3);
             print("6. Select 'XL' size from 'VELICINA' checkbox list");
-            inventoryPage.selectSizeFromFilterList(Strings.XL_SIZE_CHECKBOX_TITLE, inventoryPage.xlVelicina);
+            inventoryPage.selectSizeFromFilterList(Strings.XL_SIZE_CHECKBOX_TITLE);
 
             sleep(3);
             print("6. Verify that URL with all selected filters is displayed");

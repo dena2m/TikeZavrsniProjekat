@@ -82,7 +82,7 @@ public class Strings {
     public static final String ADIDAS_PATIKE_TITLE = "ADIDAS Patike SUPERTURF ADVENTURE SW";
     public static final String NIKE_DONJI_DEO_TRENERKE_TITLE = "NIKE Donji deo trenerke W J HERITAGE WOVEN PANT";
     public static final String NIKE_PATIKE_TITLE = "NIKE Patike Waffle One";
-    public static final String ADIDAS_DUKSERICA_TITLE =  "ADIDAS Dukserica M CL LC HOODIE";
+    public static final String ADIDAS_DUKSERICA_TITLE =  "ADIDAS Dukserica HOODIE";
 
     // Xpaths
     public static final String ITEM_SIZES_LIST_XPATH = "//li[@class='ease  ']//div";
