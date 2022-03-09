@@ -8,8 +8,6 @@ import java.util.List;
 public class ShoppingCartPage extends BasePage{
 
 
-    @FindBy(xpath = "//div[@class = 'cart-col-inner-wrapper']/a")
-    WebElement izbrisiteFromCartButton;
 
     @FindBy(className = "bootbox-body")
     WebElement removeFromCartModalText;
@@ -23,23 +21,14 @@ public class ShoppingCartPage extends BasePage{
     @FindBy(xpath = "//a[@class = 'btn btn-success']")
     WebElement nastaviKupovinuButton;
 
-    @FindBy(xpath = "//td[@colspan='2']")
-    WebElement ukupnaCenaCartTabela;
+    @FindBy(xpath = "//tr[@class='cart-total']//td[@class='text-right total-price']")
+    WebElement ukupnaCenaTabela;
 
-    @FindBy(className = "product-item-prices")
-    WebElement cenaItemaCartTabela;
-
-    @FindBy(xpath = "//td//div[@class='product-item-title text-left']/a")
-    WebElement cartItemListTabela;
-
-    @FindBy(id = "carierId_2")
+    @FindBy(xpath = "//div[@class='col-xs-12 col-sm-6 carrier-wrapper ncx-v2 cart-step']//ul//li[2]//div[@class='delivery-option-name']")
     WebElement regularnaIsporukaRadioButton;
 
-    @FindBy(id = "typepayment_post")
-    WebElement placanjeGotovinomRadioButton;
-
-    @FindBy(id = "onepage-product-price-value")
-    WebElement ukupnoZaPlacanje;
+    @FindBy(xpath = "//div[@class='col-xs-12 col-sm-6 cart-payment-wrapper ncx-v2 cart-step']//ul//li[2]//div[@class='delivery-option-name']")
+    WebElement gotovinaRadioButton;
 
     @FindBy(id = "cart_onepage_terms_of_use")
     WebElement usloviKoriscenjaIProdajeCheckBox;
@@ -47,12 +36,11 @@ public class ShoppingCartPage extends BasePage{
     @FindBy(id = "submit_order_one_page")
     WebElement potvrdiKupovinuButton;
 
-    @FindBy(className = "recaptcha-checkbox-checkmark")
+    @FindBy(xpath = "//div//iframe[@ title = 'reCAPTCHA']")
     WebElement reCaptchaCheckBox;
 
     @FindBy(xpath = "//iframe[@title = 'reCAPTCHA']")
     WebElement iFrame;
-
 
 
     public ShoppingCartPage(ChromeDriver driver) {
@@ -61,10 +49,15 @@ public class ShoppingCartPage extends BasePage{
 
 
 
-
     public List<WebElement> getAllCartItems() {
         return driver.findElements(By.xpath(Strings.SHOPPING_CART_ITEM_LIST_XPATH));
     }
+
+
+    public List<WebElement> getAllCartItemPrices(){
+        return driver.findElements(By.xpath(Strings.SHOPPING_CART_ITEM_PRICES_LIST_XPATH));
+    }
+
 
     public WebElement findCartItemByName(String name) {
         List<WebElement> cartItems = getAllCartItems();
@@ -77,29 +70,64 @@ public class ShoppingCartPage extends BasePage{
         }return null;
     }
 
-    public ShoppingCartPage removeItemFromCart(String name) {
+
+    public void removeItemFromCart(String name) {
         WebElement cartItem = findCartItemByName(name);
         assert cartItem != null : "Could not find item: " + name;
         cartItem.findElement(By.xpath(Strings.REMOVE_FROM_CART_BUTTON_XPATH)).click();
-        return this;
     }
+
 
     public void clickVerifyRemovingItemFromCartButton() {
         potvrdiRemoveFromCartModalButton.click();
     }
 
-    public void clickRemoveFromCartButton() {
-        izbrisiteFromCartButton.click();
-    }
 
     public void clickContinueShoppingButton() {
         nastaviKupovinuButton.click();
     }
 
+
     public void clickReCaptcha() {
-        reCaptchaCheckBox.click();
         driver.switchTo().frame(iFrame);
+        iFrame.click();
         driver.switchTo().defaultContent();
     }
+
+
+    public void printListOfAllCartItems() {
+        List<WebElement> allItems = getAllCartItems();
+        List<WebElement> allItemPrices = getAllCartItemPrices();
+        System.out.println("Number of items: " + allItems.size());
+
+        for(int i = 0; i < allItems.size(); i++) {
+            String currentName = allItems.get(i).getText();
+            String currentPrice = allItemPrices.get(i).getText();
+            int index = i+1;
+            print(index + ". " + currentName + ": " + currentPrice);
+        }
+    }
+
+
+    public void clickRegularnaIsporukaRadioButton() {
+        regularnaIsporukaRadioButton.click();
+    }
+
+
+    public void clickGotovinaRadioButton() {
+        gotovinaRadioButton.click();
+    }
+
+
+    public void printUkupnoZaPlacanje() {
+        WebElement zaPlacanje = ukupnaCenaTabela;
+        print("Ukupno za placanje: " + ukupnaCenaTabela.getText());
+    }
+
+
+    public void clickSubmitButton() {
+        potvrdiKupovinuButton.click();
+    }
+
 
 }

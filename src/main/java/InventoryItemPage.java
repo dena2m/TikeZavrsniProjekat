@@ -36,6 +36,7 @@ public class InventoryItemPage extends BasePage{
     }
 
 
+
     public void clickAddToCartButton() {
         dodajUKorpuButton.click();
     }
@@ -64,6 +65,11 @@ public class InventoryItemPage extends BasePage{
 
             assert availableItemSizes.size() != 0 : "There are no available sizes.";
         }
+    }
+
+    public void closeClosePomocToggleBanner() {
+        isElementPresent(pomocToggleBanner);
+        closePomocToggleBanner.click();
     }
 
 

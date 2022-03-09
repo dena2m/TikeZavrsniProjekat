@@ -4,9 +4,6 @@ public class Strings {
     public static final String HOME_PAGE_URL = "https://www.tike.rs/";
     public static final String CART_PAGE_URL = "https://www.tike.rs/kupovina";
 
-    // Registration success URL
-    public static final String REGISTRATION_SUCCESS_URL = "https://www.tike.rs/potvrda-registracije/?sec_key=2022MarFri103818yErVVVEwhOLqC3i";
-
     // Social network URLs
     public static final String FACEBOOK_URL = "https://www.facebook.com/tikebelgrade/";
     public static final String INSTAGRAM_URL = "https://www.instagram.com/tikebelgrade/?hl=en";
@@ -21,9 +18,6 @@ public class Strings {
 
     // Filter URLs
     public static final String FILTER_DUKS_MUSKI_ADIDAS_XL_URL = "https://www.tike.rs/dukserica/za-muskarce/adidas/?sizeEU=XL";
-
-    // Brand URLs
-    public static final String ADIDAS_URL = "https://www.tike.rs/proizvodi/adidas";
 
     // Footer link URLs
     public static final String O_NAMA_URL = "https://www.tike.rs/o-nama";
@@ -41,7 +35,6 @@ public class Strings {
     public static final String NACIN_ISPORUKE_FOOTER_TITLE = "Načini isporuke";
 
     // Page titles
-    public static final String KORISNICKA_PODRSKA_PAGE_TITLE = "Tike - Korisnička Podrška";
     public static final String O_NAMA_PAGE_TITLE = "O nama";
     public static final String REKLAMACIJE_PAGE_TITLE = "Reklamacije";
     public static final String PATIKE_PAGE_TITLE = "PATIKE";
@@ -69,7 +62,6 @@ public class Strings {
     public static final String WOMEN_CHECKBOX_TITLE = "13_za-zene";
     public static final String MEN_CHECKBOX_TITLE = "13_za-muskarce";
     public static final String ADIDAS_CHECKBOX_TITLE = "28_adidas";
-    public static final String CONVERSE_CHECKBOX_TITLE = "28_converse";
     public static final String XL_SIZE_CHECKBOX_TITLE = "f_eusize_XL";
 
     // Sort dropdown texts
@@ -89,6 +81,7 @@ public class Strings {
     public static final String ADIDAS_PATIKE_TITLE = "ADIDAS Patike SUPERTURF ADVENTURE SW";
     public static final String NIKE_DONJI_DEO_TRENERKE_TITLE = "NIKE Donji deo trenerke W J HERITAGE WOVEN PANT ";
     public static final String NIKE_PATIKE_TITLE = "NIKE Patike Waffle One";
+    public static final String ADIDAS_DUKSERICA_TITLE =  "ADIDAS Dukserica M CL LC HOODIE";
 
     // Brand titles
     public static final String ADIDAS_BRAND_TITLE = "ADIDAS";
@@ -104,6 +97,7 @@ public class Strings {
     public static final String NAVBAR_CATEGORY_LIST_XPATH = "//ul[@class='nav-main list-inline']//a";
     public static final String ALERT_MESSAGE_CONTAINER_XPATH = "//div[@class = 'alert alert-danger']";
     public static final String SHOPPING_CART_ITEM_LIST_XPATH = "//td//div[@class='product-item-title text-left']/a";
+    public static final String SHOPPING_CART_ITEM_PRICES_LIST_XPATH = "//span[@class='product-item-prices']";
     public static final String REMOVE_FROM_CART_BUTTON_XPATH = "//div[@class = 'cart-col-inner-wrapper']/a";
     public static final String EMPTY_CART_MESSAGE_XPATH = "//div[@class = 'alert alert-danger']";
 

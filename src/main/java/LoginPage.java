@@ -38,6 +38,7 @@ public class LoginPage extends BasePage{
     }
 
 
+
     public void clickLogoutHeaderButton() {
         odjavaHeaderLink.click();
     }
@@ -49,18 +50,22 @@ public class LoginPage extends BasePage{
         new LoginPage(driver);
     }
 
+
     public void enterTextIntoEmailField(String email) {
         loginEmailAdresaField.sendKeys(email);
     }
+
 
     public void enterTextIntoPasswordField(String password) {
         loginLozinkaField.sendKeys(password);
     }
 
+
     public void clickLoginModalButton() {
         modalPrijavaButton.click();
         new InventoryPage(driver);
     }
+
 
     public void verifyAlertMessage() {
         waitForElement(alertMessageContainer);

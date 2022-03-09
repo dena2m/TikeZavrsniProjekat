@@ -130,7 +130,6 @@ public class RegisterPage extends BasePage{
 
 
 
-
     public void fillRegisterModal() {
         print("Enter first name.");
         enterTextIntoFirstNameField(Strings.FIRST_NAME);
@@ -171,6 +170,7 @@ public class RegisterPage extends BasePage{
     public void submitRegisterModalButton() {
         registracijaModalButton.click();
     }
+
 
     public void closeRegisterModal() {
         closeRegistracijaModal.click();

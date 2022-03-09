@@ -64,6 +64,7 @@ public class InventoryPage extends BasePage {
         }
     }
 
+
     public void selectKategorijeFilter(String itemTypeTitle){
         waitForElementToBeClickable(kategorijeFilterButton);
         clickOnKategorijeFilter();
@@ -93,7 +94,7 @@ public class InventoryPage extends BasePage {
     public void selectGenderFromFilterList(String checkboxTitle, WebElement genderCheckbox) {
         waitForElementToBeClickable(polFilterButton);
         clickOnGenderFilterButton();
-        //todo treba wait za checkboxTitle
+        //todo probaj drugi wait
         waitForElement(genderCheckbox);
         clickFilterCheckbox(Strings.GENDER_FILTER_LIST_XPATH, checkboxTitle);
     }
@@ -106,7 +107,7 @@ public class InventoryPage extends BasePage {
     public void selectBrandFromFilterList(String brand, WebElement brandCheckbox) {
         waitForElementToBeClickable(brendFilterButton);
         clickOnBrandFilterButton();
-       //todo treba wait za brend
+       //todo probaj drugi wait
         waitForElement(brandCheckbox);
         clickFilterCheckbox(Strings.BRAND_FILTER_LIST_XPATH, brand);
     }
@@ -119,7 +120,7 @@ public class InventoryPage extends BasePage {
     public void selectSizeFromFilterList(String size, WebElement sizeCheckbox) {
         waitForElement(velicinaFilterButton);
         clickOnSizeFilterButton();
-        //todo treba wait za size
+        //todo probaj drugi wait
         waitForElement(sizeCheckbox);
         clickFilterCheckbox(Strings.SIZE_FILTER_LIST_XPATH, size);
     }
@@ -129,7 +130,7 @@ public class InventoryPage extends BasePage {
         waitForElement(sortirajDropDown);
         waitForElementToBeClickable(sortirajDropDown);
         Select dropdown = new Select(sortirajDropDown);
-        // todo koji wait ovde treba waitForElement(sortirajDropDown);
+        // todo promeni wait
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         dropdown.selectByVisibleText(dropDownText);
      }
@@ -192,6 +193,7 @@ public class InventoryPage extends BasePage {
         }
         return itemPrices;
     }
+
 
    public InventoryItemPage getItemByIndex(int index) {
         List<WebElement> allItems = getAllItems();

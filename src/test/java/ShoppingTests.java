@@ -32,16 +32,17 @@ public class ShoppingTests extends BaseTests{
      * 9. Verify that empty cart alert message is displayed
      * 10. Verify that Inventory page is displayed
      */
+
     @Test
     public void addAndRemoveItemFromCart() {
         ChromeDriver driver = openChromeDriver();
 
         try {
             print("1. Go to: 'https://www.tike.rs/'");
-            HomePage homePage = new HomePage(driver);
+            InventoryPage inventoryPage = new InventoryPage(driver);
 
             print("2. Verify that 'Patike' URL is displayed");
-            InventoryPage inventoryPage = homePage.openNavBarCategory(Strings.PATIKE_NAVBAR_TITLE, Strings.PATIKE_URL);
+            inventoryPage.openNavBarCategory(Strings.PATIKE_NAVBAR_TITLE, Strings.PATIKE_URL);
 
             print("3. Find and click 'ADIDAS Patike SUPERTURF ADVENTURE SW' on item list");
             print("3. Verify that correct item page is displayed");
@@ -70,7 +71,8 @@ public class ShoppingTests extends BaseTests{
             shoppingCartPage.findCartItemByName("ADIDAS Patike SUPERTURF ADVENTURE SW");
 
             print("8. Click remove item from cart");
-            shoppingCartPage.clickRemoveFromCartButton();
+            shoppingCartPage.removeItemFromCart(Strings.ADIDAS_PATIKE_TITLE);
+
             sleep(3);
             print("8. Verify that remove modal is present ");
             assert shoppingCartPage.isElementPresent(shoppingCartPage.removeFromCartModalText) : "Error: Remove from" +
@@ -102,18 +104,30 @@ public class ShoppingTests extends BaseTests{
      * 2. Select 'Odeca' category from navigation bar
      * 3. Select 'Za zene' gender filter
      * 4. On first page select 7th item
-     * 5. Select size '38'
-     * 6. Click add to cart
-     * 7. Get shopping cart badge number
-     * 8. Select 'Patike' category from navigation bar
-     * 9. Select: 'NIKE Patike Waffle One'
-     * 10. Select size'38'
-     * 11. Click add to cart
-     * 12. Get shopping cart badge number
-     * 13. Click shopping cart icon
-     * 14.
+     * 5. Close 'Pomoc' toggle banner if open
+     * 6. Select size '38'
+     * 7. Click add to cart
+     * 8. Get shopping cart badge number
+     * 9. Select 'Patike' category from navigation bar
+     * 10. Select: 'NIKE Patike Waffle One'
+     * 11. Select size'38'
+     * 12. Click add to cart
+     * 13. Get shopping cart badge number
+     * 14. Click shopping cart icon
+     * 15. Print shopping cart items with prices
+     * 16. Print final price
+     * 17. Select 'Regularna isporuka' radio button
+     *
+     * Expected results:
+     * 2. Verify that 'Odeca' URL is displayed
+     * 4. Verify that selected item page is displayed
+     * 8. Verify that number '1' is displayed on shopping cart badge
+     * 9. Verify that 'Patike' URL is displayed
+     * 10. Verify that 'NIKE Patike Waffle One' item page is displayed
+     * 13. Verify that number '2' is displayed on shopping cart badge
      *
      */
+
     @Test
     public void buyTwoItemsAndCheckout() {
         ChromeDriver driver = openChromeDriver();
@@ -121,7 +135,11 @@ public class ShoppingTests extends BaseTests{
             print("1. Go to: 'https://www.tike.rs/'");
             HomePage homePage = new HomePage(driver);
 
+            login(driver, Strings.EMAIL, Strings.PASSWORD);
+            sleep(2);
+
             print("2. Select 'Odeca' category from navigation bar");
+            print("2. Verify that 'Odeca' URL is displayed");
             InventoryPage inventoryPage = homePage.openNavBarCategory(Strings.ODECA_NAVBAR_TITLE, Strings.ODECA_URL);
 
             print("3. Select 'Za zene' gender filter");
@@ -130,53 +148,74 @@ public class ShoppingTests extends BaseTests{
             print("4. On first page select 7th item");
             InventoryItemPage inventoryItemPage = inventoryPage.getItemByIndex(6);
 
-            print("5. Select size 'M'");
+            print("4. Verify that selected item page is displayed");
+            String pageTitle = driver.findElement(By.xpath(Strings.ALL_PAGES_TITLE_XPATH)).getText().trim();
+            assert pageTitle.equals(Strings.ADIDAS_DUKSERICA_TITLE.trim()) : "Error: wrong product";
+
+            print("5. Close 'Pomoc' toggle banner");
+            inventoryItemPage.closeClosePomocToggleBanner();
+
+            print("6. Select size 'M'");
             inventoryItemPage.chooseItemSize("M");
             sleep(3);
             Integer currentNumber = inventoryItemPage.getNumberFromShoppingCartIcon();
 
-            print("6. Click add to cart");
+            print("7. Click add to cart");
             inventoryItemPage.clickAddToCartButton();
             sleep(3);
-            print("7. Get shopping cart badge number");
+
+            print("8. Get shopping cart badge number");
             inventoryItemPage.waitForShoppingBadgeNumber(currentNumber, 1);
             currentNumber = inventoryItemPage.getNumberFromShoppingCartIcon();
 
-            print("7. Verify that shopping cart badge number is correct");
+            print("8. Verify that number '1' is displayed on shopping cart badge");
             assert currentNumber == 1 : "Error: Wrong number of items. Expected: 1. Actual: " + currentNumber;
 
-            print("8. Select 'Patike' category from navigation bar");
+            print("9. Select 'Patike' category from navigation bar");
+            print("9. Verify that 'Patike' URL is displayed");
             InventoryPage inventoryPage1 = inventoryItemPage.openNavBarCategory(Strings.PATIKE_NAVBAR_TITLE, Strings.PATIKE_URL);
 
-            print("9. Select: 'NIKE Patike Waffle One'");
+            print("10. Select: 'NIKE Patike Waffle One'");
+            print("10. Verify that 'NIKE Patike Waffle One' item page is displayed");
             InventoryItemPage inventoryItemPage1 = inventoryPage1.findItemByName(Strings.NIKE_PATIKE_TITLE);
 
-            print("10. Select size'38'");
+            print("11. Select size'38'");
             inventoryItemPage.chooseItemSize("38");
 
-            print("11. Click add to cart");
+            print("12. Click add to cart");
             inventoryItemPage1.clickAddToCartButton();
             sleep(3);
-            print("12. Get shopping cart badge number");
+
+            print("13. Get shopping cart badge number");
             inventoryItemPage1.waitForShoppingBadgeNumber(currentNumber, 1);
             currentNumber = inventoryItemPage.getNumberFromShoppingCartIcon();
 
-            print("12. Verify that shopping cart badge number is correct");
+            print("13. Verify that number '2' is displayed on shopping cart badge");
             assert currentNumber == 2 : "Error: Wrong number of items. Expected: 2. Actual: " + currentNumber;
 
-            print("12. Click shopping cart icon");
+            print("14. Click shopping cart icon");
             ShoppingCartPage shoppingCartPage = inventoryItemPage1.clickShoppingCartIcon();
 
-            inventoryPage.getAllItemPrices(Strings.SHOPPING_CART_ITEM_LIST_XPATH);
+            print("15. Print shopping cart items with prices");
+            shoppingCartPage.printListOfAllCartItems();
+
+            print("16. Print final price");
+            shoppingCartPage.printUkupnoZaPlacanje();
+            sleep(3);
+
+            print("17. Select 'Regularna isporuka' delivery option");
+            shoppingCartPage.clickRegularnaIsporukaRadioButton();
+
+            print("18. Select 'Gotovina' payment option");
+            shoppingCartPage.clickGotovinaRadioButton();
+
+            //todo
+            //shoppingCartPage.clickReCaptcha();
 
 
         }finally {
-            //driver.quit();
+            driver.quit();
         }
-
-
-
-
 
 
 

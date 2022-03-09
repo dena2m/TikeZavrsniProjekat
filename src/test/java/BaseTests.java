@@ -29,7 +29,7 @@ public class BaseTests {
     }
 
 
-    public void  sleep(int seconds) {
+    public static void sleep(int seconds) {
         try {
             Thread.sleep(seconds * 1000);
         } catch (Exception e) {
@@ -45,12 +45,11 @@ public class BaseTests {
 
 
     public static void login(ChromeDriver driver, String email, String password) {
-
         LoginPage loginPage = new LoginPage(driver);
 
         print("Click 'Prijavi se' header link");
         loginPage.clickHeaderLoginButton();
-
+        sleep(3);
         print("Enter Email " + email);
         loginPage.enterTextIntoEmailField(email);
 
