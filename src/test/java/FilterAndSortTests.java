@@ -40,28 +40,24 @@ public class FilterAndSortTests extends BaseTests {
             print("3. Select 'Dukserica' from 'KATEGORIJE' list");
             inventoryPage.selectKategorijeFilter("Dukserica");
 
-            sleep(3);
             print("4. Select 'Za muškarce' from 'POL' checkbox list");
             inventoryPage.selectGenderFromFilterList(Strings.MEN_CHECKBOX_TITLE);
 
-            sleep(3);
             print("5. Select 'ADIDAS' from 'BREND' checkbox list");
             inventoryPage.selectBrandFromFilterList(Strings.ADIDAS_CHECKBOX_TITLE);
 
-            sleep(3);
             print("6. Select 'XL' size from 'VELICINA' checkbox list");
             inventoryPage.selectSizeFromFilterList(Strings.XL_SIZE_CHECKBOX_TITLE);
 
-            sleep(3);
             print("6. Verify that URL with all selected filters is displayed");
             String actualURL = driver.getCurrentUrl();
-            //driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
             assertUrl(actualURL, Strings.FILTER_DUKS_MUSKI_ADIDAS_XL_URL);
 
             ArrayList<Double> itemPricesBeforeSorting = inventoryPage.getAllItemPrices(Strings.ALL_ITEM_PRICES_XPATH);
             print("7. Select 'Najjeftinije prvo' from 'SORTIRAJ' dropdown");
-            sleep(3);
+
             inventoryPage.selectDropDownFilter(inventoryPage.sortirajDropDown, Strings.LOW_TO_HIGH);
+            //todo
             sleep(3);
             ArrayList<Double> itemPricesAfterSorting = inventoryPage.getAllItemPrices(Strings.ALL_ITEM_PRICES_XPATH);
             Collections.sort(itemPricesBeforeSorting);

@@ -67,10 +67,12 @@ public class InventoryItemPage extends BasePage{
         }
     }
 
+
     public void chooseFirstAvailableItemSize() {
         List<WebElement> availableItemSizes = driver.findElements(By.xpath(Strings.ITEM_SIZES_LIST_XPATH));
         availableItemSizes.get(0).click();
     }
+
 
     public void closeClosePomocToggleBanner() {
         isElementPresent(pomocToggleBanner);

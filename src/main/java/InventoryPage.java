@@ -59,6 +59,9 @@ public class InventoryPage extends BasePage {
         for (WebElement itemType : itemTypeList) {
             if (itemType.getAttribute("title").equals(itemTypeTitle)) {
                 itemType.click();
+
+                // Wait for the page to refresh after selecting category filter
+                waitForStalenessOfElement(itemType);
                 return;
             }
         }
@@ -68,8 +71,7 @@ public class InventoryPage extends BasePage {
     public void selectKategorijeFilter(String itemTypeTitle){
         waitForElementToBeClickable(kategorijeFilterButton);
         clickOnKategorijeFilter();
-        //waitForElementToBeClickable(driver.findElementByXPath(Strings.CATEGORY_FILTER_LIST_XPATH));
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        waitForElementToBeClickable(driver.findElementByXPath(Strings.CATEGORY_FILTER_LIST_XPATH));
         selectItemTypeFromKategorijeFilterList(itemTypeTitle);
     }
 
@@ -79,8 +81,13 @@ public class InventoryPage extends BasePage {
         for(WebElement checkbox : checkboxList) {
             // using 'for' attribute of a checkbox label because getText() would also return
             // the number of items available with that filter (e.g. "Za muskarce (16)")
+            waitForElement(checkbox);
             if(checkbox.getAttribute("for").equals(checkboxTitle)) {
+                waitForElementToBeClickable(checkbox);
                 checkbox.click();
+
+                // Wait for the page to refresh after selecting a checkbox
+                waitForStalenessOfElement(checkbox);
                 return;
             }
         }
@@ -94,7 +101,6 @@ public class InventoryPage extends BasePage {
     public void selectGenderFromFilterList(String checkboxTitle) {
         waitForElementToBeClickable(polFilterButton);
         clickOnGenderFilterButton();
-        //todo probaj drugi wait
         waitForElement(driver.findElementByXPath(Strings.GENDER_FILTER_LIST_XPATH));
         clickFilterCheckbox(Strings.GENDER_FILTER_LIST_XPATH, checkboxTitle);
     }
@@ -107,7 +113,6 @@ public class InventoryPage extends BasePage {
     public void selectBrandFromFilterList(String brand) {
         waitForElementToBeClickable(brendFilterButton);
         clickOnBrandFilterButton();
-       //todo probaj drugi wait
         waitForElement(driver.findElement(By.xpath(Strings.BRAND_FILTER_LIST_XPATH)));
         clickFilterCheckbox(Strings.BRAND_FILTER_LIST_XPATH, brand);
     }
@@ -130,9 +135,9 @@ public class InventoryPage extends BasePage {
         waitForElement(sortirajDropDown);
         waitForElementToBeClickable(sortirajDropDown);
         Select dropdown = new Select(sortirajDropDown);
-        // todo promeni wait
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         dropdown.selectByVisibleText(dropDownText);
+        //todo
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
      }
 
 

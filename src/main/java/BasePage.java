@@ -239,6 +239,11 @@ public class BasePage {
             wait.until((ExpectedConditions.elementToBeClickable(element)));
         }
 
+        // Wait for the page to refresh (after selecting a filter)
+        public void waitForStalenessOfElement(WebElement element){
+            WebDriverWait wait = new WebDriverWait(driver, 5);
+            wait.until(ExpectedConditions.stalenessOf(element));
+        }
 
          public void  sleep(int seconds) {
             try {
