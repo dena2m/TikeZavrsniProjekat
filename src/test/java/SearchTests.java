@@ -22,7 +22,7 @@ public class SearchTests extends BaseTests{
      */
 
     @Test
-    public void shoppingTestStartingFromSeaarchField() {
+    public void searchByItemTypeAndName() {
         ChromeDriver driver = openChromeDriver();
 
         try {
@@ -84,5 +84,7 @@ public class SearchTests extends BaseTests{
             driver.quit();
         }
     }
+
+
 
 }
