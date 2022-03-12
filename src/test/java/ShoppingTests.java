@@ -73,15 +73,20 @@ public class ShoppingTests extends BaseTests{
             print("8. Click remove item from cart");
             shoppingCartPage.removeItemFromCart(Strings.ADIDAS_PATIKE_TITLE);
 
-            sleep(3);
+            //sleep(3);
             print("8. Verify that remove modal is present ");
             assert shoppingCartPage.isElementPresent(shoppingCartPage.removeFromCartModalText) : "Error: Remove from" +
                     "cart modal should be present.";
 
             print("9. Click on modal remove button");
             shoppingCartPage.clickVerifyRemovingItemFromCartButton();
-            sleep(3);
+
+            // Wait for the page to reload after removing item from the cart
+            // (wait for header logo to be stale)
+            shoppingCartPage.waitForStalenessOfElement(driver.findElementByXPath(Strings.HEADER_LOGO_XPATH));
+
             print("9. Verify that empty cart alert message is displayed");
+            shoppingCartPage.waitForElement(driver.findElement(By.xpath(Strings.EMPTY_CART_MESSAGE_XPATH)));
             String currentMessage = driver.findElement(By.xpath(Strings.EMPTY_CART_MESSAGE_XPATH)).getText().trim();
             assert currentMessage.equals(Strings.EMPTY_CART_MESSAGE) : "Error: Empty cart message should be displayed";
 
@@ -135,29 +140,26 @@ public class ShoppingTests extends BaseTests{
             HomePage homePage = new HomePage(driver);
 
             login(driver, Strings.EMAIL, Strings.PASSWORD);
-            sleep(2);
 
-            print("2. Select 'Odeca' category from navigation bar");
-            print("2. Verify that 'Odeca' URL is displayed");
+            print("2. Select 'Odeca' category from navigation bar and verify that 'Odeca' URL is displayed");
             InventoryPage inventoryPage = homePage.openNavBarCategory(Strings.ODECA_NAVBAR_TITLE, Strings.ODECA_URL);
 
             print("3. Select 'Za zene' gender filter");
             inventoryPage.selectGenderFromFilterList(Strings.WOMEN_CHECKBOX_TITLE);
-            sleep(3);
             print("4. On first page select 7th item");
             InventoryItemPage inventoryItemPage = inventoryPage.getItemByIndex(7);
 
             print("5. Close 'Pomoc' toggle banner");
             inventoryItemPage.closeClosePomocToggleBanner();
 
-            print("6. Select size 'M'");
+            print("6. Select first available size");
             inventoryItemPage.chooseFirstAvailableItemSize();
-            sleep(3);
+            //sleep(3);
             Integer currentNumber = inventoryItemPage.getNumberFromShoppingCartIcon();
 
             print("7. Click add to cart");
             inventoryItemPage.clickAddToCartButton();
-            sleep(3);
+            //sleep(3);
 
             print("8. Get shopping cart badge number");
             inventoryItemPage.waitForShoppingBadgeNumber(currentNumber, 1);
@@ -179,7 +181,7 @@ public class ShoppingTests extends BaseTests{
 
             print("12. Click add to cart");
             inventoryItemPage1.clickAddToCartButton();
-            sleep(3);
+            //sleep(3);
 
             print("13. Get shopping cart badge number");
             inventoryItemPage1.waitForShoppingBadgeNumber(currentNumber, 1);
@@ -200,7 +202,7 @@ public class ShoppingTests extends BaseTests{
 
             print("16. Print final price");
             shoppingCartPage.printUkupnoZaPlacanje();
-            sleep(3);
+            //sleep(3);
 
             print("17. Select 'Regularna isporuka' delivery option");
             shoppingCartPage.clickRegularnaIsporukaRadioButton();

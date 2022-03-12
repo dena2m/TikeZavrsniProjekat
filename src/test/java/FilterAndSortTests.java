@@ -54,16 +54,16 @@ public class FilterAndSortTests extends BaseTests {
             assertUrl(actualURL, Strings.FILTER_DUKS_MUSKI_ADIDAS_XL_URL);
 
             ArrayList<Double> itemPricesBeforeSorting = inventoryPage.getAllItemPrices(Strings.ALL_ITEM_PRICES_XPATH);
-            print("7. Select 'Najjeftinije prvo' from 'SORTIRAJ' dropdown");
 
+            print("7. Select 'Najjeftinije prvo' from 'SORTIRAJ' dropdown");
             inventoryPage.selectDropDownFilter(inventoryPage.sortirajDropDown, Strings.LOW_TO_HIGH);
-            //todo
-            sleep(3);
+
             ArrayList<Double> itemPricesAfterSorting = inventoryPage.getAllItemPrices(Strings.ALL_ITEM_PRICES_XPATH);
             Collections.sort(itemPricesBeforeSorting);
 
             print("7. Verify that sorting is done correctly");
             assert itemPricesAfterSorting.equals(itemPricesBeforeSorting) : "Error: Sorting didn't work";
+
         } finally {
             driver.quit();
         }

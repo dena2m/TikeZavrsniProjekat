@@ -6,14 +6,14 @@ public class SearchTests extends BaseTests{
 
 
     /**
-     * Search by item type: 'patike', go through several pages, find a
-     * specific item: 'ADIDAS Patike SUPERTURF ADVENTURE SW' and buy it
+     * Search by keyword: 'patike', go through several pages, find a
+     * specific item: 'NIKE Patike Waffle One' and buy it
      *
      * Steps:
      * 1. Go to: 'https://www.tike.rs/'
      * 2. Click on search icon
-     * 3. Enter 'donji deo trenerke' into search field
-     * 4. Find and click 'NIKE Donji deo trenerke W J HERITAGE WOVEN PANT' on search list
+     * 3. Enter 'patike' into search field
+     * 4. Find and click 'NIKE Patike Waffle One' on search list
      *
      *
      * Expected results:
@@ -30,12 +30,12 @@ public class SearchTests extends BaseTests{
             InventoryPage inventoryPage = new InventoryPage(driver);
 
             print("2. Click on search icon");
-            print("3. Enter 'donji deo trenerke' into search field");
-            inventoryPage.searchItemTypeByKeyword("donji deo trenerke");
+            print("3. Enter 'patike' into search field");
+            inventoryPage.searchItemTypeByKeyword("patike");
 
-            print("4. Find and click 'NIKE Donji deo trenerke W J HERITAGE WOVEN PANT");
+            print("4. Find and click 'NIKE Patike Waffle One");
             print("4. Verify that correct item page is displayed");
-            inventoryPage.findItemByName(Strings.NIKE_DONJI_DEO_TRENERKE_TITLE);
+            inventoryPage.findItemByName(Strings.NIKE_PATIKE_TITLE);
         }
         finally {
             driver.quit();

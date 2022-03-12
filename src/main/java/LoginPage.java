@@ -52,6 +52,7 @@ public class LoginPage extends BasePage{
 
 
     public void enterTextIntoEmailField(String email) {
+        waitForElement(loginEmailAdresaField);
         loginEmailAdresaField.sendKeys(email);
     }
 
@@ -63,7 +64,6 @@ public class LoginPage extends BasePage{
 
     public void clickLoginModalButton() {
         modalPrijavaButton.click();
-        new InventoryPage(driver);
     }
 
 

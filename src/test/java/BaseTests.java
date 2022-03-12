@@ -49,7 +49,6 @@ public class BaseTests {
 
         print("Click 'Prijavi se' header link");
         loginPage.clickHeaderLoginButton();
-        sleep(3);
         print("Enter Email " + email);
         loginPage.enterTextIntoEmailField(email);
 
@@ -58,7 +57,9 @@ public class BaseTests {
 
         print("Click login button");
         loginPage.clickLoginModalButton();
+
+        // Wait for the page to reload
+        // (header logo is on every page, so waiting for it to be stale is the same as waiting for the page to reload)
+        loginPage.waitForStalenessOfElement(driver.findElementByXPath(Strings.HEADER_LOGO_XPATH));
     }
-
-
 }

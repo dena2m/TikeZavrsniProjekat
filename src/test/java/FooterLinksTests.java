@@ -87,7 +87,7 @@ public class FooterLinksTests extends BaseTests {
             BasePage basePage = new BasePage(driver);
 
             //switch to Facebook tab, assert Tike/Facebook URL, close Facebook tab, switch to Home page tab
-            basePage.openFacebookPage();
+            basePage.openAndCloseFacebookPage();
 
             print("Verify that Home page is displayed.");
             String actualUrl = driver.getCurrentUrl();
@@ -95,7 +95,7 @@ public class FooterLinksTests extends BaseTests {
 
 
             //switch to Instagram tab, assert Tike/Instagram URL close Instagram tab, switch to Home page tab
-            basePage.openInstagramPage();
+            basePage.openAndCloseInstagramPage();
 
             print("Verify that Home page is displayed.");
             String actualUrl1 = driver.getCurrentUrl();
@@ -103,7 +103,7 @@ public class FooterLinksTests extends BaseTests {
 
 
             //switch to YouTube tab, assert Tike/YouTube channel, close YouTube tab, switch to Home page tab
-            basePage.openYouTubeChannel();
+            basePage.openAndCloseYouTubeChannel();
 
             print("Verify that Home page is displayed.");
             String actualUrl2 = driver.getCurrentUrl();

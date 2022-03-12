@@ -43,7 +43,6 @@ public class InventoryPage extends BasePage {
     WebElement xlVelicina;
 
 
-
     public InventoryPage(ChromeDriver driver) {
         super(driver);
 
@@ -87,6 +86,7 @@ public class InventoryPage extends BasePage {
                 checkbox.click();
 
                 // Wait for the page to refresh after selecting a checkbox
+                // (wait for checkbox to be stale)
                 waitForStalenessOfElement(checkbox);
                 return;
             }
@@ -125,7 +125,6 @@ public class InventoryPage extends BasePage {
     public void selectSizeFromFilterList(String size) {
         waitForElement(velicinaFilterButton);
         clickOnSizeFilterButton();
-        //todo probaj drugi wait
         waitForElement(driver.findElementByXPath(Strings.SIZE_FILTER_LIST_XPATH));
         clickFilterCheckbox(Strings.SIZE_FILTER_LIST_XPATH, size);
     }
@@ -136,15 +135,13 @@ public class InventoryPage extends BasePage {
         waitForElementToBeClickable(sortirajDropDown);
         Select dropdown = new Select(sortirajDropDown);
         dropdown.selectByVisibleText(dropDownText);
-        //todo
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        waitForItemListToReload();
      }
 
 
      // search for item type e.g. 'T-shirt' and verify that correct list is displayed
     public void searchItemTypeByKeyword(String keyword) {
-        BasePage basePage = new BasePage(driver);
-        basePage.clickSearchIcon();
+        clickSearchIcon();
         enterTextIntoSearchField(keyword);
         List<WebElement> searchResults = getAllItems();
 
@@ -174,16 +171,14 @@ public class InventoryPage extends BasePage {
             // If there are no items found on current page, click on next page button if it exists
             if(isElementPresent(nextPageButton)) {
                 nextPageButton.click();
-                // TODO stavi wait
-                sleep(3);
+                waitForItemListToReload();
             }
             // If there is no next page button we are on the last page and there is no item with such name
             else{
                 break;
             }
         }
-        assert false : "Error: There is no product with such name.";
-        return null;
+        throw  new AssertionError("There is no product with such name");
     }
 
 

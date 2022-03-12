@@ -29,8 +29,7 @@ public class RegisterTests extends BaseTests{
             registerPage.waitForElement(registerPage.modalRegistracija);
             registerPage.fillRegisterModal();
 
-            sleep(3);
-            registerPage.isElementPresent(registerPage.alertMessage);
+            registerPage.waitForElement(registerPage.alertMessage);
             String actualMessage = driver.findElement(By.xpath(Strings.ALERT_MESSAGE_CONTAINER_XPATH)).getText();
             print("assertAlertMessage (" + actualMessage + ", " + Strings.REGISTER_ALERT_MESSAGGE_TEXT + ")");
             assert actualMessage.equals(Strings.REGISTER_ALERT_MESSAGGE_TEXT) : "Wrong message. Expected: " + Strings.REGISTER_ALERT_MESSAGGE_TEXT + ". Actual: " + actualMessage;

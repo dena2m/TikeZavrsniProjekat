@@ -46,7 +46,6 @@ public class BasePage {
         @FindBy(xpath = "//a[@href = 'https://www.youtube.com/channel/UCKCzJaG8KXV27C34VdvBIoQ']")
         WebElement youTubeLink;
 
-
         public BasePage(ChromeDriver driver) {
             this.driver = driver;
             PageFactory.initElements(driver, this);
@@ -92,7 +91,7 @@ public class BasePage {
         }
 
 
-    // Create an navbar link list, select one by title and verify that correct URL is displayed
+    // Create navbar link list, select one by title and verify that correct URL is displayed
     public InventoryPage openNavBarCategory(String categoryTitle, String categoryUrl) {
         List<WebElement> allCategories = driver.findElements(By.xpath(Strings.NAVBAR_CATEGORY_LIST_XPATH));
         for(WebElement category : allCategories) {
@@ -104,14 +103,13 @@ public class BasePage {
                 return new InventoryPage(driver);
             }
         }
-        assert false : "Error: Navbar category " + categoryTitle + " not found.";
-        return null;
+        throw new AssertionError("Error: Navbar category " + categoryTitle + " not found");
     }
 
 
         // Create footer link list, select one by title and verify that correct URL is displayed
         public void selectFooterLink(String footerLinkTitle, String footerLinkUrl) {
-            List<WebElement> footerLinks = driver.findElements(By.xpath("//nav[@class='row']//a"));
+            List<WebElement> footerLinks = driver.findElements(By.xpath(Strings.FOOTER_LINKS_LIST_XPATH));
             for(WebElement linkTitle : footerLinks) {
                 if(linkTitle.getAttribute("title").equals(footerLinkTitle)) {
                     print("Click on: " + footerLinkTitle);
@@ -122,21 +120,20 @@ public class BasePage {
                     return;
                 }
             }
-            assert false : "Error: footer page " + footerLinkTitle + " not found.";
+            throw new AssertionError("Error: Footer page " + footerLinkTitle + " not found");
         }
 
         // Verify that Facebook link button is present, scroll down the Home page (alignToTop argument is set to false
         // because the navigation bar was covering some links, and they weren't clickable)
         public void clickOnFacebookLinkButton() {
             assert isElementPresent(facebookLink) : "Error. Facebook button is not displayed.";
-            JavascriptExecutor js = driver;
-            js.executeScript("arguments[0].scrollIntoView(false);", facebookLink);
+            scrollToElement(facebookLink);
             facebookLink.click();
         }
 
 
-        // Click on Facebook link, switch to Tike/Facebook tab, close Facebook tab, switch to Home page tab
-        public void openFacebookPage() {
+        // Click on Facebook link, switch to Tike/Facebook tab, assert URL, close Facebook tab, switch to Home page tab
+        public void openAndCloseFacebookPage() {
             waitForElement(facebookLink);
             print("Click on Facebook link button.");
             clickOnFacebookLinkButton();
@@ -155,13 +152,12 @@ public class BasePage {
 
         public void clickOnInstagramLinkButton() {
             assert isElementPresent(instagramLink) : "Error. Instagram button is not displayed.";
-            JavascriptExecutor js = driver;
-            js.executeScript("arguments[0].scrollIntoView(false);", instagramLink);
+            scrollToElement(instagramLink);
             instagramLink.click();
         }
 
 
-        public void openInstagramPage() {
+        public void openAndCloseInstagramPage() {
             waitForElement(instagramLink);
             print("Click on Instagram link button.");
             clickOnInstagramLinkButton();
@@ -180,13 +176,12 @@ public class BasePage {
 
         public void clickOnYouTubeButton() {
             assert isElementPresent(youTubeLink) : "Error. YouTube button is not displayed.";
-            JavascriptExecutor js = driver;
-            js.executeScript("arguments[0].scrollIntoView(false);", youTubeLink);
+            scrollToElement(youTubeLink);
             youTubeLink.click();
         }
 
 
-        public void openYouTubeChannel() {
+        public void openAndCloseYouTubeChannel() {
             waitForElement(youTubeLink);
             print("Click on YouTube link button.");
             clickOnYouTubeButton();
@@ -201,6 +196,12 @@ public class BasePage {
             print("Switch to Home page tab.");
             driver.switchTo().window(tabs.get(0));
         }
+
+
+    public void scrollToElement(WebElement element) {
+        JavascriptExecutor js = driver;
+        js.executeScript("arguments[0].scrollIntoView(false);", element);
+    }
 
 
         public void assertUrl(String actualUrl, String expectedUrl) {
@@ -223,7 +224,7 @@ public class BasePage {
         }
 
 
-        public void print(String s) {
+        public static void print(String s) {
             System.out.println(s);
         }
 
@@ -239,13 +240,24 @@ public class BasePage {
             wait.until((ExpectedConditions.elementToBeClickable(element)));
         }
 
+
         // Wait for the page to refresh (after selecting a filter)
         public void waitForStalenessOfElement(WebElement element){
             WebDriverWait wait = new WebDriverWait(driver, 5);
             wait.until(ExpectedConditions.stalenessOf(element));
         }
 
-         public void  sleep(int seconds) {
+        public void waitForItemListToReload(){
+            WebDriverWait wait = new WebDriverWait(driver, 5);
+
+            // Wait for item list to disappear from the page
+            wait.until(ExpectedConditions.stalenessOf(driver.findElementByXPath(Strings.ALL_ITEM_LIST_XPATH)));
+
+            // Wait for item list to appear again
+            wait.until(ExpectedConditions.visibilityOf(driver.findElementByXPath(Strings.ALL_ITEM_LIST_XPATH)));
+        }
+
+         public static void sleep(int seconds) {
             try {
                 Thread.sleep(seconds * 1000);
             }

@@ -93,12 +93,14 @@ public class Strings {
     public static final String ALL_ITEM_LIST_XPATH = "//div[@class = 'title']//a";
     public static final String ALL_ITEM_PRICES_XPATH = "//div[@data-original-title='Važeća MP cena']";
     public static final String NAVBAR_CATEGORY_LIST_XPATH = "//ul[@class='nav-main list-inline']//a";
+    public static final String FOOTER_LINKS_LIST_XPATH = "//nav[@class='row']//a";
     public static final String ALERT_MESSAGE_CONTAINER_XPATH = "//div[@class = 'alert alert-danger']";
     public static final String SHOPPING_CART_ITEM_LIST_XPATH = "//td//div[@class='product-item-title text-left']/a";
     public static final String SHOPPING_CART_ITEM_PRICES_LIST_XPATH = "//span[@class='product-item-prices']";
     public static final String REMOVE_FROM_CART_BUTTON_XPATH = "//div[@class = 'cart-col-inner-wrapper']/a";
     public static final String EMPTY_CART_MESSAGE_XPATH = "//div[@class = 'alert alert-danger']";
     public static final String SEARCH_ALERT_MESSAGE_XPATH = "//div[@class =  'alert alert-info']";
+    public static final String HEADER_LOGO_XPATH = "//div[@class='container']//div[@class='block logo']";
 
     // ALL PAGES TITLE XPATH
     public static final String ALL_PAGES_TITLE_XPATH = "//h1//span";
