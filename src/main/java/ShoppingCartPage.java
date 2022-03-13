@@ -79,6 +79,7 @@ public class ShoppingCartPage extends BasePage{
 
 
     public void clickVerifyRemovingItemFromCartButton() {
+        waitForElementToBeClickable(potvrdiRemoveFromCartModalButton);
         potvrdiRemoveFromCartModalButton.click();
     }
 
