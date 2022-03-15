@@ -56,7 +56,7 @@ public class FooterLinksTests extends BaseTests {
             String actualUrl = driver.getCurrentUrl();
             assertUrl(actualUrl, Strings.HOME_PAGE_URL);
         }finally {
-            driver.quit();
+            // driver.quit();
         }
     }
 
@@ -109,7 +109,7 @@ public class FooterLinksTests extends BaseTests {
             String actualUrl2 = driver.getCurrentUrl();
             assertUrl(actualUrl2, Strings.HOME_PAGE_URL);
         }finally {
-            driver.quit();
+            // driver.quit();
         }
     }
 

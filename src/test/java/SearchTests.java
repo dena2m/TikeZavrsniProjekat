@@ -1,4 +1,3 @@
-import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 
@@ -28,7 +27,6 @@ public class SearchTests extends BaseTests{
         try {
             print("1. Go to: 'https://www.tike.rs/'");
             InventoryPage inventoryPage = new InventoryPage(driver);
-
             print("2. Click on search icon");
             print("3. Enter 'patike' into search field");
             inventoryPage.searchItemTypeByKeyword("patike");
@@ -38,7 +36,7 @@ public class SearchTests extends BaseTests{
             inventoryPage.findItemByName(Strings.NIKE_PATIKE_TITLE);
         }
         finally {
-            driver.quit();
+            // driver.quit();
         }
     }
 
@@ -81,7 +79,7 @@ public class SearchTests extends BaseTests{
                     Strings.SEARCH_ALERT_MESSAGE_TEXT + ". Actual: " + currentMessage;
 
         }finally {
-            driver.quit();
+            // driver.quit();
         }
     }
 

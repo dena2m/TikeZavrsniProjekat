@@ -12,12 +12,6 @@ public class InventoryItemPage extends BasePage{
     @FindBy(xpath = "//button[@id = 'nb_addToCartButton']")
     WebElement dodajUKorpuButton;
 
-    @FindBy(xpath = "//div[@class = 'product-favorite favorite product-wishlist-add']")
-    WebElement sacuvajteUListiZelja;
-
-    @FindBy(xpath = "//button[@data-btn-text-no-state='Nema na stanju']")
-    WebElement nemaNaStanjuTitle;
-
     @FindBy(xpath = "//li[@class='ease  ']//div")
     WebElement itemSizes;
 
@@ -26,9 +20,6 @@ public class InventoryItemPage extends BasePage{
 
     @FindBy(xpath = "//div[@class = 'toggle-button expand']")
     WebElement closePomocToggleBanner;
-
-    @FindBy(className = "toggle-button")
-    WebElement openPomocToggleBanner;
 
 
     public InventoryItemPage(ChromeDriver driver) {
@@ -43,6 +34,7 @@ public class InventoryItemPage extends BasePage{
 
 
     public Integer getNumberFromShoppingCartIcon() {
+        waitForElement(shoppingCartBadgeNumber);
         String number = shoppingCartBadgeNumber.getText();
         return Integer.valueOf(number);
     }

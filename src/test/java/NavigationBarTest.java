@@ -30,7 +30,6 @@ public class NavigationBarTest extends BaseTests {
 
             print("2. On navigation bar click on 'PATIKE' category and verify that the correct URL is displayed");
             homePage.openNavBarCategory(Strings.PATIKE_NAVBAR_TITLE, Strings.PATIKE_URL);
-
             print("2. Verify the correct page title");
             String currentPageTitle = driver.findElement(By.xpath(Strings.ALL_PAGES_TITLE_XPATH)).getText();
             assert currentPageTitle.equals(Strings.PATIKE_PAGE_TITLE) : "Error: Wrong page title. Expected: " +
@@ -73,21 +72,9 @@ public class NavigationBarTest extends BaseTests {
                     Strings.BLOG_PAGE_TITLE + ". Actual: " + currentPageTitle;
 
         }finally {
-            driver.quit();
+            //driver.quit();
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

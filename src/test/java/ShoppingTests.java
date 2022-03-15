@@ -99,7 +99,7 @@ public class ShoppingTests extends BaseTests{
             inventoryPage1.assertUrl(actualUrl, Strings.PROIZVODI_URL);
         }
         finally {
-            driver.quit();
+            // driver.quit();
         }
     }
 
@@ -214,7 +214,7 @@ public class ShoppingTests extends BaseTests{
             //shoppingCartPage.clickReCaptcha();
 
         }finally {
-           driver.quit();
+           // driver.quit();
         }
 
 

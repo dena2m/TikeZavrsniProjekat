@@ -15,9 +15,6 @@ public class ShoppingCartPage extends BasePage{
     @FindBy(xpath = "//button[@class = 'btn btn-primary']")
     WebElement potvrdiRemoveFromCartModalButton;
 
-    @FindBy(xpath = "//div[class= 'alert alert-danger']")
-    WebElement emptyCartMessage;
-
     @FindBy(xpath = "//a[@class = 'btn btn-success']")
     WebElement nastaviKupovinuButton;
 
@@ -29,15 +26,6 @@ public class ShoppingCartPage extends BasePage{
 
     @FindBy(xpath = "//div[@class='col-xs-12 col-sm-6 cart-payment-wrapper ncx-v2 cart-step']//ul//li[2]//div[@class='delivery-option-name']")
     WebElement gotovinaRadioButton;
-
-    @FindBy(id = "cart_onepage_terms_of_use")
-    WebElement usloviKoriscenjaIProdajeCheckBox;
-
-    @FindBy(id = "submit_order_one_page")
-    WebElement potvrdiKupovinuButton;
-
-    @FindBy(xpath = "//div//iframe[@ title = 'reCAPTCHA']")
-    WebElement reCaptchaCheckBox;
 
     @FindBy(xpath = "//iframe[@title = 'reCAPTCHA']")
     WebElement iFrame;
@@ -99,7 +87,7 @@ public class ShoppingCartPage extends BasePage{
     public void printListOfAllCartItems() {
         List<WebElement> allItems = getAllCartItems();
         List<WebElement> allItemPrices = getAllCartItemPrices();
-        System.out.println("Number of items: " + allItems.size());
+        print("Number of items: " + allItems.size());
 
         for(int i = 0; i < allItems.size(); i++) {
             String currentName = allItems.get(i).getText();
@@ -121,14 +109,7 @@ public class ShoppingCartPage extends BasePage{
 
 
     public void printUkupnoZaPlacanje() {
-        WebElement zaPlacanje = ukupnaCenaTabela;
         print("Ukupno za placanje: " + ukupnaCenaTabela.getText());
     }
-
-
-    public void clickSubmitButton() {
-        potvrdiKupovinuButton.click();
-    }
-
 
 }

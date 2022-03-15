@@ -31,6 +31,7 @@ public class FilterAndSortTests extends BaseTests {
         ChromeDriver driver = openChromeDriver();
 
         try {
+
             print("1. Go to: 'https://www.tike.rs'");
             HomePage homePage = new HomePage(driver);
 
@@ -65,7 +66,7 @@ public class FilterAndSortTests extends BaseTests {
             assert itemPricesAfterSorting.equals(itemPricesBeforeSorting) : "Error: Sorting didn't work";
 
         } finally {
-            driver.quit();
+            // driver.quit();
         }
     }
 

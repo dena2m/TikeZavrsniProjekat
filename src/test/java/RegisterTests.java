@@ -34,14 +34,13 @@ public class RegisterTests extends BaseTests{
             print("assertAlertMessage (" + actualMessage + ", " + Strings.REGISTER_ALERT_MESSAGGE_TEXT + ")");
             assert actualMessage.equals(Strings.REGISTER_ALERT_MESSAGGE_TEXT) : "Wrong message. Expected: " + Strings.REGISTER_ALERT_MESSAGGE_TEXT + ". Actual: " + actualMessage;
 
-            registerPage.waitForElement(registerPage.closeRegistracijaModal);
             registerPage.closeRegisterModal();
             print("Verify that Home page is displayed.");
             String actualUrl = driver.getCurrentUrl();
             assertUrl(actualUrl, Strings.HOME_PAGE_URL);
 
         } finally {
-            driver.quit();
+            // driver.quit();
         }
     }
 

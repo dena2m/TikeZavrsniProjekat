@@ -35,9 +35,6 @@ public class RegisterPage extends BasePage{
     @FindBy(id = "reg_password_repeat")
     WebElement ponoviLozinkuRegistracija;
 
-    @FindBy(id = "reg_gender_1")
-    WebElement muskiRadioButton;
-
     @FindBy(xpath = "//label[@for=\"reg_gender_2\"]")
     WebElement zenskiRadioButton;
 
@@ -65,14 +62,6 @@ public class RegisterPage extends BasePage{
     @FindBy(xpath = "//div[@class = 'alert alert-danger']")
     WebElement alertMessage;
 
-    @FindBy(id = "registration_modal")
-    WebElement registracijaSuccessModal;
-
-    @FindBy(xpath = "//form[@id = 'registration_modal']//div[@class = 'modal-header']//button")
-    WebElement closeRegistracijaSuccessModal;
-
-    @FindBy(xpath = "//div[@class = 'alert alert-success']")
-    WebElement successAlertMessage;
 
 
 
@@ -173,6 +162,7 @@ public class RegisterPage extends BasePage{
 
 
     public void closeRegisterModal() {
+        waitForElement(closeRegistracijaModal);
         closeRegistracijaModal.click();
     }
 

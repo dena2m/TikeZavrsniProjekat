@@ -3,13 +3,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class InventoryPage extends BasePage {
-
 
 
     @FindBy(className = "icon-caret-right")
@@ -29,18 +26,6 @@ public class InventoryPage extends BasePage {
 
     @FindBy(id = "sort")
     WebElement sortirajDropDown;
-
-    @FindBy(xpath = "//label[@for = '28_adidas']")
-    WebElement adidasCheckbox;
-
-    @FindBy(xpath = "//label[@for = '13_za-muskarce']")
-    WebElement zaMuskarceCheckbox;
-
-    @FindBy(xpath = "//label[@for = '13_za-zene']")
-    WebElement zaZeneCheckbox;
-
-    @FindBy(xpath = "//label[@for = 'f_eusize_XL']")
-    WebElement xlVelicina;
 
 
     public InventoryPage(ChromeDriver driver) {

@@ -47,7 +47,7 @@ public class LoginTests extends BaseTests{
                     loginPage.odjavaHeaderLink + ". Actual: " + loginPage.registrujSeHeaderButton;
 
         }finally {
-            driver.quit();
+            // driver.quit();
         }
     }
 
@@ -106,7 +106,7 @@ public class LoginTests extends BaseTests{
                     loginPage.registrujSeHeaderButton + ". Actual: " + loginPage.odjavaHeaderLink;
 
         }finally {
-            driver.quit();
+            // driver.quit();
         }
     }
 
@@ -158,7 +158,7 @@ public class LoginTests extends BaseTests{
                     loginPage.registrujSeHeaderButton + ". Actual: " + loginPage.odjavaHeaderLink;
 
         }finally {
-            driver.quit();
+            // driver.quit();
         }
 
     }

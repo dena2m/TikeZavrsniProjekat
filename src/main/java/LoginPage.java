@@ -17,9 +17,6 @@ public class LoginPage extends BasePage{
     @FindBy(xpath = "//button[@type = 'submit']")
     WebElement modalPrijavaButton;
 
-    @FindBy(xpath = "//a[@class='btn']")
-    WebElement modalRegistrujSeButton;
-
     @FindBy(xpath = "//div[@class = 'modal-header']//button")
     WebElement closePrijavaModal;
 

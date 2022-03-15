@@ -10,9 +10,8 @@ import java.util.List;
 
 public class BasePage {
 
-    ChromeDriver driver = null;
+        ChromeDriver driver;
 
-        //webelements
         @FindBy(xpath = "//div[@class='container']//div[@class='block logo']")
         WebElement headerLogo;
 
@@ -51,13 +50,6 @@ public class BasePage {
             PageFactory.initElements(driver, this);
         }
 
-
-        public void closeCookies() {
-            waitForElement(cookiesCloseButton);
-            cookiesCloseButton.click();
-        }
-
-
         public void clickHeaderLogo() {
             headerLogo.click();
         }
@@ -85,7 +77,6 @@ public class BasePage {
 
 
         public ShoppingCartPage clickShoppingCartIcon() {
-
             shoppingCartIcon.click();
             return new  ShoppingCartPage(driver);
         }
@@ -228,16 +219,15 @@ public class BasePage {
             System.out.println(s);
         }
 
-
         public void waitForElement(WebElement element) {
             WebDriverWait wait = new WebDriverWait(driver, 5);
-            wait.until((ExpectedConditions.visibilityOf(element)));
+            wait.until(ExpectedConditions.visibilityOf(element));
         }
 
 
         public void waitForElementToBeClickable(WebElement element) {
             WebDriverWait wait = new WebDriverWait(driver,5);
-            wait.until((ExpectedConditions.elementToBeClickable(element)));
+            wait.until(ExpectedConditions.elementToBeClickable(element));
         }
 
 
@@ -259,7 +249,7 @@ public class BasePage {
 
          public static void sleep(int seconds) {
             try {
-                Thread.sleep(seconds * 1000);
+                Thread.sleep((long)seconds * 1000);
             }
             catch (Exception e) {
                 print(e.getMessage());
