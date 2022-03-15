@@ -38,6 +38,8 @@ public class Strings {
     // Footer pages titles
     public static final String O_NAMA_PAGE_TITLE = "O nama";
     public static final String REKLAMACIJE_PAGE_TITLE = "Reklamacije";
+
+    // NavBar categories page titles
     public static final String PATIKE_PAGE_TITLE = "PATIKE";
     public static final String ODECA_PAGE_TITLE = "ODEĆA";
     public static final String BRENDOVI_PAGE_TITLE = "BREND";
@@ -92,6 +94,10 @@ public class Strings {
     public static final String EMPTY_CART_MESSAGE_XPATH = "//div[@class = 'alert alert-danger']";
     public static final String SEARCH_ALERT_MESSAGE_XPATH = "//div[@class =  'alert alert-info']";
     public static final String HEADER_LOGO_XPATH = "//div[@class='container']//div[@class='block logo']";
+
+    // Puma brand URL
+    public static final String PUMA_URL = "https://www.tike.rs/proizvodi/puma";
+
 
     // ALL PAGES TITLE XPATH
     public static final String ALL_PAGES_TITLE_XPATH = "//h1//span";
