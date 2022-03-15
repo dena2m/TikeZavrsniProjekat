@@ -8,7 +8,7 @@ public class NavigationBarTest extends BaseTests {
      * Opening and verifying all categories from navigation bar
      *
      * Steps:
-     * 1. Go to: "https://www.tike.rs".
+     * 1. Go to: 'https://www.tike.rs'
      * 2. On navigation bar click on 'PATIKE' category
      * 3. On navigation bar click on 'ODEĆA' category
      * 4. On navigation bar click on 'BRENDOVI' category
@@ -74,6 +74,43 @@ public class NavigationBarTest extends BaseTests {
         }finally {
             //driver.quit();
         }
+    }
+
+    /**
+     * Selecting 'BRENDOVI' category from navigation bar and clicking on 'PUMA' brand from brand list.
+     * Failure intended.
+     *
+     * Steps:
+     * 1. Go to: "https://www.tike.rs"
+     * 2. On navigation bar click on 'BRENDOVI' category
+     * 3. Click on 'PUMA' brand from brand list
+     *
+     * Expected results:
+     * 3. Verify that you are redirected to 'PUMA' page URL
+     */
+
+    @Test
+    public void selectPumaBrand() {
+        ChromeDriver driver = openChromeDriver();
+        try {
+            print("1. Go to: 'https://www.tike.rs'");
+            InventoryPage inventoryPage = new InventoryPage(driver);
+
+            print("2. On navigation bar click on 'BRENDOVI' category");
+            inventoryPage.openNavBarCategory(Strings.BRENDOVI_NAVBAR_TITLE, Strings.BRENDOVI_URL);
+
+            print("3. Click on 'PUMA' brand from brand list");
+            inventoryPage.clickOnPumaFalseButton();
+
+            print("3. Verify that you are redirected to 'PUMA' page URL");
+            String actualUrl = driver.getCurrentUrl();
+            assertUrl(actualUrl, Strings.PUMA_URL);
+
+        }finally {
+            //driver.quit();
+        }
+
+
     }
 
 
