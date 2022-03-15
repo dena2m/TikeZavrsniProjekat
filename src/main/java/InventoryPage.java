@@ -27,6 +27,9 @@ public class InventoryPage extends BasePage {
     @FindBy(id = "sort")
     WebElement sortirajDropDown;
 
+    @FindBy(xpath = "//a[@title = 'PUMA false']")
+    WebElement pumaFalseButton;
+
 
     public InventoryPage(ChromeDriver driver) {
         super(driver);
@@ -187,6 +190,10 @@ public class InventoryPage extends BasePage {
         return new InventoryItemPage(driver);
    }
 
+
+   public void clickOnPumaFalseButton() {
+        pumaFalseButton.click();
+   }
 }
 
 
