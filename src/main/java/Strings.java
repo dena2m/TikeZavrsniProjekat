@@ -35,7 +35,7 @@ public class Strings {
     public static final String KAKO_KUPITI_FOOTER_TITLE = "Kako kupiti";
     public static final String NACIN_ISPORUKE_FOOTER_TITLE = "Načini isporuke";
 
-    // Page titles
+    // Footer pages titles
     public static final String O_NAMA_PAGE_TITLE = "O nama";
     public static final String REKLAMACIJE_PAGE_TITLE = "Reklamacije";
     public static final String PATIKE_PAGE_TITLE = "PATIKE";
@@ -50,12 +50,6 @@ public class Strings {
     public static final String BRENDOVI_NAVBAR_TITLE = "BRENDOVI";
     public static final String SALE_NAVBAR_TITLE = "SALE";
     public static final String BLOG_NAVBAR_TITLE = "BLOG";
-
-    // Filter category titles
-    public static final String KATEGORIJE_CATEGORY_TITLE = "Kategorije";
-    public static final String POL_CATEGORY_TITLE = "Pol";
-    public static final String BRENDOVI_CATEGORY_TITLE = "Brendovi";
-    public static final String VELICINA_CATEGORY_TITLE = "Veličina";
 
     // Titles from filter list checkboxes
     public static final String JACKET_TITLE = "Jakna";
@@ -74,9 +68,6 @@ public class Strings {
     public static final String BY_NAME = "Po nazivu";
     public static final String RECOMMENDED = "Preporučujemo";
     public static final String EMPTY_CART_MESSAGE = "Vaša korpa je prazna!";
-
-    // All item titles
-    public static final String ALL_SEARCH_LIST_ITEM_TITLES_XPATH = "//div[@class = 'product-title']";
 
     // Item titles
     public static final String ADIDAS_PATIKE_TITLE = "ADIDAS Patike SUPERTURF ADVENTURE SW";
