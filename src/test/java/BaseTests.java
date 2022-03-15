@@ -1,11 +1,18 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
+import org.testng.Reporter;
 
 public class BaseTests {
+
+    private ChromeDriver driver;
+
+    public ChromeDriver getDriver() {
+        return driver;
+    }
 
     public ChromeDriver openChromeDriver() {
         print("Opening Chrome Driver");
@@ -20,18 +27,21 @@ public class BaseTests {
         WebDriverWait wait = new WebDriverWait(driver, 5);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@type = 'button']")));
         driver.findElement(By.xpath("//span[@aria-hidden ='true']")).click();
+
+        this.driver = driver;
         return driver;
     }
 
 
     public static void print(String s) {
         System.out.println(s);
+        Reporter.log(s);
     }
 
 
     public static void sleep(int seconds) {
         try {
-            Thread.sleep(seconds * 1000);
+            Thread.sleep((long)seconds * 1000);
         } catch (Exception e) {
             print(e.getMessage());
         }
@@ -62,4 +72,5 @@ public class BaseTests {
         // (header logo is on every page, so waiting for it to be stale is the same as waiting for the page to reload)
         loginPage.waitForStalenessOfElement(driver.findElementByXPath(Strings.HEADER_LOGO_XPATH));
     }
+
 }
