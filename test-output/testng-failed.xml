@@ -6,17 +6,11 @@
   </listeners>
   <test thread-count="5" name="IdeaProjects/TikeZavrsniProjekat(failed)">
     <classes>
-      <class name="RegisterTests">
+      <class name="NavigationBarTest">
         <methods>
-          <include name="registerWithValidCredentials"/>
+          <include name="selectPumaBrand"/>
         </methods>
-      </class> <!-- RegisterTests -->
-      <class name="ShoppingTests">
-        <methods>
-          <include name="buyTwoItemsAndCheckout"/>
-          <include name="addAndRemoveItemFromCart"/>
-        </methods>
-      </class> <!-- ShoppingTests -->
+      </class> <!-- NavigationBarTest -->
     </classes>
   </test> <!-- IdeaProjects/TikeZavrsniProjekat(failed) -->
 </suite> <!-- Failed suite [All Test Suite] -->
