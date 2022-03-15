@@ -94,9 +94,8 @@ public class ShoppingTests extends BaseTests{
             shoppingCartPage.clickContinueShoppingButton();
 
             print("10. Verify that Inventory page is displayed");
-            InventoryPage inventoryPage1 = new InventoryPage(driver);
             String actualUrl = driver.getCurrentUrl();
-            inventoryPage1.assertUrl(actualUrl, Strings.PROIZVODI_URL);
+            inventoryPage.assertUrl(actualUrl, Strings.PROIZVODI_URL);
         }
         finally {
             // driver.quit();
@@ -170,28 +169,28 @@ public class ShoppingTests extends BaseTests{
 
             print("9. Select 'Patike' category from navigation bar");
             print("9. Verify that 'Patike' URL is displayed");
-            InventoryPage inventoryPage1 = inventoryItemPage.openNavBarCategory(Strings.PATIKE_NAVBAR_TITLE, Strings.PATIKE_URL);
+            inventoryPage = inventoryItemPage.openNavBarCategory(Strings.PATIKE_NAVBAR_TITLE, Strings.PATIKE_URL);
 
             print("10. Select: 'NIKE Patike Waffle One'");
             print("10. Verify that 'NIKE Patike Waffle One' item page is displayed");
-            InventoryItemPage inventoryItemPage1 = inventoryPage1.findItemByName(Strings.NIKE_PATIKE_TITLE);
+            inventoryItemPage = inventoryPage.findItemByName(Strings.NIKE_PATIKE_TITLE);
 
             print("11. Select size'38'");
             inventoryItemPage.chooseItemSize("38");
 
             print("12. Click add to cart");
-            inventoryItemPage1.clickAddToCartButton();
+            inventoryItemPage.clickAddToCartButton();
             //sleep(3);
 
             print("13. Get shopping cart badge number");
-            inventoryItemPage1.waitForShoppingBadgeNumber(currentNumber, 1);
+            inventoryItemPage.waitForShoppingBadgeNumber(currentNumber, 1);
             currentNumber = inventoryItemPage.getNumberFromShoppingCartIcon();
 
             print("13. Verify that number '2' is displayed on shopping cart badge");
             assert currentNumber == 2 : "Error: Wrong number of items. Expected: 2. Actual: " + currentNumber;
 
             print("14. Click shopping cart icon");
-            ShoppingCartPage shoppingCartPage = inventoryItemPage1.clickShoppingCartIcon();
+            ShoppingCartPage shoppingCartPage = inventoryItemPage.clickShoppingCartIcon();
 
             print("14. Verify that shopping cart URL is displayed");
             String actualUrl = driver.getCurrentUrl();
