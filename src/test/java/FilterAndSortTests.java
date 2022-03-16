@@ -65,8 +65,9 @@ public class FilterAndSortTests extends BaseTests {
             print("7. Verify that sorting is done correctly");
             assert itemPricesAfterSorting.equals(itemPricesBeforeSorting) : "Error: Sorting didn't work";
 
-        } finally {
-            // driver.quit();
+        }
+        finally {
+            print("Test finished");
         }
     }
 

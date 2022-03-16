@@ -46,8 +46,9 @@ public class LoginTests extends BaseTests{
             assert loginPage.isElementPresent(loginPage.odjavaHeaderLink) : "Error: Wrong header link. Expected: " +
                     loginPage.odjavaHeaderLink + ". Actual: " + loginPage.registrujSeHeaderButton;
 
-        }finally {
-            // driver.quit();
+        }
+        finally {
+            print("Test finished");
         }
     }
 
@@ -105,8 +106,9 @@ public class LoginTests extends BaseTests{
             assert !loginPage.isElementPresent(loginPage.odjavaHeaderLink) : "Error: Wrong header link. Expected: " +
                     loginPage.registrujSeHeaderButton + ". Actual: " + loginPage.odjavaHeaderLink;
 
-        }finally {
-            // driver.quit();
+        }
+        finally {
+            print("Test finished");
         }
     }
 
@@ -157,10 +159,10 @@ public class LoginTests extends BaseTests{
             assert !loginPage.isElementPresent(loginPage.odjavaHeaderLink) : "Error: Wrong header link. Expected: " +
                     loginPage.registrujSeHeaderButton + ". Actual: " + loginPage.odjavaHeaderLink;
 
-        }finally {
-            // driver.quit();
         }
-
+        finally {
+            print("Test finished");
+        }
     }
 
 

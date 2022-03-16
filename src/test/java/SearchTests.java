@@ -36,7 +36,7 @@ public class SearchTests extends BaseTests{
             inventoryPage.findItemByName(Strings.NIKE_PATIKE_TITLE);
         }
         finally {
-            // driver.quit();
+            print("Test finished");
         }
     }
 
@@ -78,8 +78,9 @@ public class SearchTests extends BaseTests{
             assert currentMessage.equals(Strings.SEARCH_ALERT_MESSAGE_TEXT) : "Error: Wrong message. Expected: " +
                     Strings.SEARCH_ALERT_MESSAGE_TEXT + ". Actual: " + currentMessage;
 
-        }finally {
-            // driver.quit();
+        }
+        finally {
+            print("Test finished");
         }
     }
 

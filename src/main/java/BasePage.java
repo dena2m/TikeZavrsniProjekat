@@ -15,9 +15,6 @@ public class BasePage {
         @FindBy(xpath = "//div[@class='container']//div[@class='block logo']")
         WebElement headerLogo;
 
-        @FindBy(xpath = "//span[@aria-hidden ='true']")
-        WebElement cookiesCloseButton;
-
         @FindBy(className = "register-btn")
         WebElement registrujSeHeaderButton;
 

@@ -15,13 +15,6 @@ import java.util.Calendar;
 public class ScreenshotListener extends TestListenerAdapter {
 
     @Override
-    public void onTestSuccess(ITestResult result) {
-        Object currentClass = result.getInstance();
-        ChromeDriver driver = ((BaseTests) currentClass).getDriver();
-        driver.quit();
-    }
-
-    @Override
     public void onTestFailure(ITestResult result){
 
         Object currentClass = result.getInstance();
@@ -45,9 +38,6 @@ public class ScreenshotListener extends TestListenerAdapter {
         }
         catch (Exception e){
             System.out.println(e.getMessage());
-        }
-        finally {
-            driver.quit();
         }
     }
 }

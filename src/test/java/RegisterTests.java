@@ -39,8 +39,9 @@ public class RegisterTests extends BaseTests{
             String actualUrl = driver.getCurrentUrl();
             assertUrl(actualUrl, Strings.HOME_PAGE_URL);
 
-        } finally {
-            // driver.quit();
+        }
+        finally {
+            print("Test finished");
         }
     }
 

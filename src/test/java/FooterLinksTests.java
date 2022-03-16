@@ -55,8 +55,9 @@ public class FooterLinksTests extends BaseTests {
             print("7. Verify that Home page is displayed");
             String actualUrl = driver.getCurrentUrl();
             assertUrl(actualUrl, Strings.HOME_PAGE_URL);
-        }finally {
-            // driver.quit();
+        }
+        finally {
+            print("Test finished");
         }
     }
 
@@ -108,8 +109,9 @@ public class FooterLinksTests extends BaseTests {
             print("Verify that Home page is displayed.");
             String actualUrl2 = driver.getCurrentUrl();
             assertUrl(actualUrl2, Strings.HOME_PAGE_URL);
-        }finally {
-            // driver.quit();
+        }
+        finally {
+            print("Test finished");
         }
     }
 

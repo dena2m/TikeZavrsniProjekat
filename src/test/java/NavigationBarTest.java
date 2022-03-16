@@ -71,8 +71,9 @@ public class NavigationBarTest extends BaseTests {
             assert currentPageTitle.equals(Strings.BLOG_PAGE_TITLE) : "Error: Wrong title. Expected: " +
                     Strings.BLOG_PAGE_TITLE + ". Actual: " + currentPageTitle;
 
-        }finally {
-            //driver.quit();
+        }
+        finally {
+            print("Test finished");
         }
     }
 
@@ -90,9 +91,11 @@ public class NavigationBarTest extends BaseTests {
      */
 
     @Test
-    public void selectPumaBrand() {
-        ChromeDriver driver = openChromeDriver();
+    public void failureTest() {
         try {
+
+            ChromeDriver driver = openChromeDriver();
+
             print("1. Go to: 'https://www.tike.rs'");
             InventoryPage inventoryPage = new InventoryPage(driver);
 
@@ -105,14 +108,11 @@ public class NavigationBarTest extends BaseTests {
             print("3. Verify that you are redirected to 'PUMA' page URL");
             String actualUrl = driver.getCurrentUrl();
             assertUrl(actualUrl, Strings.PUMA_URL);
-
-        }finally {
-            //driver.quit();
         }
-
-
+        finally {
+            print("Test finished");
+        }
     }
-
 
 }
 
