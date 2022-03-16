@@ -79,20 +79,22 @@ public class BasePage {
         }
 
 
-    // Create navbar link list, select one by title and verify that correct URL is displayed
-    public InventoryPage openNavBarCategory(String categoryTitle, String categoryUrl) {
-        List<WebElement> allCategories = driver.findElements(By.xpath(Strings.NAVBAR_CATEGORY_LIST_XPATH));
-        for(WebElement category : allCategories) {
-            if(category.getAttribute("title").equals(categoryTitle)){
-                category.click();
-                String actualUrl = driver.getCurrentUrl();
-                assertUrl(actualUrl, categoryUrl);
-                print("Selected category: " + categoryTitle + ".");
-                return new InventoryPage(driver);
+        // Create navbar link list, select one by title and verify that correct URL is displayed
+        public InventoryPage openNavBarCategory(String categoryTitle, String categoryUrl) {
+            List<WebElement> allCategories = driver.findElements(By.xpath(Strings.NAVBAR_CATEGORY_LIST_XPATH));
+            for(WebElement category : allCategories) {
+                if(category.getAttribute("title").equals(categoryTitle)){
+                    print("Click on: " + categoryTitle);
+                    category.click();
+                    print("Verify that " + categoryUrl + " URL is displayed.");
+                    String actualUrl = driver.getCurrentUrl();
+                    assertUrl(actualUrl, categoryUrl);
+                    print("Selected category: " + categoryTitle + ".");
+                    return new InventoryPage(driver);
+                }
             }
+            throw new AssertionError("Error: Navbar category " + categoryTitle + " not found");
         }
-        throw new AssertionError("Error: Navbar category " + categoryTitle + " not found");
-    }
 
 
         // Create footer link list, select one by title and verify that correct URL is displayed
@@ -186,10 +188,10 @@ public class BasePage {
         }
 
 
-    public void scrollToElement(WebElement element) {
-        JavascriptExecutor js = driver;
-        js.executeScript("arguments[0].scrollIntoView(false);", element);
-    }
+        public void scrollToElement(WebElement element) {
+            JavascriptExecutor js = driver;
+            js.executeScript("arguments[0].scrollIntoView(false);", element);
+        }
 
 
         public void assertUrl(String actualUrl, String expectedUrl) {
@@ -215,6 +217,7 @@ public class BasePage {
         public static void print(String s) {
             System.out.println(s);
         }
+
 
         public void waitForElement(WebElement element) {
             WebDriverWait wait = new WebDriverWait(driver, 5);
