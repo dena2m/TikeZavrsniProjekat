@@ -194,6 +194,8 @@ public class InventoryPage extends BasePage {
    public void clickOnPumaFalseButton() {
         pumaFalseButton.click();
    }
+
+
 }
 
 

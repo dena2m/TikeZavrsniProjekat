@@ -6,7 +6,7 @@ public class SearchTests extends BaseTests{
 
     /**
      * Search by keyword: 'patike', go through several pages, find a
-     * specific item: 'NIKE Patike Waffle One' and buy it
+     * specific item: 'NIKE Patike Waffle One'
      *
      * Steps:
      * 1. Go to: 'https://www.tike.rs/'

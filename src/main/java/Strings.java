@@ -98,7 +98,6 @@ public class Strings {
     // Puma brand URL
     public static final String PUMA_URL = "https://www.tike.rs/proizvodi/puma";
 
-
     // ALL PAGES TITLE XPATH
     public static final String ALL_PAGES_TITLE_XPATH = "//h1//span";
 

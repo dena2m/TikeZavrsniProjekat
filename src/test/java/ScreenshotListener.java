@@ -23,10 +23,12 @@ public class ScreenshotListener extends TestListenerAdapter {
         try {
             File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 
+            // Formatting screenshot name
             Calendar calendar = Calendar.getInstance();
             SimpleDateFormat formatter = new SimpleDateFormat("dd_MM_yyyy_hh_mm_ss");
             String scrName = formatter.format(calendar.getTime()) + ".png";
 
+            // Making screenshot path
             String currentPath = Paths.get(System.getProperty("user.dir")).toString();
             Path destPath = Paths.get(currentPath, "test-output", "screenshots", scrName);
             File destFile = new File(destPath.toString());
